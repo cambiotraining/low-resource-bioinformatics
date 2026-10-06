@@ -19,20 +19,15 @@ In formal university education, assessment is often equated with examinations, l
 
 In short-format bioinformatics training, assessment serves a fundamentally different purpose: **it is a diagnostic navigation tool**.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   FORMATIVE vs SUMMATIVE ASSESSMENT                    │
-├───────────────────────────────────┬────────────────────────────────────┤
-│     FORMATIVE ASSESSMENT          │       SUMMATIVE ASSESSMENT         │
-│     (Assessment FOR Learning)     │      (Assessment OF Learning)      │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ • Conducted DURING the lesson     │ • Conducted at the END of a course │
-│ • Low-stakes / ungraded           │ • High-stakes (Grades, Ranking)    │
-│ • Diagnoses mental model bugs     │ • Evaluates overall achievement    │
-│ • Informs immediate instruction   │ • Evaluates the curriculum         │
-│ • "The chef tasting the soup"     │ • "The customer eating the soup"   │
-└───────────────────────────────────┴────────────────────────────────────┘
-```
+| FORMATIVE ASSESSMENT<br>(Assessment FOR Learning) | SUMMATIVE ASSESSMENT<br>(Assessment OF Learning) |
+| :--- | :--- |
+| • Conducted DURING the lesson | • Conducted at the END of a course |
+| • Low-stakes / ungraded | • High-stakes (Grades, Ranking) |
+| • Diagnoses mental model bugs | • Evaluates overall achievement |
+| • Informs immediate instruction | • Evaluates the curriculum |
+| • "The chef tasting the soup" | • "The customer eating the soup" |
+
+: Table 1: Formative versus summative assessment
 
 Formative assessment tells both the instructor and the learner: *Did that concept click? Do we share the same mental model? Can we move forward, or do we need to pause and clarify?*
 
@@ -44,25 +39,21 @@ A standard multiple-choice question often tests trivial recall of facts. A **dia
 ### The Anatomy of a Diagnostic MCQ
 
 An effective diagnostic MCQ consists of:
+
 1. **A Clear Stem:** A focused question presenting a concrete problem or command.
 2. **One Correct Answer:** Unambiguously accurate.
 3. **Plausible Distractors (Wrong Answers):** Each incorrect option represents a *known, specific conceptual error* or common beginner trap.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   SAMPLE DIAGNOSTIC BIOINFORMATICS MCQ                 │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                                        │
-│   Question: You want to count how many sequences are in a multi-FASTA  │
-│   file called 'isolates.fasta'. Which command should you run?          │
-│                                                                        │
-│   A) wc -l isolates.fasta                                              │
-│   B) grep -c ">" isolates.fasta                                        │
-│   C) grep -c "^>" isolates.fasta                                       │
-│   D) head -n 4 isolates.fasta                                          │
-│                                                                        │
-└────────────────────────────────────────────────────────────────────────┘
-```
+::: {.callout-important}
+## Sample diagnostic bioinformatics MCQ
+**Question:** You want to count how many sequences are in a multi-FASTA  
+file called `isolates.fasta`. Which command should you run?          
+                                                                     
+A) `wc -l isolates.fasta`                                            
+B) `grep -c ">" isolates.fasta`                                      
+C) `grep -c "^>" isolates.fasta`                                     
+D) `head -n 4 isolates.fasta`
+:::
 
 ### What Each Choice Diagnoses:
 - **If they pick A (`wc -l`):** Confuses total lines in a file with total sequences (forgets that FASTA sequences wrap across multiple lines).
@@ -88,24 +79,19 @@ Novice bioinformaticians frequently struggle with simultaneous cognitive loads: 
 
 A Parson’s Problem eliminates syntax frustration by providing learners with the **exact lines of code scrambled in random order**. The learner’s task is simply to arrange the lines into the correct execution sequence.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   PARSON'S PROBLEM: VARIANT CALLING WORKFLOW           │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                                        │
-│   Task: Put the following steps in the correct order to identify       │
-│   high-quality genomic variants from raw sequencing reads:             │
-│                                                                        │
-│   [ ] samtools index aligned_sorted.bam                                │
-│   [ ] fastp -i raw_R1.fq.gz -I raw_R2.fq.gz -o clean_R1.fq.gz ...      │
-│   [ ] bcftools call -mv -Oz -o raw_variants.vcf.gz                     │
-│   [ ] bwa mem reference.fasta clean_R1.fq.gz clean_R2.fq.gz | ...      │
-│   [ ] bcftools filter -e 'QUAL < 30 || DP < 10' raw_variants.vcf.gz    │
-│                                                                        │
-└────────────────────────────────────────────────────────────────────────┘
-```
+::: {.callout-important}
+## Parson’s Problem: variant calling workflow
+**Task:** Put the following steps in the correct order to identify high-quality genomic variants from raw sequencing reads:
+
+  [ ] `samtools index aligned_sorted.bam`                                
+  [ ] `fastp -i raw_R1.fq.gz -I raw_R2.fq.gz -o clean_R1.fq.gz ...`      
+  [ ] `bcftools call -mv -Oz -o raw_variants.vcf.gz`                     
+  [ ] `bwa mem reference.fasta clean_R1.fq.gz clean_R2.fq.gz | ...`      
+  [ ] `bcftools filter -e 'QUAL < 30 || DP < 10' raw_variants.vcf.gz`
+:::
 
 *Correct Order:*
+
 1. `fastp` (Quality trimming raw reads)
 2. `bwa mem` (Aligning clean reads to reference)
 3. `samtools index` (Indexing the sorted BAM file)
@@ -121,27 +107,14 @@ In low-resource venues, modern web polling applications (such as Mentimeter, Kah
 
 Use these zero-bandwidth, low-tech alternatives:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   ZERO-BANDWIDTH FORMATIVE TOOLS                       │
-├─────────────────────┬──────────────────────────────────────────────────┤
-│ Technique           │ How It Works in Practice                         │
-├─────────────────────┼──────────────────────────────────────────────────┤
-│ 1. Finger Voting    │ For MCQs (A, B, C, D): Students hold 1, 2, 3, or │
-│                     │ 4 fingers against their chest. On count of three,│
-│                     │ everyone displays their vote simultaneously.     │
-├─────────────────────┼──────────────────────────────────────────────────┤
-│ 2. Sticky Note Bar  │ Post a line on the whiteboard: [Hard] ── [Easy]. │
-│    Chart            │ Students stick their colored sticky notes along  │
-│                     │ the spectrum during coffee breaks.               │
-├─────────────────────┼──────────────────────────────────────────────────┤
-│ 3. Mini-Whiteboards │ Learners write a one-word command or path on a   │
-│    or Paper Slips   │ sheet of paper and hold it up simultaneously.    │
-├─────────────────────┼──────────────────────────────────────────────────┤
-│ 4. Think-Pair-Share │ Give a 60-second prompt; pairs discuss for       │
-│                     │ 2 minutes; call on two random pairs to share.    │
-└─────────────────────┴──────────────────────────────────────────────────┘
-```
+| Technique | How It Works in Practice |
+| :--- | :--- |
+| 1. Finger Voting | For MCQs (A, B, C, D): Students hold 1, 2, 3, or 4 fingers against their chest. On count of three, everyone displays their vote simultaneously. |
+| 2. Sticky Note Bar Chart | Post a line on the whiteboard: [Hard] ── [Easy]. Students stick their colored sticky notes along the spectrum during coffee breaks. |
+| 3. Mini-Whiteboards or Paper Slips | Learners write a one-word command or path on a sheet of paper and hold it up simultaneously. |
+| 4. Think-Pair-Share | Give a 60-second prompt; pairs discuss for 2 minutes; call on two random pairs to share. |
+
+: Table 2: Zero-bandwidth formative tools
 
 ::: {.callout-tip}
 ## The "Chest Vote" Rule
@@ -153,19 +126,13 @@ When conducting finger voting, have students hold their hand flat against their 
 
 Adult life scientists are motivated by authentic tasks that mirror their professional responsibilities. Replace artificial quizzes with **authentic computational deliverables**:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   TRADITIONAL vs AUTHENTIC ASSESSMENT                  │
-├───────────────────────────────────┬────────────────────────────────────┤
-│     TRADITIONAL QUIZ              │      AUTHENTIC TASK                │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ • "What is the flag for output in │ • "Generate a MultiQC report for   │
-│   fastp?"                         │   these 4 patient samples and identify│
-│ • "Define N50 in one sentence."   │   which sample failed library prep."│
-│ • Memorization-focused            │ • Interpretation-focused           │
-│ • Abstract and unmotivating       │ • Directly mirrors lab reality     │
-└───────────────────────────────────┴────────────────────────────────────┘
-```
+| Traditional quiz | Authentic task |
+| :--- | :--- |
+| • "What is the flag for output in fastp?"<br>• "Define N50 in one sentence." | • "Generate a MultiQC report for these 4 patient samples and identify which sample failed library prep." |
+| • Memorization-focused | • Interpretation-focused |
+| • Abstract and unmotivating | • Directly mirrors lab reality |
+
+: Table 3: Traditional versus authentic assessment
 
 ### Examples of Authentic Tasks:
 - **The Outbreak Report:** Give learners a VCF file of a clinical isolate; ask them to fill out a 3-field hospital report: (1) Pathogen species, (2) Detected AMR mutations, (3) Recommended treatment exclusion.
@@ -180,6 +147,7 @@ To evaluate training efficacy and report outcomes to institutional funders, admi
 Rather than testing trivia, measure changes in **learner self-efficacy** (confidence in their ability to perform tasks independently):
 
 > *"On a scale of 1 (Not at all confident) to 5 (Extremely confident), rate your ability to:"*
+
 > 1. *Navigate directories and inspect files using the Linux command line.*
 > 2. *Execute an automated quality-trimming pipeline on paired-end reads.*
 > 3. *Troubleshoot a syntax error in the terminal independently.*
@@ -187,6 +155,7 @@ Rather than testing trivia, measure changes in **learner self-efficacy** (confid
 
 ### Long-Term Impact Evaluation (3–6 Months Post-Course)
 Follow up with participants months later to measure real-world translation:
+
 - *Have you applied the tools taught in the workshop to your research?*
 - *Have you analyzed new datasets that contributed to a thesis, paper, or clinical report?*
 - *Have you taught or shared these computational skills with colleagues at your home institution?*
@@ -229,6 +198,7 @@ You are currently inside `/home/trainee/projects/`. Which command will successfu
 - **Option D:** `head -n 5 raw.fq`
 
 **Diagnostic Analysis of Distractors:**
+
 - **Option A:** Diagnoses the misconception that `/` (root) is the same as the user's home directory (`~`). The learner thinks `/data` is inside home, when in fact it is at the root level of the system.
 - **Option B:** Diagnoses a failure of spatial orientation. The learner assumes `data/` is a child folder inside their current directory (`projects/`), forgetting they must first step up into `trainee/`.
 - **Option D:** Diagnoses the "magic file" misconception common among GUI users—assuming the computer knows where `raw.fq` is regardless of directory coordinates.
@@ -241,6 +211,7 @@ You are currently inside `/home/trainee/projects/`. Which command will successfu
 Design an **Authentic Assessment Activity** for the final afternoon of a 3-day bacterial genomics workshop in a low-resource setting.
 
 Specify:
+
 1. **The Scenario / Biological Persona.**
 2. **The Provided Materials / Micro-dataset (size and format).**
 3. **The Concrete Student Deliverable.**

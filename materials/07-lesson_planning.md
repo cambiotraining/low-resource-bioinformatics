@@ -17,23 +17,20 @@ title: Lesson Planning
 Expert bioinformaticians frequently believe that because they have run a pipeline hundreds of times in their research, they can walk into a classroom and teach it without a detailed plan. 
 
 In practice, unstructured teaching in computational biology quickly disintegrates:
+
 - The instructor loses track of time, spending 45 minutes on basic directory navigation and leaving 10 minutes for the actual analysis.
 - Live commands throw unexpected errors because of missing sample files or unstated environment variables.
 - Novice learners become overwhelmed by unstructured streams of consciousness.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   UNSTRUCTURED vs PLANNED LESSON DELIVERY             │
-├───────────────────────────────────┬────────────────────────────────────┤
-│     "WINGING IT" (Unplanned)      │      STRUCTURED LESSON PLAN        │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ • Wandering, stream-of-thought    │ • Tight 6-stage pedagogical arc    │
-│ • Unpredictable time consumption  │ • Explicit time-budgeted segments  │
-│ • Silent panic when tools fail    │ • Documented expected outputs      │
-│ • Leaves slower learners behind   │ • Pre-planned contingency fallbacks│
-│ • Unclear learning takeaways      │ • Measurable closure & reflection  │
-└───────────────────────────────────┴────────────────────────────────────┘
-```
+| "Winging it" (Unplanned) | Structured lesson plan |
+| :--- | :--- |
+| • Wandering, stream-of-thought | • Tight 6-stage pedagogical arc |
+| • Unpredictable time consumption | • Explicit time-budgeted segments |
+| • Silent panic when tools fail | • Documented expected outputs |
+| • Leaves slower learners behind | • Pre-planned contingency fallbacks |
+| • Unclear learning takeaways | • Measurable closure & reflection |
+
+: Table 1: Unstructure versus planned lesson delivery
 
 A **Lesson Plan** is the operational script for a specific learning module. It guarantees that instructional time is protected, cognitive load is budgeted, and helpers know exactly how and when to support students.
 
@@ -42,39 +39,11 @@ A **Lesson Plan** is the operational script for a specific learning module. It g
 
 Every modular session (typically 60 to 90 minutes) should follow a structured pedagogical progression:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                     THE 6-STAGE LESSON PROGRESSION                     │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                                        │
-│   1. The Motivational Hook (5 mins)                                    │
-│      "Why should you care? Real-world outbreak / clinical challenge."  │
-│                         │                                              │
-│                         ▼                                              │
-│   2. Learning Objectives & Framing (5 mins)                            │
-│      "By the end of this hour, you will execute X and interpret Y."    │
-│                         │                                              │
-│                         ▼                                              │
-│   3. Participatory Demonstration / Live Coding (15–20 mins)            │
-│      Instructor live-codes core command; learners type along.          │
-│                         │                                              │
-│                         ▼                                              │
-│   4. Formative Hands-on Challenge (20–25 mins)                         │
-│      Paired programming on a faded example or micro-dataset.           │
-│                         │                                              │
-│                         ▼                                              │
-│   5. Collective Debrief & Error Deconstruction (10 mins)               │
-│      Examine outputs; review common errors seen by helpers.            │
-│                         │                                              │
-│                         ▼                                              │
-│   6. Cognitive Closure & Key Points (5 mins)                           │
-│      Synthesize takeaways; connect to the next module.                 │
-│                                                                        │
-└────────────────────────────────────────────────────────────────────────┘
-```
+![Six stage lesson plan](images/six_stage_lesson.jpeg)
 
 ### Stage 1: The Motivational Hook (5 Minutes)
 Never start with syntax. Start with the biological or operational problem:
+
 - *"Imagine you receive a call from the state epidemiologist: three infants in the neonatal ward have contracted multidrug-resistant Serratia. We need to determine if they share an identical strain within the next two hours. How do we extract that answer from raw sequencing data?"*
 
 ### Stage 2: Objective & Mental Model Framing (5 Minutes)
@@ -114,57 +83,21 @@ Any computational exercise that takes an experienced instructor **5 minutes** to
 
 A polished lesson plan includes **Instructor Delivery Notes**—a private cheatsheet used by the trainer at the podium:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   SAMPLE INSTRUCTOR DELIVERY NOTES                     │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                                        │
-│   Module: Read Quality Trimming with fastp                             │
-│   Target Duration: 60 mins | Dataset: micro_R1.fq.gz (15 MB)           │
-│                                                                        │
-│   [00:00 - 00:05] Hook: Show neonatal ward outbreak slide.             │
-│   [00:05 - 00:10] Framing: Draw Input -> Tool -> Output on whiteboard. │
-│   [00:10 - 00:25] Live Coding:                                         │
-│     • Type slowly: fastp -i micro_R1.fq.gz -o clean_R1.fq.gz           │
-│     • DO NOT add -w 4 (trainee laptops have only 2 cores!).            │
-│     • Expected Output: Prints "Filtering result: 25000 reads".         │
-│     • HELPER ALERT: Check that students in Row 3 are in the            │
-│       'data/' folder before typing!                                    │
-│   [00:25 - 00:45] Exercise: Challenge 1 (Paired trimming).            │
-│     • Fast Finishers: Ask them to open fastp.html in Firefox.          │
-│   [00:45 - 00:55] Debrief: Discuss Q30 curves on projector.           │
-│   [00:55 - 01:00] Closure: Stickies down; announce 15-min coffee break.│
-│                                                                        │
-└────────────────────────────────────────────────────────────────────────┘
-```
+![Sample instructor delivery notes](images/delivery_notes.jpeg)
 
 
 ## The Contingency Matrix: Planning for Failure
 
 In low-resource environments, instructional planning must include **Plan B and Plan C**:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   CLASSROOM CONTINGENCY MATRIX                         │
-├─────────────────────┬───────────────────┬──────────────────────────────┤
-│ Failure Point       │ Plan B (Fallback) │ Plan C (Emergency Survival)  │
-├─────────────────────┼───────────────────┼──────────────────────────────┤
-│ 1. Internet Drops   │ Distribute files  │ Local Raspberry Pi / laptop  │
-│    Completely       │ via USB 3.0 sticks│ serves files over local Wi-Fi│
-├─────────────────────┼───────────────────┼──────────────────────────────┤
-│ 2. Electrical Power │ Switch room to    │ Transition to unplugged      │
-│    Blackout         │ laptop batteries  │ whiteboard activity or group │
-│                     │ (good for 60 mins)│ data-interpretation task     │
-├─────────────────────┼───────────────────┼──────────────────────────────┤
-│ 3. Tool Fails on    │ Pair student with │ Provide pre-computed output  │
-│    Windows/macOS    │ a neighbor        │ file so student joins the    │
-│                     │ (Driver/Navigator)│ downstream analysis          │
-├─────────────────────┼───────────────────┼──────────────────────────────┤
-│ 4. Long Job Hangs   │ Kill process; use │ Skip live assembly; explore  │
-│    or OOM Crashes   │ smaller subsampled│ pre-assembled contig file    │
-│                     │ micro-dataset     │ already provided on USB      │
-└─────────────────────┴───────────────────┴──────────────────────────────┘
-```
+| Failure Point | Plan B (Fallback) | Plan C (Emergency Survival) |
+| :--- | :--- | :--- |
+| 1. Internet Drops Completely | Distribute files via USB 3.0 sticks | Local Raspberry Pi / laptop serves files over local Wi-Fi |
+| 2. Electrical Power Blackout | Switch room to laptop batteries (good for 60 mins) | Transition to unplugged whiteboard activity or group data-interpretation task |
+| 3. Tool Fails on Windows/macOS | Pair student with a neighbor (Driver/Navigator) | Provide pre-computed output file so student joins the downstream analysis |
+| 4. Long Job Hangs or OOM Crashes | Kill process; use smaller subsampled micro-dataset | Skip live assembly; explore pre-assembled contig file already provided on USB |
+
+: Table 2: Classroom contingency matrix
 
 
 ## Interactive Exercises for Future Trainers
@@ -177,6 +110,7 @@ These exercises will test your ability to construct realistic lesson timelines a
 You have been allocated a **75-minute morning session** to teach *"Inspecting Alignments with SAMtools"* to 20 master's students in agricultural genomics.
 
 Draft a detailed lesson plan that applies the 6-stage arc:
+
 1. Allocate specific minute-by-minute time budgets for each of the six stages.
 2. Formulate the opening **Motivational Hook**.
 3. Detail the specific hands-on task for the learners during the formative challenge stage.

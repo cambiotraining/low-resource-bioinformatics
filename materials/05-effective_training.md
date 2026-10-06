@@ -16,24 +16,13 @@ title: Elements of Effective Training
 ## Introduction: The Anatomy of a Successful Workshop
 
 Delivering effective bioinformatics training requires far more than technical expertise and well-crafted slides. A workshop can feature world-class scientific content, yet fail completely if:
+
 - Half the room is locked out by subtle software errors while the instructor lectures ahead.
 - The classroom Wi-Fi collapses and there is no offline fallback.
 - Novice learners feel too intimidated or embarrassed to ask questions.
 - Laptops die halfway through the morning because the venue lacks power outlets.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   THE FOUR PILLARS OF EFFECTIVE TRAINING               │
-├───────────────────────────────────┬────────────────────────────────────┤
-│ 1. Psychological Safety           │ 2. Human Support Architecture      │
-│    • Code of conduct              │    • 1:6 helper-to-learner ratio   │
-│    • Zero-judgment error culture  │    • Hands-off-keyboard coaching   │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ 3. Physical & Technical Logistics │ 4. Formative Pacing & Feedback     │
-│    • Power strips & display setup │    • The Rule of Thirds            │
-│    • Local offline data mirrors   │    • Sticky notes & minute papers  │
-└───────────────────────────────────┴────────────────────────────────────┘
-```
+![The Four Pillars of Effective Training](images/four_pillars.jpeg)
 
 Effective training is the deliberate intersection of **psychological safety**, **human staffing**, **robust logistics**, and **dynamic pacing**.
 
@@ -44,16 +33,19 @@ Adult learners entering a computational workshop often experience acute vulnerab
 
 ### 1. The Code of Conduct
 A clear **Code of Conduct** is not bureaucratic paperwork; it establishes community norms from the first minute of the course. It explicitly:
+
 - Mandates respectful, welcoming, and harassment-free communication.
 - Prohibits condescending behavior, subtle gatekeeping, or dismissive remarks (e.g. *"That's trivial,"* *"Just read the man page,"* or *"Everyone knows how to use Git"*).
 - Outlines clear reporting procedures and accountability mechanisms.
 
 ### 2. Destigmatizing Errors
 In the terminal, error messages are text-based and blunt (`fatal error`, `permission denied`, `abort`). Novices interpret these as personal failures.
+
 - **The Instructor's Role:** Frame errors as essential diagnostic signals. Say: *"Errors are not mistakes; they are the computer asking for clarification. An expert is simply someone who has made every possible error and knows how to read the message."*
 
 ### 3. Linguistic and Cultural Accessibility
 In many international and LMIC workshops, English is a second or third language for participants:
+
 - Speak at a moderate pace, avoid regional idioms, and pronounce technical terms distinctly.
 - Provide written command summaries, glossary terms, and cheatsheets alongside oral delivery.
 
@@ -62,27 +54,11 @@ In many international and LMIC workshops, English is a second or third language 
 
 The most significant predictor of a smooth computational workshop is not the instructor's eloquence, but the presence of **roving helpers (teaching assistants)**.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   CLASSROOM SUPPORT TOPOLOGY                           │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                                        │
-│                    [ INSTRUCTOR AT PODIUM ]                            │
-│              (Maintains pacing, live codes, lectures)                  │
-│                                                                        │
-│   [Helper A]                                            [Helper B]     │
-│  (Roves left aisle)                                 (Roves right aisle)│
-│       │                                                  │             │
-│       ▼                                                  ▼             │
-│   Learner 01 [RED] ──► Quiet troubleshooting         Learner 08 [GREEN]│
-│   Learner 02 [GREEN]                                 Learner 09 [RED]  │
-│   Learner 03 [GREEN]                                 Learner 10 [GREEN]│
-│                                                                        │
-└────────────────────────────────────────────────────────────────────────┘
-```
+![Classroom Support Topology](images/classroom_topology.jpeg)
 
 ### The Golden Ratio: 1 Helper per 6–8 Learners
 In a room of 25 participants, having a single instructor trying to teach while running around the room fixing individual syntax errors brings the entire workshop to a dead halt. 
+
 - Maintain a ratio of **one helper for every 6 to 8 students**.
 - Helpers can be advanced postgraduate students, local bioinformaticians, or alumni of previous workshops.
 
@@ -92,6 +68,7 @@ The single most important rule for workshop helpers:
 ::: {.callout-important}
 ## The Hands-Off-the-Keyboard Rule
 When helping a struggling student, **NEVER take their keyboard or mouse away from them.** 
+
 - If you grab their keyboard and type the fix in 5 seconds, you demonstrate your competence, not theirs. The student learns nothing and feels disempowered.
 - Instead, place your hands behind your back. Guide the student verbally: *"Look at line 3. Do you see a missing space after the comma? What happens if you add a space and run it again?"*
 - Let the student's own fingers type the correction and experience the triumph of solving the problem.
@@ -102,29 +79,14 @@ When helping a struggling student, **NEVER take their keyboard or mouse away fro
 
 In low-resource venues, environmental and logistical failures can derail training faster than software bugs. An effective trainer audits the venue before learners arrive:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   LOW-RESOURCE VENUE AUDIT CHECKLIST                   │
-├─────────────────────┬──────────────────────────────────────────────────┤
-│ Category            │ Practical Verification Step                      │
-├─────────────────────┼──────────────────────────────────────────────────┤
-│ 1. Electrical Power │ • Count physical wall outlets vs. students       │
-│                     │ • Bring 4–6 heavy-duty multi-plug extension cords│
-│                     │ • Verify venue generator / UPS backup status     │
-├─────────────────────┼──────────────────────────────────────────────────┤
-│ 2. Display & Screen │ • Test projector resolution and brightness       │
-│                     │ • Adjust blinds/curtains to prevent sun glare    │
-│                     │ • Enlarge terminal font to 18pt–24pt             │
-├─────────────────────┼──────────────────────────────────────────────────┤
-│ 3. Connectivity     │ • Bring dedicated mobile 4G/5G Wi-Fi hotspot     │
-│                     │   reserved exclusively for the instructor        │
-│                     │ • Pre-load all data & tools onto USB drives      │
-├─────────────────────┼──────────────────────────────────────────────────┤
-│ 4. Comfort & Audio  │ • Check room acoustics; use a microphone if room │
-│                     │   exceeds 25 participants                        │
-│                     │ • Ensure adequate ventilation and drinking water │
-└─────────────────────┴──────────────────────────────────────────────────┘
-```
+| Category | Practical Verification Step |
+| :--- | :--- |
+| 1. Electrical Power | • Count physical wall outlets vs. students<br>• Bring 4–6 heavy-duty multi-plug extension cords<br>• Verify venue generator / UPS backup status |
+| 2. Display & Screen | • Test projector resolution and brightness<br>• Adjust blinds/curtains to prevent sun glare<br>• Enlarge terminal font to 18pt–24pt |
+| 3. Connectivity | • Bring dedicated mobile 4G/5G Wi-Fi hotspot reserved exclusively for the instructor<br>• Pre-load all data & tools onto USB drives |
+| 4. Comfort & Audio | • Check room acoustics; use a microphone if room exceeds 25 participants<br>• Ensure adequate ventilation and drinking water |
+
+: Low-resource venue audit checklist
 
 ::: {.callout-warning}
 ## The Laptop Battery Crisis
@@ -139,18 +101,7 @@ The most common mistake made by new trainers is **curriculum bloat**—cramming 
 ### The Rule of Thirds
 Structure your workshop schedule around three balanced allocations:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                         THE RULE OF THIRDS                             │
-├────────────────────────┬────────────────────────┬──────────────────────┤
-│ 1/3 INSTRUCTION        │ 1/3 GUIDED PRACTICE    │ 1/3 BUFFER & REVIEW  │
-├────────────────────────┼────────────────────────┼──────────────────────┤
-│ • Participatory live   │ • Paired exercises     │ • Question & answer  │
-│   coding               │ • Hands-on challenges  │ • Diagnostic debrief │
-│ • Concept framing      │ • Active peer learning │ • Bio-breaks & catch-│
-│ • Biological context   │ • Parameter tuning     │   up time for helpers│
-└────────────────────────┴────────────────────────┴──────────────────────┘
-```
+![The Rule of Thirds](images/rule_of_thirds.jpeg)
 
 **The 20% Pruning Rule:** Always plan to deliver 20% less content than you think you have time for. Mastering foundational navigation, file manipulation, and quality control thoroughly is infinitely more valuable to a beginner than skimming superficially through advanced variant calling pipelines.
 
@@ -163,6 +114,7 @@ Deploy two proven formative feedback mechanisms:
 
 ### 1. Two-Color Sticky Notes (Real-Time Telemetry)
 Give every learner two sticky notes (Green and Red):
+
 - **Green on laptop lid:** *"I have completed the task and my code worked."*
 - **Red on laptop lid:** *"I am stuck or encountered an error; I need a helper."*
 
@@ -170,6 +122,7 @@ This allows the instructor to scan the room in one second: if 70% of the room ha
 
 ### 2. The One-Minute Paper (Daily Synthesis)
 At the end of each day (or before the lunch break), give learners 3 minutes to answer two anonymous questions on an index card or online form:
+
 1. *What was the most important concept or skill you learned today?*
 2. *What is still muddy, confusing, or causing you anxiety?*
 
@@ -197,6 +150,7 @@ Focus on learner empowerment, body language, and non-disruptive classroom signal
 ### Helper Briefing Guide
 
 1. **Four Core Helper Guidelines:**
+
    - **Rove Actively:** Walk slowly through the aisles and scan for red sticky notes or distressed body language (frowning, crossed arms). Do not sit at the back checking your phone.
    - **Adopt Approachable Posture:** Kneel down or pull up a chair next to the student so your eyes are at their level. Standing over someone while they struggle can feel intimidating.
    - **Guide Verbally, Never Take Keys:** Explain what is wrong and guide their fingers to type the solution. Never touch their mouse or keyboard.
@@ -216,6 +170,7 @@ Focus on learner empowerment, body language, and non-disruptive classroom signal
 At the end of Day 1 of your Linux and sequencing QC course, you collect one-minute papers from 20 participants. 
 
 When reviewing the responses, you notice:
+
 - 12 students wrote: *"I loved FastQC, but I still do not understand what absolute and relative paths mean, and `cd ..` is making me confused."*
 - 5 students wrote: *"The pace in the afternoon was too fast; I couldn't keep up with typing."*
 

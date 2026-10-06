@@ -15,26 +15,19 @@ title: Designing Training
 ## Introduction: The "Forward Design" Trap
 
 When asked to design a new bioinformatics workshop, instructors often begin by listing software tools:
+
 > *"We have three days. Let's do FastQC on Monday, BWA and SAMtools on Tuesday, and GATK on Wednesday."*
 
 This approach—known as **Forward Design**—is driven by content rather than learning. The instructor decides what tools they want to demonstrate, creates lectures around tool syntax, and at the end of the course wonders why students are unable to analyze their own research data independently.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   FORWARD DESIGN vs BACKWARD DESIGN                    │
-├───────────────────────────────────┬────────────────────────────────────┤
-│     FORWARD DESIGN (Content)      │      BACKWARD DESIGN (Outcomes)    │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ 1. Pick tools (FastQC, BWA, GATK) │ 1. Identify Desired Results:       │
-│ 2. Design lectures around syntax  │    What will learners be able to DO│
-│ 3. Give students a canned script  │    at the end of the course?       │
-│ 4. Hope that learning occurred    │ 2. Determine Acceptable Evidence:  │
-│                                   │    How will they demonstrate it?   │
-│                                   │ 3. Plan Learning Experiences:      │
-│                                   │    What datasets and scaffolding   │
-│                                   │    lead to that outcome?           │
-└───────────────────────────────────┴────────────────────────────────────┘
-```
+| FORWARD DESIGN (Content) | BACKWARD DESIGN (Outcomes) |
+| :--- | :--- |
+| 1. Pick tools (FastQC, BWA, GATK) | 1. Identify Desired Results:<br>What will learners be able to DO at the end of the course? |
+| 2. Design lectures around syntax | 2. Determine Acceptable Evidence:<br>How will they demonstrate it? |
+| 3. Give students a canned script | 3. Plan Learning Experiences:<br>What datasets and scaffolding lead to that outcome? |
+| 4. Hope that learning occurred | |
+
+: Table 1: Forward design versus backward design
 
 **Backward Design** (Wiggins & McTighe, 2005) reverses this process. By starting with the final intended competencies and working backward, instructors create tightly integrated, purposeful training programs where every lecture, exercise, and dataset directly serves a measurable objective.
 
@@ -45,26 +38,12 @@ You cannot design an effective curriculum for "anyone interested in bioinformati
 
 A **Learner Persona** is a short, fictional archetype that embodies the characteristics, prior knowledge, motivations, and pain points of your target audience.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   ANATOMY OF A LEARNER PERSONA                         │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                                        │
-│   DR. AMINA (38) — Senior Medical Microbiologist                       │
-│   • Background: PhD in Bacteriology; leads hospital diagnostic lab     │
-│   • Computational Baseline: Expert in Excel; zero CLI or Linux         │
-│   • Motivation: Hospital acquired an Oxford Nanopore Flongle; needs to │
-│     rapidly identify carbapenem-resistant Klebsiella hospital isolates │
-│   • Hardware / Context: Hospital-issued Windows 10 laptop (8 GB RAM),  │
-│     strictly locked down (no administrative / root permissions);       │
-│     hospital network blocks GitHub and standard SSH ports.             │
-│                                                                        │
-└────────────────────────────────────────────────────────────────────────┘
-```
+![Anatomy of a Learner Persona](images/learner_persona.jpeg)
 
 ### Why Personas Drive Critical Design Decisions
 
 When planning your curriculum, consult your persona to resolve pedagogical debates:
+
 - *"Should we teach how to compile BCFtools from C source code?"*
   $\rightarrow$ Look at Dr. Amina: No! She lacks root permissions and needs to solve a clinical problem, not learn software engineering. Provide a pre-built static binary or container.
 - *"Should we use a 15 GB human exome dataset?"*
@@ -75,40 +54,27 @@ When planning your curriculum, consult your persona to resolve pedagogical debat
 
 Once you know your audience, define what they should be able to achieve. Use **Bloom’s Revised Taxonomy** to align your learning objectives with the appropriate cognitive level:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   BLOOM'S TAXONOMY FOR BIOINFORMATICS                  │
-├─────────────┬────────────────────────────────┬─────────────────────────┤
-│ Level       │ Description                    │ Action Verbs to Use     │
-├─────────────┼────────────────────────────────┼─────────────────────────┤
-│ 6. Create   │ Design new workflows, pipelines│ Construct, assemble,    │
-│             │ or automated solutions         │ automate, formulate     │
-├─────────────┼────────────────────────────────┼─────────────────────────┤
-│ 5. Evaluate │ Judge data quality or justify  │ Assess, appraise,       │
-│             │ analytical choices             │ validate, critique      │
-├─────────────┼────────────────────────────────┼─────────────────────────┤
-│ 4. Analyze  │ Differentiate true signal from │ Distinguish, diagnose,  │
-│             │ technical artifacts; filter data│ troubleshoot, filter   │
-├─────────────┼────────────────────────────────┼─────────────────────────┤
-│ 3. Apply    │ Execute commands and pipelines │ Run, execute, modify,   │
-│             │ on novel datasets              │ calculate, implement    │
-├─────────────┼────────────────────────────────┼─────────────────────────┤
-│ 2. Understand│ Explain concepts, data formats│ Differentiate, outline, │
-│             │ and algorithmic trade-offs     │ summarize, predict      │
-├─────────────┼────────────────────────────────┼─────────────────────────┤
-│ 1. Remember │ Recall syntax, flag meanings,  │ Identify, list, recall, │
-│             │ and directory structures       │ name, state             │
-└─────────────┴────────────────────────────────┴─────────────────────────┘
-```
+| Level | Description | Action Verbs to Use |
+| :--- | :--- | :--- |
+| 6. Create | Design new workflows, pipelines or automated solutions | Construct, assemble, automate, formulate |
+| 5. Evaluate | Judge data quality or justify analytical choices | Assess, appraise, validate, critique |
+| 4. Analyze | Differentiate true signal from technical artifacts; filter data | Distinguish, diagnose, troubleshoot, filter |
+| 3. Apply | Execute commands and pipelines on novel datasets | Run, execute, modify, calculate, implement |
+| 2. Understand | Explain concepts, data formats and algorithmic trade-offs | Differentiate, outline, summarize, predict |
+| 1. Remember | Recall syntax, flag meanings, and directory structures | Identify, list, recall, name, state |
+
+: Table 2: Bloom's taxonomy for bioinformatics
 
 ::: {.callout-warning}
 ## Avoid "Zombie Verbs"
 Never write learning objectives with vague, unmeasurable verbs:
+
 - ❌ *"Learners will understand Linux."* (How do you measure "understand"?)
 - ❌ *"Learners will be exposed to variant calling."* (Exposure does not mean competence).
 - ❌ *"Learners will appreciate high-throughput sequencing."*
 
 **Use Observable Action Verbs:**
+
 - ✅ *"Learners will **execute** read trimming using `fastp` and **critique** post-filtering quality metrics."*
 - ✅ *"Learners will **diagnose** Out-Of-Memory errors in SPAdes and **adjust** thread and memory parameters accordingly."*
 :::
@@ -119,6 +85,7 @@ Never write learning objectives with vague, unmeasurable verbs:
 In Backward Design, before you write a single slide or choose a tutorial, ask yourself: **"How will the learners and I know that they have achieved the learning outcome?"**
 
 Design your **summative challenge** or end-of-module practical first:
+
 - *Desired Outcome:* "Learners will be able to identify antimicrobial resistance mutations in a bacterial isolate."
 - *Acceptable Evidence (Assessment):* Provide learners with a raw paired-end micro-dataset of an uncharacterized *Klebsiella* isolate. Give them 45 minutes to run QC, map reads to a reference contig, call variants, and report which antibiotic the strain is resistant to.
 - *Instructional Plan:* Now design the specific live coding sessions, faded examples, and command deconstructions needed to equip them for that challenge!
@@ -130,27 +97,7 @@ Bioinformatics learning is strictly hierarchical. You cannot teach read mapping 
 
 A **Concept Map** is a visual diagram connecting concepts with labeled relationship arrows. Building a concept map reveals **hidden dependencies**:
 
-```
-                  ┌────────────────────────┐
-                  │ Hierarchical Filesystem│
-                  └───────────┬────────────┘
-                              │ requires understanding of
-                              ▼
-                  ┌────────────────────────┐
-                  │ Absolute/Relative Paths│
-                  └───────────┬────────────┘
-                              │ prerequisite for
-                              ▼
-                  ┌────────────────────────┐
-                  │ Running CLI Tools      │
-                  │ (Inputs & Output Flags)│
-                  └───────────┬────────────┘
-                              │ applied to
-                              ▼
-                  ┌────────────────────────┐
-                  │ FASTQ Quality Trimming │
-                  └────────────────────────┘
-```
+![Example concept map](images/concept_map.jpeg)
 
 If an instructor tries to teach quality trimming without verifying that students understand relative paths, the lesson will collapse into frantic troubleshooting of `No such file or directory` errors.
 
@@ -159,25 +106,14 @@ If an instructor tries to teach quality trimming without verifying that students
 
 In low-resource environments, constraints are not bugs; they are fundamental design parameters:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   CONSTRAINT-FIRST CURRICULUM AUDIT                    │
-├─────────────────────┬──────────────────────────────────────────────────┤
-│ Constraint          │ Design Rule                                      │
-├─────────────────────┼──────────────────────────────────────────────────┤
-│ 1. Zero Internet    │ Curriculum must execute 100% offline from local  │
-│    Guarantee        │ USB drives or pre-loaded classroom mirrors.      │
-├─────────────────────┼──────────────────────────────────────────────────┤
-│ 2. 4 GB RAM Ceiling │ No tool or dataset may require > 2 GB RAM        │
-│                     │ (reserving 2 GB for the operating system).       │
-├─────────────────────┼──────────────────────────────────────────────────┤
-│ 3. Non-Root Lab     │ Tools must run in user space (static binaries,   │
-│    Permissions      │ Micromamba environments, or Apptainer).          │
-├─────────────────────┼──────────────────────────────────────────────────┤
-│ 4. Modular Schedule │ Break curriculum into self-contained 2-hour      │
-│                     │ modules that can survive sudden power outages.   │
-└─────────────────────┴──────────────────────────────────────────────────┘
-```
+| Constraint | Design Rule |
+| :--- | :--- |
+| 1. Zero Internet Guarantee | Curriculum must execute 100% offline from local USB drives or pre-loaded classroom mirrors. |
+| 2. 4 GB RAM Ceiling | No tool or dataset may require > 2 GB RAM (reserving 2 GB for the operating system). |
+| 3. Non-Root Lab Permissions | Tools must run in user space (static binaries, Micromamba environments, or Apptainer). |
+| 4. Modular Schedule | Break curriculum into self-contained 2-hour modules that can survive sudden power outages. |
+
+: Constraint-first curriculum audit
 
 
 ## Interactive Exercises for Future Trainers
@@ -187,9 +123,10 @@ These exercises will guide you through building a learner persona and mapping a 
 ::: {.callout-exercise}
 ## Creating a Contextualized Learner Persona
 
-You are tasked with designing a 3-day workshop titled *"Practical Pathogen Genomics for Outbreak Surveillance"* to be held at a public research institute in Central Africa.
+You are tasked with designing a 3-day workshop titled *"Practical Pathogen Genomics for Outbreak Surveillance"* to be held at a public research institute in West Africa.
 
 Develop a complete **Learner Persona** for this course by specifying:
+
 1. **Name, Age, and Professional Role.**
 2. **Biological Domain Expertise vs. Computational Baseline.**
 3. **Primary Motivation (Why are they taking time away from work to attend?).**
@@ -226,6 +163,7 @@ Make the persona realistic and multidimensional. Include hardware, network, and 
 A training team submits a draft module titled *"Introduction to Variant Calling"*. The current plan starts with a 45-minute lecture on the math of Bayesian variant probability, followed by running a 10-line GATK Bash script.
 
 Apply the three stages of **Backward Design** to restructure this module:
+
 1. **Stage 1 (Desired Results):** Formulate two Bloom-aligned, measurable learning outcomes.
 2. **Stage 2 (Acceptable Evidence):** Design a hands-on assessment task that proves learners achieved those outcomes.
 3. **Stage 3 (Learning Plan):** Outline the learning activities and micro-datasets required to prepare them for that assessment.

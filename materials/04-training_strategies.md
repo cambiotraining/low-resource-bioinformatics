@@ -76,36 +76,7 @@ When introducing a new computational pattern (such as writing a shell loop or pa
 
 Cognitive psychology research shows that **faded examples** provide the most effective scaffolding for technical learning:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   THE FADED EXAMPLE CONTINUUM                          │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                                        │
-│   Step 1: Fully Worked Example (Observation & Comprehension)           │
-│   for sample in *.fastq.gz; do                                         │
-│       fastp -i "${sample}" -o "trimmed_${sample}"                      │
-│   done                                                                 │
-│                                │                                       │
-│                                ▼                                       │
-│   Step 2: Partially Faded Example (Fill in the blanks)                 │
-│   for sample in *.fastq.gz; do                                         │
-│       # Fill in the output flag and prefix:                            │
-│       fastp -i "${sample}" _______ "trimmed_${sample}"                 │
-│   done                                                                 │
-│                                │                                       │
-│                                ▼                                       │
-│   Step 3: Heavily Faded Example (Structural Scaffold)                  │
-│   # Loop over all BAM files and run samtools flagstat:                 │
-│   for bam in _______; do                                               │
-│       samtools flagstat "_______" > "_______"                          │
-│   done                                                                 │
-│                                │                                       │
-│                                ▼                                       │
-│   Step 4: Independent Problem Solving (From Scratch)                   │
-│   "Write a loop that indexes all sorted BAM files in results/"         │
-│                                                                        │
-└────────────────────────────────────────────────────────────────────────┘
-```
+![The Faded Example Continuum](images/faded_example.jpeg)
 
 By gradually fading the scaffolding, learners build confidence and autonomy without falling into the "blank screen panic" that causes beginners to freeze.
 
@@ -114,28 +85,17 @@ By gradually fading the scaffolding, learners build confidence and autonomy with
 
 Instructors in resource-limited environments must select training delivery models that balance educational depth with connectivity and infrastructure realities:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                     TRAINING DELIVERY ARCHITECTURES                    │
-├─────────────────────┬───────────────────┬──────────────────────────────┤
-│ Delivery Model      │ Structure         │ Low-Resource Trade-offs      │
-├─────────────────────┼───────────────────┼──────────────────────────────┤
-│ 1. In-Person        │ 2–4 days, fully   │ High impact, high logistical │
-│    Intensive        │ hands-on, live TAs│ cost (travel/accommodation); │
-│    Bootcamp         │ in room           │ vulnerable to local outages  │
-├─────────────────────┼───────────────────┼──────────────────────────────┤
-│ 2. Flipped          │ Pre-recorded short│ Maximizes classroom hands-on;│
-│    Classroom        │ videos + in-class │ requires students to have    │
-│                     │ problem-solving   │ reliable home power/internet │
-├─────────────────────┼───────────────────┼──────────────────────────────┤
-│ 3. Distributed Hub- │ Central online    │ Low cost, wide reach; relies │
-│    and-Spoke        │ broadcast + local │ heavily on the quality of    │
-│    (H3ABioNet IBT)  │ classroom TAs     │ local in-person assistants   │
-└─────────────────────┴───────────────────┴──────────────────────────────┘
-```
+| Delivery Model | Structure | Low-Resource Trade-offs |
+| :--- | :--- | :--- |
+| 1. In-Person Intensive Bootcamp | 2–4 days, fully hands-on, live TAs in room | High impact, high logistical cost (travel/accommodation); vulnerable to local outages |
+| 2. Flipped Classroom | Pre-recorded short videos + in-class problem-solving | Maximizes classroom hands-on; requires students to have reliable home power/internet |
+| 3. Distributed Hub-and-Spoke (H3ABioNet IBT) | Central online broadcast + local classroom TAs | Low cost, wide reach; relies heavily on the quality of local in-person assistants |
+
+: Table 3: Training delivery architectures
 
 ### The Distributed Hub-and-Spoke Model (H3ABioNet Model)
 Pioneered by H3ABioNet across dozens of African university nodes:
+
 - A central team of expert instructors broadcasts lectures and live demonstrations via low-bandwidth video conferencing.
 - Each participating institution hosts an in-person physical classroom staffed by local teaching assistants ("facilitators").
 - Exercises are performed on standardized local virtual machines or container environments.
@@ -150,6 +110,7 @@ The human working memory has severe capacity limits, holding only 4–7 novel ch
 ## The 15-Minute Instructional Rule
 Never lecture or live-code for more than **15 consecutive minutes** without a pause, active learner action, or formative check. 
 Break every 90-minute workshop session into short, interactive cycles:
+
 - **7–10 mins:** Live coding / conceptual framing.
 - **3–5 mins:** Micro-exercise / prediction challenge ("What will happen if I run this?").
 - **2 mins:** Debrief and sticky-note check.
@@ -166,6 +127,7 @@ These exercises will help you practice designing active learning interventions a
 You are teaching a group of wet-lab microbiologists how to use `grep` to extract specific genes from a GFF3 annotation file. 
 
 Create a 3-step **faded example sequence** that takes learners from a fully worked demonstration to an independent task:
+
 1. Provide the fully worked initial example.
 2. Create a partially faded example with clear blanks and instructions.
 3. Formulate an independent challenge task.
