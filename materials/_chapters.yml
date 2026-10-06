@@ -1,5 +1,25 @@
 book:
   chapters:
-    - part: "Section title"
+    - part: "How to Teach Bioinformatics"
       chapters:
-        - materials/00-template.md
+        - materials/02-intro_bioinformatics.md
+        - materials/03-adult_learning.md
+        - materials/04-training_strategies.md
+        - materials/05-effective_training.md
+        - materials/06-training_design.md
+        - materials/07-lesson_planning.md
+        - materials/08-assessments.md
+    - part: "What to Teach"
+      chapters:
+        - materials/09-open_resources.md
+        - materials/10-computational_concepts.md
+        - materials/11-practical_unix.md
+        - materials/12-containerisation.md
+        - materials/13-software_installation.md
+        - materials/14-cloud_bioinformatics.md
+        - materials/15-hpc.md
+        - materials/16-micro_datasets.md
+        - materials/17-data_interpretation.md
+    - part: "Design your Training"
+      chapters:
+        - materials/18-design_your_training.md

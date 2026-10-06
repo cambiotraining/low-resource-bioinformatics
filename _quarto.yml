@@ -9,9 +9,7 @@ project:
   render:
     - index.md
     - setup.md
-    - materials.md
     - materials/*
-    - "!materials/*/no_render"
 
 format: crit-format-html
 filters:
@@ -62,5 +60,7 @@ book:
           href: index.md
         - text: "Data & Setup"
           href: setup.md
+        - text: "Introduction"
+          href: materials/01-intro.md    
   appendices: 
     - href: versions.md
