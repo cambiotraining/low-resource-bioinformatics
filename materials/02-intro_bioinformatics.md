@@ -56,6 +56,7 @@ Bioinformatics offers an unprecedented opportunity to democratise scientific dis
 Low-resource regions often bear the heaviest burdens of endemic infectious diseases (such as malaria, tuberculosis, cholera, HIV, and neglected tropical diseases), emerging epidemic outbreaks, antimicrobial resistance (AMR), and climate-induced food insecurity. 
 
 Locally driven bioinformatics empowers researchers and public health agencies to:
+
 - Track transmission routes and outbreaks in real time using pathogen genomics.
 - Identify novel mutations linked to drug resistance or vaccine escape.
 - Characterise local crop and livestock varieties to breed climate-resilient strains.

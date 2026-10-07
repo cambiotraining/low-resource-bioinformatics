@@ -17,24 +17,20 @@ title: High Performance Computing
 ## Introduction: Why HPC Matters in Bioinformatics
 
 A single sequencing experiment today can generate billions of nucleotide bases. While quality trimming or searching a micro-dataset can be demonstrated on a consumer laptop, genome-wide variant calling across hundreds of patient samples, *de novo* metagenomic assembly, or training deep-learning models for protein structure prediction demands computational resources that far exceed the capabilities of any desktop computer:
+
 - Tens to hundreds of gigabytes (or even terabytes) of working memory (RAM).
 - Dozens to hundreds of parallel CPU cores.
 - Fast, redundant multi-terabyte storage arrays.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   LAPTOP vs HIGH PERFORMANCE COMPUTING                 │
-├───────────────────────────────────┬────────────────────────────────────┤
-│     PERSONAL LAPTOP               │       HPC CLUSTER                  │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ • 4–16 GB RAM                     │ • 128 GB – 2 TB RAM per node       │
-│ • 2–8 CPU cores                   │ • Hundreds to thousands of cores   │
-│ • 256 GB – 1 TB local SSD         │ • Petabyte-scale shared storage    │
-│ • Single user                     │ • Hundreds of concurrent users     │
-│ • Runs interactive commands       │ • Governed by an automated batch   │
-│   directly on the machine         │   workload scheduler (e.g. SLURM)  │
-└───────────────────────────────────┴────────────────────────────────────┘
-```
+| Personal laptop | HPC cluster |
+| :--- | :--- |
+| • 4–16 GB RAM | • 128 GB – 2 TB RAM per node |
+| • 2–8 CPU cores | • Hundreds to thousands of cores |
+| • 256 GB – 1 TB local SSD | • Petabyte-scale shared storage |
+| • Single user | • Hundreds of concurrent users |
+| • Runs interactive commands directly on the machine | • Governed by an automated batch workload scheduler (e.g. SLURM) |
+
+: Table 1: Laptop versus high performance computing
 
 In low-resource environments, researchers rarely own personal high-spec workstations. Instead, **access to shared institutional, regional, or national HPC clusters represents their primary gateway to large-scale computational science**. As trainers, preparing our learners to navigate these shared environments responsibly is essential for their scientific autonomy.
 
@@ -109,6 +105,7 @@ trainee@login01:~$ bwa mem -t 32 reference.fasta reads_R1.fq reads_R2.fq > align
 ::: {.callout-important}
 ## Why Running on the Login Node is Dangerous
 The login node is shared by dozens (or hundreds) of researchers simultaneously. If one user launches a memory-heavy or multi-threaded tool directly on the login node:
+
 1. The login node's CPU and RAM become completely saturated.
 2. Other researchers' terminals freeze; SSH sessions drop; text editors lock up.
 3. System administrators will promptly terminate the process and may suspend the offending user's account.

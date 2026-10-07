@@ -19,28 +19,7 @@ For more than five decades, the Unix operating system and its open-source descen
 
 In resource-constrained settings, UNIX offers distinct operational advantages:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   WHY UNIX EXCELS IN LOW-RESOURCE SETTINGS             │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                                        │
-│  1. Low Hardware Overhead:                                             │
-│     The terminal consumes negligible RAM (~15 MB) and CPU, allowing   │
-│     older 4 GB RAM laptops to dedicate all resources to the analysis.  │
-│                                                                        │
-│  2. High-Efficiency Streaming:                                         │
-│     Core utilities stream data line-by-line through memory rather than │
-│     loading entire multi-gigabyte files into RAM.                      │
-│                                                                        │
-│  3. Zero Licensing Costs:                                              │
-│     Ubuntu, Debian, and Linux-based tools are 100% free and open.      │
-│                                                                        │
-│  4. Automation & Reproducibility:                                      │
-│     Repetitive tasks across 100 patient samples can be scripted with   │
-│     a 3-line loop rather than hundreds of manual mouse clicks.         │
-│                                                                        │
-└────────────────────────────────────────────────────────────────────────┘
-```
+![Why Unix is great in low-resource settings](images/why_unix.jpeg)
 
 However, for adult learners from wet-lab or clinical backgrounds, opening a black terminal window is often intimidating. As educators, our primary duty in a "Practical UNIX" module is not merely to demonstrate commands, but to demystify the environment and provide psychological safety.
 
@@ -49,16 +28,7 @@ However, for adult learners from wet-lab or clinical backgrounds, opening a blac
 
 Before manipulating genomic data, learners must master three basic abilities: finding where they are, moving around, and creating or organizing project directories.
 
-```
-       pwd                   cd ..                 ls -lh
-   "Where am I?"        "Step up one level"    "What is in here?"
-        │                      │                      │
-        ▼                      ▼                      ▼
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│ /home/trainee/  │    │  /home/trainee  │    │ total 4.2G      │
-│ projects/tb_amr │    │                 │    │ sample1.fq.gz   │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-```
+![File navigation](images/file_navigation.jpeg)
 
 ### The Core Navigation Toolkit
 
@@ -83,6 +53,7 @@ Before manipulating genomic data, learners must master three basic abilities: fi
 ::: {.callout-caution}
 ## Defensive Computing: Teaching Safe File Deletion
 In Unix, `rm` deletes files **permanently and immediately**. There is no "Trash Can" or "Recycle Bin" to restore from.
+
 - **Rule for Novices:** Never teach `rm -rf *` without warning that a single misplaced space (such as `rm -rf / *`) can permanently erase the entire operating system.
 - **Safer Habit:** Encourage trainees to create a temporary folder (`mkdir tmp_trash`) and `mv` unwanted files there, deleting the folder only after confirming their results are intact.
 - **Use Tab-Completion Religiously:** Pressing the `Tab` key auto-completes directory and file names. If the name does not complete, the path is wrong or the file does not exist. Tab completion prevents typos and eliminates 90% of beginner syntax errors.
@@ -123,29 +94,15 @@ Unix provides specialized stream utilities designed to inspect and sample massiv
 
 Biological data files (FASTA, FASTQ, SAM, VCF, GFF, BED) are formatted plain text tables. With four core Unix tools, researchers can perform complex filtering, quality checks, and data extraction without writing a single line of Python or R.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                        THE UNIX TEXT-WRANGLING MATRIX                  │
-├─────────────┬────────────────────────────────┬─────────────────────────┤
-│ Tool        │ Primary Function               │ Common Bioinformatic    │
-│             │                                │ Use Case                │
-├─────────────┼────────────────────────────────┼─────────────────────────┤
-│ grep        │ Search lines matching patterns │ Count contigs in FASTA, │
-│             │                                │ filter out VCF headers  │
-├─────────────┼────────────────────────────────┼─────────────────────────┤
-│ cut         │ Extract specific columns       │ Extract chromosome and  │
-│             │                                │ positions from BED/VCF  │
-├─────────────┼────────────────────────────────┼─────────────────────────┤
-│ sort        │ Order lines alphabetically/num │ Sort genomic positions  │
-│             │                                │ or sort by read depth   │
-├─────────────┼────────────────────────────────┼─────────────────────────┤
-│ uniq        │ Collapse duplicates & count    │ Tally variant types,    │
-│             │                                │ count unique species    │
-├─────────────┼────────────────────────────────┼─────────────────────────┤
-│ awk         │ Programmatic column filtering  │ Filter variants where   │
-│             │ & conditional calculations     │ quality score > 30      │
-└─────────────┴────────────────────────────────┴─────────────────────────┘
-```
+| Tool | Primary Function | Common Bioinformatic Use Case |
+| :--- | :--- | :--- |
+| `grep` | Search lines matching patterns | Count contigs in FASTA, filter out VCF headers |
+| `cut` | Extract specific columns | Extract chromosome and positions from BED/VCF |
+| `sort` | Order lines alphabetically/num | Sort genomic positions or sort by read depth |
+| `uniq` | Collapse duplicates & count | Tally variant types, count unique species |
+| `awk` | Programmatic column filtering & conditional calculations | Filter variants where quality score > 30 |
+
+: Table 1: The Unix text-wrangling matrix 
 
 ### 1. Searching with `grep`
 - `grep "^>" genome.fasta`: Finds all FASTA header lines (the `^` anchors the search to the start of the line).
@@ -188,17 +145,11 @@ In low-resource environments, laptop hard drives are often small (e.g. 128 GB or
 
 **Piping (`|`) solves this problem by passing data directly from one program's memory into another's without touching the disk.**
 
-```
-┌─────────────────┐       ┌─────────────────┐       ┌─────────────────┐
-│  zcat reads.gz  │ ──►── │ grep -c "^@SRR" │ ──►── │  Terminal / Log │
-│ (Decompress in  │ Stream│ (Count records  │ Stream│ (Final Count    │
-│  Memory Only)   │       │  in Memory)     │       │  Printed)       │
-└─────────────────┘       └─────────────────┘       └─────────────────┘
- [ NO 20 GB UNCOMPRESSED FILE IS EVER WRITTEN TO YOUR HARD DRIVE ]
-```
+![Streaming compressed files](images/fastq_streaming.jpeg)
 
 ### Streaming Compressed Files Directly
 Never ask students to run `gunzip huge_file.fastq.gz` on a small laptop drive. Use stream-decompression instead:
+
 - `zcat` (or `gzip -dc` on macOS):
   ```bash
   # Inspect the first two reads of a compressed FASTQ file
@@ -256,6 +207,7 @@ echo "Completed processing for sample: ${SAMPLE_ID}"
 ::: {.callout-tip}
 ## The "Fail-Fast" Holy Trinity: `set -euo pipefail`
 Teach this standard safety header in every scripting workshop:
+
 - `set -e`: Exit immediately if any command returns a non-zero exit code (stops execution before bad data propagates).
 - `set -u`: Treat unset/uninitialised variables as errors (prevents catastrophic typos like `rm -rf /${MISSING_VAR}`).
 - `set -o pipefail`: If any command in a multi-stage pipe fails, the entire pipeline fails, rather than masking errors behind the final tool's exit status.
@@ -288,21 +240,7 @@ In low-resource training venues, electrical power cuts and internet drops are co
 
 Trainers must teach learners how to safeguard their jobs:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                     SURVIVING UNSTABLE CONNECTIONS                     │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                                        │
-│  Traditional SSH:                                                      │
-│  [Laptop] ─── Wi-Fi Drop ───X─── [Server: Pipeline Terminated by OS]   │
-│                                                                        │
-│  SSH with tmux:                                                        │
-│  [Laptop] ─── Wi-Fi Drop ───X─── [tmux Session Running Safely]         │
-│                                            │                           │
-│  [Laptop Reconnects] ──────────► [Reattach: Pipeline Still Running!]   │
-│                                                                        │
-└────────────────────────────────────────────────────────────────────────┘
-```
+![Surviving unstable connections](images/unstable_connections.jpeg)
 
 ### The Terminal Multiplexer: `tmux`
 
@@ -324,6 +262,7 @@ nohup bash run_all_samples.sh > pipeline.log 2>&1 &
 
 ### Real-Time Resource Monitoring
 Teach learners to monitor their machine's vital signs:
+
 - `htop` (or `top`): Displays CPU usage per core, memory consumption per process, and allows users to terminate frozen processes (`k` or `kill -9 <PID>`).
 - `free -h`: Displays available vs used RAM and swap space in human-readable gigabytes.
 - `df -h`: Displays remaining disk space across mounted filesystems.
@@ -342,22 +281,13 @@ Teaching the command line to beginners requires deliberate instructional design.
 
 ### 2. The Two-Color Sticky Note Feedback System
 During hands-on exercises, give each learner two differently colored sticky notes (e.g. Green and Red/Pink) to place on their laptop lid:
+
 - **Green Sticky Up:** *"I have completed the exercise and everything worked."*
 - **Red/Pink Sticky Up:** *"I am stuck or encountered an error; I need help."*
 
 This system provides trainers with instant visual telemetry of the room's progress without forcing shy learners to interrupt the lecture. Workshop "helpers" or rovers can quietly walk over to assist students with red stickies.
 
-```
-       [ Learner Laptop Screen ]
-       ┌───────────────────────┐
-       │                       │
-       │     Terminal CLI      │
-       │                       │
-       └───────────────────────┘
-          [GREEN]         [RED]
-       "All good /     "Stuck /
-        Finished"       Need Help"
-```
+![The Two-Color Sticky Note Feedback System](images/sticky_feedback.jpeg)
 
 
 ## Interactive Exercises for Future Trainers
@@ -458,6 +388,7 @@ gzip: 1.fastq: No such file or directory
 Imagine you are standing in front of 20 life-science researchers who have never seen a terminal before in their lives. You have 5 minutes to introduce the command line and dispel their anxiety before diving into the curriculum.
 
 Outline:
+
 1. What opening metaphor or explanation would you use to describe what the terminal actually is?
 2. What is the very first command you would have them type, and why?
 3. What common beginner anxiety would you explicitly address?

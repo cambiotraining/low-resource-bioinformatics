@@ -37,6 +37,7 @@ A recurring pitfall in bioinformatics education is stopping the lesson the momen
 ```
 
 For adult learners—who are predominantly clinicians, epidemiologists, agricultural researchers, and molecular biologists—the value of bioinformatics lies in **data interpretation**:
+
 - *Which of these 5,000 variants actually confers drug resistance?*
 - *Is this gene expression difference driven by our drug treatment or an experimental batch effect?*
 - *Does this phylogenetic tree prove hospital transmission or community acquisition?*
@@ -48,25 +49,14 @@ In low-resource settings, data interpretation is doubly critical. When laborator
 
 Quality control (QC) is not a single checkpoint performed on raw FASTQ files. Rigorous bioinformatics requires continuous sanity checks at every transition point in the workflow:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                      THE MULTI-STAGE QC PROGRESSION                    │
-├───────────────────┬───────────────────┬────────────────────────────────┤
-│ Stage             │ Standard Tools    │ Key Diagnostic Metrics         │
-├───────────────────┼───────────────────┼────────────────────────────────┤
-│ 1. Raw Reads      │ FastQC, fastp,    │ Per-base quality scores (Q30), │
-│                   │ MultiQC           │ adapter contamination, GC%     │
-├───────────────────┼───────────────────┼────────────────────────────────┤
-│ 2. Alignment      │ Samtools flagstat,│ Mapping rate (%), depth of     │
-│                   │ QualiMap, Mosdepth│ coverage, duplication rate     │
-├───────────────────┼───────────────────┼────────────────────────────────┤
-│ 3. Assembly       │ QUAST, BUSCO,     │ N50, total length, contig      │
-│                   │ CheckM            │ count, single-copy orthologs   │
-├───────────────────┼───────────────────┼────────────────────────────────┤
-│ 4. Variant Calls  │ bcftools stats,   │ Transition/Transversion (Ti/Tv)│
-│                   │ vcf-validator     │ ratio, depth per variant       │
-└───────────────────┴───────────────────┴────────────────────────────────┘
-```
+| Stage | Standard tools | Key diagnostic metrics |
+| :--- | :--- | :--- |
+| 1. Raw reads | FastQC, fastp, MultiQC | Per-base quality scores (Q30), adapter contamination, GC% |
+| 2. Alignment | Samtools flagstat, QualiMap, Mosdepth | Mapping rate (%), depth of coverage, duplication rate |
+| 3. Assembly | QUAST, BUSCO, CheckM | N50, total length, contig count, single-copy orthologs |
+| 4. Variant calls | bcftools stats, vcf-validator | Transition/transversion (Ti/Tv) ratio, depth per variant |
+
+: Table 1: The multi-stage QC progression
 
 ### 1. Raw Read Quality: Phred Scores and Sequencing Errors
 - **Phred Quality Score ($Q$):** Logarithmically relates to base-calling error probability ($P = 10^{-Q/10}$).
@@ -76,6 +66,7 @@ Quality control (QC) is not a single checkpoint performed on raw FASTQ files. Ri
 
 ### 2. Alignment Quality: Depth vs. Breadth of Coverage
 Teach learners to distinguish two fundamental concepts:
+
 - **Breadth of Coverage:** The percentage of the reference genome covered by at least one sequencing read (e.g. 98% of the genome is covered).
 - **Depth (Fold) of Coverage:** How many unique reads overlap a specific nucleotide position on average (e.g. $30\times$ depth).
 - *Clinical rule of thumb:* You cannot reliably call heterozygous diploid variants or low-frequency somatic mutations with $5\times$ coverage; reliable variant calling generally requires at least $20\times$–$30\times$ depth.
@@ -89,22 +80,14 @@ Teach learners to distinguish two fundamental concepts:
 
 Bioinformatics outputs are frequently contaminated by non-biological noise. Instructors must train learners to spot these classic technical artifacts:
 
-```
-       ┌─────────────────────────────────────────────────────────┐
-       │                COMMON TECHNICAL ARTIFACTS               │
-       ├─────────────────────────┬───────────────────────────────┤
-       │ Artifact                │ Biological Consequence        │
-       ├─────────────────────────┼───────────────────────────────┤
-       │ PCR Duplicates          │ Artificially inflates variant │
-       │                         │ allele frequencies            │
-       │ Batch Effects           │ Confounds treatment groups    │
-       │                         │ with processing dates         │
-       │ Cross-Contamination     │ False pathogen detection or   │
-       │                         │ mixed-lineage calls           │
-       │ GC-Content Bias         │ Dropouts in high GC regions   │
-       │                         │ (e.g. bacterial promoters)    │
-       └─────────────────────────┴───────────────────────────────┘
-```
+| Artifact | Biological consequence |
+| :--- | :--- |
+| PCR duplicates | Artificially inflates variant allele frequencies |
+| Batch effects | Confounds treatment groups with processing dates |
+| Cross-contamination | False pathogen detection or mixed-lineage calls |
+| GC-content bias | Dropouts in high GC regions (e.g. bacterial promoters) |
+
+: Table 2: Common technical artifacts
 
 ### The Peril of Batch Effects
 
@@ -113,6 +96,7 @@ A **batch effect** occurs when non-biological experimental variables (such as th
 ::: {.callout-important}
 ## The Unrecoverable Study Design
 Imagine an RNA-seq experiment comparing 10 tuberculosis patients with 10 healthy controls:
+
 - All 10 TB samples are extracted on Monday by Technician A using Kit Lot #1.
 - All 10 Control samples are extracted on Friday by Technician B using Kit Lot #2.
 
@@ -127,6 +111,7 @@ Modern high-throughput biology is characterized by the **large $p$, small $n$ pr
 ### The Multiple Testing Trap
 
 In classical hypothesis testing, an alpha threshold of $p < 0.05$ means there is a 5% chance of falsely rejecting the null hypothesis (a false positive).
+
 - If you test **one** gene, a false positive rate of 5% is acceptable.
 - If you test **20,000** genes simultaneously:
   $$20,000 \times 0.05 = 1,000\text{ false positive genes!}$$
@@ -158,6 +143,7 @@ You will find 1,000 "statistically significant" genes entirely by random chance.
 ```
 
 Teach learners to evaluate **both** dimensions of the Volcano plot:
+
 1. **Statistical Significance:** How reproducible is the difference ($y$-axis: $-\log_{10} p$).
 2. **Biological Magnitude / Effect Size:** Is the fold-change biologically meaningful ($x$-axis: $\log_2 \text{Fold Change}$)? A gene with $p = 10^{-6}$ but only a 1.05-fold change is rarely biologically actionable.
 
@@ -185,6 +171,7 @@ Reads:         A  T  G  C  [T]  T  A  G  G
 
 ### Visualizing Outliers: PCA and Unsupervised Clustering
 Before performing differential expression or association testing, always generate an exploratory **Principal Component Analysis (PCA)** plot:
+
 - Do biological replicates cluster tightly together?
 - Do untreated and treated groups separate cleanly along PC1 or PC2?
 - Is there a clear outlier sample that was swapped or suffered library degradation?
@@ -210,10 +197,12 @@ These exercises will test your ability to design interpretation challenges that 
 ## Diagnosing an Anomaly in an RNA-seq PCA Plot
 
 You provide your workshop trainees with an exploratory PCA plot from an experiment examining malaria parasite gene expression in response to an antimalarial drug:
+
 - 3 Biological Replicates: Untreated (`Ctrl_1`, `Ctrl_2`, `Ctrl_3`)
 - 3 Biological Replicates: Drug-Treated (`Treat_1`, `Treat_2`, `Treat_3`)
 
 The PCA plot shows:
+
 - `Ctrl_1`, `Ctrl_2`, and `Treat_3` cluster tightly together on the left side of PC1 (explaining 78% of the variance).
 - `Treat_1`, `Treat_2`, and `Ctrl_3` cluster tightly together on the right side of PC1.
 
@@ -246,6 +235,7 @@ Look closely at which samples are clustering with each other across the two expe
 A trainee calls you over during a variant-calling practical. An automated pipeline reported a nonsense mutation in the *katG* gene (causing isoniazid resistance in *M. tuberculosis*). The trainee asks if this confirms the strain is drug-resistant.
 
 You open the BAM file in IGV and observe:
+
 - Total read depth at the site: $35\times$.
 - Exactly 4 reads show the mutation; 31 reads match the wild-type reference.
 - All 4 mutated reads originate from the same sequencing strand (100% strand bias) and the mutation is located in the terminal 3 base pairs of each read.

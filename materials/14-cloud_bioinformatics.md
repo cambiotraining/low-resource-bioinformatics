@@ -19,19 +19,15 @@ In many low- and middle-income countries (LMICs), establishing and maintaining a
 
 **Cloud computing** transforms computational infrastructure from physical property into an on-demand utility. Instead of purchasing a $50,000 server that sits underutilized or overheats during power outages, researchers can rent virtual machines with 64 CPU cores and 256 GB of RAM for only the specific hours needed to run an assembly or variant-calling pipeline.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   ON-PREMISES SERVER vs CLOUD COMPUTE                  │
-├───────────────────────────────────┬────────────────────────────────────┤
-│     ON-PREMISES INFRASTRUCTURE    │          CLOUD COMPUTING           │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ • High upfront capital cost       │ • Zero upfront capital expenditure │
-│ • Vulnerable to power outages     │ • Guaranteed uptime & reliability  │
-│ • Maintenance & cooling contracts │ • Maintained by cloud provider     │
-│ • Fixed hardware capacity         │ • Elastic scaling (expand/shrink)  │
-│ • Depreciates in 3–5 years        │ • Access to cutting-edge hardware  │
-└───────────────────────────────────┴────────────────────────────────────┘
-```
+| On-premises infrastructure | Cloud computing |
+| :--- | :--- |
+| • High upfront capital cost | • Zero upfront capital expenditure |
+| • Vulnerable to power outages | • Guaranteed uptime & reliability |
+| • Maintenance & cooling contracts | • Maintained by cloud provider |
+| • Fixed hardware capacity | • Elastic scaling (expand/shrink) |
+| • Depreciates in 3–5 years | • Access to cutting-edge hardware |
+
+: Table 1: On-premises server versus cloud computing
 
 However, cloud computing is not an unalloyed silver bullet. For researchers in low-resource environments, the cloud introduces new, non-trivial friction points: financial barriers, international currency restrictions, high upload latencies, and data sovereignty considerations.
 
@@ -85,17 +81,20 @@ While cloud infrastructure eliminates local hardware maintenance, instructors te
 
 ### 1. The Bandwidth Bottleneck: Upload vs. Download Asymmetry
 In many LMICs, internet connections are highly asymmetric: download speeds might reach 10–20 Mbps, while upload speeds hover around 1–2 Mbps or suffer high packet loss.
+
 - Uploading a 50 GB paired-end sequencing run from a local lab to an AWS S3 bucket over a 2 Mbps connection will take **more than 55 hours of uninterrupted connectivity**—an impossibility in areas with daily power shedding.
 - *The Solution:* The **Data Locality Principle** (see below).
 
 ### 2. Financial Friction and Currency Controls
 Commercial cloud providers require billing via credit cards in US Dollars, Euros, or British Pounds.
+
 - Many public universities in developing nations lack institutional credit cards.
 - Strict national foreign currency restrictions or severe inflation can make international card payments difficult or unpredictable.
 - *The Solution:* Academic credit grants (e.g. AWS Cloud Credit for Research, Google Cloud Research Grants) and centralized institutional vouchers.
 
 ### 3. "Bill Shock": The Cost Management Imperative
 Unlike physical hardware where costs are fixed at purchase, cloud instances accrue charges every second they exist.
+
 - Leaving a 32-core instance with 128 GB RAM (`r5.8xlarge`, costing ~$2.00/hour) running over an unattended weekend costs $100. Leaving it forgotten for a month costs **over $1,400 USD**—a catastrophic blow to a small research grant.
 - *The Solution:* Automated shutdown scripts, spot instances, and hard budget alarms.
 
@@ -132,11 +131,13 @@ Bioinformatics workloads are typically batch-oriented and fault-tolerant. Traine
 
 ### 1. Spot and Preemptible Instances (70–90% Discounts)
 Cloud providers have excess server capacity. They auction this unused capacity as **Spot Instances** (AWS) or **Spot/Preemptible VMs** (GCP/Azure) at discounts of up to **90% off standard on-demand prices**.
+
 - *The Catch:* If the provider needs the capacity back, the instance can be reclaimed with a 2-minute warning.
 - *Why it fits bioinformatics:* For pipeline steps that write intermediate checkpoints, or batch jobs managed by workflow managers (Nextflow, Snakemake), spot instances offer immense cost savings.
 
 ### 2. Hard Budget Alerts and Automated Kill Switches
 Never launch a cloud project without setting automated billing alerts:
+
 - **CloudWatch / GCP Budget Alerts:** Send immediate email and SMS alerts when spending reaches 50%, 80%, and 100% of a defined monthly threshold (e.g. $50).
 - **Auto-Shutdown Daemons:** Add a simple cron script that monitors CPU utilization; if CPU activity stays below 5% for 30 consecutive minutes, the VM automatically triggers `sudo poweroff`, stopping per-hour compute charges.
 
@@ -145,22 +146,13 @@ Never launch a cloud project without setting automated billing alerts:
 
 When designing a workshop in a low-resource setting, how should instructors provide computational environments without asking students for credit cards or risking live installation failures?
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   CLASSROOM CLOUD ARCHITECTURES                        │
-├───────────────────────────────────┬────────────────────────────────────┤
-│ Architecture                      │ Best For                           │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ 1. Galaxy Training Network (GTN)  │ Novices, wet-lab biologists,       │
-│    (usegalaxy.*)                  │ zero-command-line curricula        │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ 2. GitHub Codespaces / Gitpod     │ Intermediate CLI/Python/R lessons; │
-│    (60 free core-hours/month)     │ browser-based VS Code interface    │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ 3. Centralized Instructor VM      │ Advanced CLI/HPC courses; single   │
-│    (Single multi-user cloud host) │ large VM, students connect via SSH │
-└───────────────────────────────────┴────────────────────────────────────┘
-```
+| Architecture | Best For |
+| :--- | :--- |
+| 1. Galaxy Training Network (GTN)<br>`(usegalaxy.*)` | Novices, wet-lab biologists, zero-command-line curricula |
+| 2. GitHub Codespaces / Gitpod<br>*(60 free core-hours/month)* | Intermediate CLI/Python/R lessons; browser-based VS Code interface |
+| 3. Centralized Instructor VM<br>*(Single multi-user cloud host)* | Advanced CLI/HPC courses; single large VM, students connect via SSH |
+
+: Table 2: Classroom cloud architectures
 
 ### Approach 1: The Public Galaxy Network (Zero Cost, Zero CLI)
 - Use established public Galaxy instances (`usegalaxy.eu` or `usegalaxy.org`).
@@ -224,6 +216,7 @@ You are leading a 3-day training event for 20 clinical microbiologists and hospi
 - **Venue:** Unstable mobile Wi-Fi (3–5 Mbps shared).
 
 Evaluate the following three options and recommend the most effective training vehicle:
+
 - **Option A:** Have participants install Ubuntu inside VirtualBox on their laptops.
 - **Option B:** Teach them to launch and configure AWS EC2 Linux instances using individual AWS accounts.
 - **Option C:** Use the public Galaxy platform (e.g. `usegalaxy.eu`) with pre-loaded shared histories.

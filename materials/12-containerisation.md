@@ -19,23 +19,7 @@ Bioinformatics tools have notoriously intricate dependency chains. A single phyl
 
 In a traditional workshop setting, instructors often spend the entire first day walking around the room diagnosing failed installations across different student operating systems (Windows 10, Windows 11, macOS Intel, macOS Apple Silicon, and assorted Linux distributions). This scenario—known as **"dependency hell"**—wastes valuable instructional time and demoralizes novice learners.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                      THE INSTALLATION BOTTLENECK                       │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                                        │
-│   Traditional Installation:                                            │
-│   [Student 1: Windows]  ──► Missing C++ build tools ──► Fails           │
-│   [Student 2: macOS M2] ──► Incompatible x86 binary  ──► Fails         │
-│   [Student 3: Ubuntu]   ──► Conflicting python paths ──► Fails         │
-│   * Result: 6 hours spent troubleshooting, zero bioinformatics taught. │
-│                                                                        │
-│   Containerised Teaching:                                              │
-│   [All Students] ───────► Run identical pre-tested container ──► OK!   │
-│   * Result: Identical environment, zero install friction, 100% parity. │
-│                                                                        │
-└────────────────────────────────────────────────────────────────────────┘
-```
+![The installation bottleneck](images/installation_bottleneck.jpeg)
 
 **Containerisation** solves this fundamental challenge. It allows developers and trainers to package an entire software environment—including the operating system userland, tools, libraries, dependencies, and configuration files—into a single, portable, self-contained unit that runs identically on any computer.
 
@@ -86,6 +70,7 @@ Before the 1950s, cargo was loaded loosely onto ships as "break bulk"—sacks of
 | **Performance** | Significant performance penalty for disk I/O and computation. | Near-native bare-metal execution speed. |
 | **Low-Resource Suitability** | Poor for 4–8 GB RAM laptops (causes heavy swapping). | Excellent: low footprint allows running on modest hardware. |
 
+: Table 1: Differences between virtual machines and software containers
 
 ## Docker vs Singularity / Apptainer
 
@@ -93,22 +78,15 @@ The container landscape in science is dominated by two primary technologies: **D
 
 Understanding their architectural differences is vital, especially when training researchers who move between personal laptops and institutional HPC clusters.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                     DOCKER vs SINGULARITY / APPTAINER                  │
-├───────────────────────────────────┬────────────────────────────────────┤
-│           DOCKER                  │       SINGULARITY / APPTAINER      │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ • Native to industry & cloud      │ • Native to academic HPC & science │
-│ • Requires background daemon      │ • No background daemon needed      │
-│ • Requires root / sudo access     │ • Runs entirely as unprivileged    │
-│   (Security risk on shared HPC)   │   user (Safe on multi-user HPC)    │
-│ • Container filesystems isolated  │ • Mounts user's home and current   │
-│   by default (must bind manually) │   directory by default             │
-│ • Multi-layered image storage     │ • Stored as a single standalone    │
-│                                   │   file (.sif) – easy to copy!      │
-└───────────────────────────────────┴────────────────────────────────────┘
-```
+| Docker | Singularity/Apptainer |
+| :--- | :--- |
+| • Native to industry & cloud | • Native to academic HPC & science |
+| • Requires background daemon | • No background daemon needed |
+| • Requires root / sudo access (Security risk on shared HPC) | • Runs entirely as unprivileged user (Safe on multi-user HPC) |
+| • Container filesystems isolated by default (must bind manually) | • Mounts user's home and current directory by default |
+| • Multi-layered image storage | • Stored as a single standalone file (`.sif`) – easy to copy! |
+
+: Table 2: Docker versus Singularity/Apptainer
 
 ### Why Singularity / Apptainer is the Scientific Standard
 
@@ -242,6 +220,7 @@ Trainers download and package all required containers onto high-speed USB flash 
 
 ### Strategy 2: Local Classroom Wi-Fi Cache / Mini-Registry
 If students have decent local connectivity to a local router (even without an active internet gateway):
+
 - The instructor sets up a local Docker registry or simple HTTP server (e.g. `python3 -m http.server 8000`) on a laptop or Raspberry Pi connected to the classroom Wi-Fi router.
 - Students download `.sif` files or pull images locally at 100–300 Mbps over local Wi-Fi without consuming any cellular or external internet bandwidth.
 

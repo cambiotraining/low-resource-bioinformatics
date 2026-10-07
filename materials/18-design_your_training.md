@@ -54,23 +54,17 @@ The goal of this capstone activity is not to complete an abstract theoretical as
 
 Your training plan must address seven essential components. As you design, ensure that every decision directly accounts for the real-world constraints of your target audience:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   THE 7 CORE PROPOSAL COMPONENTS                       │
-├───────────────────────────────────┬────────────────────────────────────┤
-│ 1. Context & Venue Profile        │ 2. Target Learner Persona          │
-│    • Institution, power, internet │    • Background, goals, hurdles    │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ 3. Measurable Outcomes (Bloom)    │ 4. Curriculum & Tool Selection     │
-│    • 3–5 observable action verbs  │    • Right-sized for constraints   │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ 5. Instructional Delivery Model   │ 6. Technical & Logistics Plan      │
-│    • Live coding, pair roles, TAs │    • Micro-data, offline Plan B    │
-├───────────────────────────────────┴────────────────────────────────────┤
-│ 7. Assessment & Evaluation Strategy                                    │
-│    • Formative telemetry (stickies/MCQs) + Authentic Capstone Task     │
-└────────────────────────────────────────────────────────────────────────┘
-```
+| Component | Details |
+| :--- | :--- |
+| 1. Context & venue profile | • Institution, power, internet |
+| 2. Target learner persona | • Background, goals, hurdles |
+| 3. Measurable outcomes (Bloom) | • 3–5 observable action verbs |
+| 4. Curriculum & tool selection | • Right-sized for constraints |
+| 5. Instructional delivery model | • Live coding, pair roles, TAs |
+| 6. Technical & logistics plan | • Micro-data, offline Plan B |
+| 7. Assessment & evaluation strategy | • Formative telemetry (stickies/MCQs) + authentic capstone task |
+
+: Table 1: The 7 core proposal components
 
 ### Component 1: Context & Institutional Profile
 - **Target Institution / Location:** Where will the workshop take place?
@@ -111,28 +105,15 @@ Your training plan must address seven essential components. As you design, ensur
 
 Participants will work individually or in small teams (2–3 people) over a dedicated **3-to-4-hour design sprint** structured into five phases:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   THE 5-PHASE DESIGN TIMELINE                          │
-├─────────────────────┬───────────────────┬──────────────────────────────┤
-│ Phase               │ Duration          │ Key Milestone                │
-├─────────────────────┼───────────────────┼──────────────────────────────┤
-│ 1. Context & Persona│ 45 minutes        │ Complete Venue Profile &     │
-│                     │                   │ Learner Persona Card         │
-├─────────────────────┼───────────────────┼──────────────────────────────┤
-│ 2. Backward Design  │ 60 minutes        │ Draft Bloom Outcomes &       │
-│                     │                   │ Authentic Assessment Task    │
-├─────────────────────┼───────────────────┼──────────────────────────────┤
-│ 3. Technical Plan   │ 60 minutes        │ Micro-dataset specs, install │
-│                     │                   │ method, and Plan B matrix    │
-├─────────────────────┼───────────────────┼──────────────────────────────┤
-│ 4. Peer Tuning      │ 30 minutes        │ Structured peer review with  │
-│    Exchange         │                   │ neighboring team             │
-├─────────────────────┼───────────────────┼──────────────────────────────┤
-│ 5. The Presentations│ 10 mins per group │ Pitch training plan to room  │
-│    & Pitch          │                   │ with Q&A and facilitator feedback│
-└─────────────────────┴───────────────────┴──────────────────────────────┘
-```
+| Phase | Duration | Key milestone |
+| :--- | :--- | :--- |
+| 1. Context & persona | 45 minutes | Complete venue profile & learner persona card |
+| 2. Backward design | 60 minutes | Draft Bloom outcomes & authentic assessment task |
+| 3. Technical plan | 60 minutes | Micro-dataset specs, install method, and Plan B matrix |
+| 4. Peer tuning exchange | 30 minutes | Structured peer review with neighboring team |
+| 5. The presentations & pitch | 10 mins per group | Pitch training plan to room with Q&A and facilitator feedback |
+
+: Table 2: The 5-phase design timeline
 
 
 ## Pitching Your Training Plan: Presentation Guidelines
@@ -159,32 +140,20 @@ Each individual or team will deliver a **7-to-8 minute pitch** followed by **3�
 
 During the peer exchange phase, use the following evaluation rubric to give constructive, actionable feedback:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   PEER EVALUATION RUBRIC                               │
-├──────────────────────┬─────────────────────────────────────────────────┤
-│ Dimension            │ Guiding Evaluation Questions                    │
-├──────────────────────┼─────────────────────────────────────────────────┤
-│ 1. Constructive      │ Do the learning outcomes use measurable action  │
-│    Alignment         │ verbs? Does the assessment truly measure them?  │
-├──────────────────────┼─────────────────────────────────────────────────┤
-│ 2. Empathy & Persona │ Is the pace realistic for the defined persona?   │
-│    Relevance         │ Does it solve the "Expert-Novice Paradox"?      │
-├──────────────────────┼─────────────────────────────────────────────────┤
-│ 3. Resource Realism  │ Is the plan 100% viable offline? Will datasets  │
-│                      │ run on 4 GB RAM laptops without crashing?       │
-├──────────────────────┼─────────────────────────────────────────────────┤
-│ 4. Contingency       │ Is Plan B robust? What happens if power or      │
-│    Preparedness      │ internet cuts out unexpectedly?                 │
-├──────────────────────┼─────────────────────────────────────────────────┤
-│ 5. Interactive Pacing│ Does the plan obey the Rule of Thirds and the   │
-│                      │ 15-minute instructional rule?                   │
-└──────────────────────┴─────────────────────────────────────────────────┘
-```
+| Dimension | Guiding evaluation questions |
+| :--- | :--- |
+| 1. Constructive alignment | Do the learning outcomes use measurable action verbs? Does the assessment truly measure them? |
+| 2. Empathy & persona relevance | Is the pace realistic for the defined persona? Does it solve the "Expert-Novice Paradox"? |
+| 3. Resource realism | Is the plan 100% viable offline? Will datasets run on 4 GB RAM laptops without crashing? |
+| 4. Contingency preparedness | Is Plan B robust? What happens if power or internet cuts out unexpectedly? |
+| 5. Interactive pacing | Does the plan obey the Rule of Thirds and the 15-minute instructional rule? |
+
+: Table 3: Peer evaluation rubric
 
 ::: {.callout-note}
 ## Warm vs. Cool Feedback
 When reviewing peer proposals, structure your verbal and written critique:
+
 - **Warm Feedback (Affirmations):** *"I really like how your micro-dataset specifically targets the malaria rpoB locus—that makes the exercise biologically authentic while keeping file sizes under 2 MB."*
 - **Cool Feedback (Posing Inquiries):** *"I noticed that on Day 2, you have three hours of continuous command-line tools scheduled before lunch. How might you introduce a sticky-note checkpoint or a 15-minute paired exercise to prevent cognitive fatigue?"*
 :::

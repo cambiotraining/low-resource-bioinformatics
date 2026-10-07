@@ -18,6 +18,7 @@ title: Software Installation
 Few tasks induce as much anxiety in beginner bioinformaticians as installing software. Unlike consumer applications installed with a single click from an app store, bioinformatics tools often exist as command-line binaries, Python scripts, R packages, or raw C/C++ source code. 
 
 In low-resource environments, software installation is compounded by three systemic hurdles:
+
 1. **Limited or Unstable Bandwidth:** Downloading hundreds of megabytes of package indices and dependencies during a live workshop can overwhelm classroom networks or exhaust mobile data bundles.
 2. **Hardware Constraints:** Older laptops with 4 GB of RAM frequently crash when running memory-intensive dependency solvers (such as classic Conda).
 3. **Restricted Permissions:** Learners in institutional computer labs often lack administrative (`sudo` or root) privileges, rendering system-wide package managers (`apt`, `yum`) unusable.
@@ -94,6 +95,7 @@ ls -l my_script.sh
 ::: {.callout-note}
 ## The `.` in `./program`
 Beginners often ask: *"Why do I have to type `./fastp` when I am inside the folder containing `fastp`, but I can type `ls` from anywhere?"*
+
 - `ls` lives in `/bin`, which is listed in `$PATH`.
 - For security reasons, the current working directory (`.`) is almost never included in `$PATH`.
 - Typing `./program` explicitly instructs the shell: *"Look right here in the current folder (`.`) and execute `program`."*
@@ -122,6 +124,7 @@ Bioinformatics tools can be installed via several distinct modalities. Understan
 ### 1. Static and Pre-Compiled Binaries: The Low-Resource Champions
 
 A **statically linked binary** has all of its supporting libraries compiled directly into a single executable file. It has no external dependencies.
+
 - **Examples:** `seqkit`, `minimap2`, `fastp`, `samtools` (standalone releases).
 - **Why they excel in low-resource settings:**
   - Zero dependencies: no Python, Perl, or Conda required.
@@ -151,6 +154,7 @@ For software with complex multi-language dependencies, package managers are esse
 ### Why Classic Conda Fails on Low-Resource Hardware
 
 Classic `conda` was written in Python and uses a Boolean Satisfiability (SAT) solver to resolve dependencies. As the Bioconda repository grew to tens of thousands of packages, solving an environment became computationally intensive:
+
 - Classic Conda often requires **2.5 GB to 4 GB of RAM** just to calculate the dependency graph.
 - On an older 4 GB RAM student laptop, the OS runs out of memory, triggers disk swapping, and kills the process with `Killed` or hangs indefinitely ("Solving environment: \").
 
@@ -193,6 +197,7 @@ Bioinformaticians frequently work with custom Python and R scripts that require 
 
 ### 1. Python Environments
 Never install packages globally using `sudo pip install`. Instead:
+
 - Use Python's built-in virtual environment module:
   ```bash
   python3 -m venv my_project_env
@@ -203,6 +208,7 @@ Never install packages globally using `sudo pip install`. Instead:
 
 ### 2. R Packages and Bioconductor
 R packages in bioinformatics are split between CRAN and **Bioconductor**:
+
 ```r
 # Installing BiocManager and genomic packages
 if (!require("BiocManager", quietly = TRUE))
@@ -265,6 +271,7 @@ source ~/.bashrc
 
 ### 1. The Pre-Course Installation Clinic
 Never schedule installation as the opening lecture on Day 1. Instead:
+
 - Host a drop-in virtual "Installation Clinic" 2–3 days prior to the course.
 - Assign teaching assistants or workshop helpers to test student machines one-on-one.
 - If a student cannot resolve their issues before Day 1, transition them to a pre-configured backup option (e.g. a cloud instance, web-based platform, or loaner USB with pre-packaged binaries).

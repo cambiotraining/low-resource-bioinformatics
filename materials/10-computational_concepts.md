@@ -19,24 +19,7 @@ Many trainees who enter bioinformatics workshops have formal backgrounds in biol
 
 When suddenly introduced to the command line, automated pipelines, or cloud clusters, learners often view the computer as an unpredictable "black box". When a command fails, they cannot tell whether the error is due to a biological flaw, a typing mistake, an operating system incompatibility, or a hardware resource exhaustion.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                        THE BIOINFORMATICS ICEBERG                      │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                                        │
-│               [ What Trainees Want to Do ]                             │
-│         "Assemble a genome" / "Find AMR genes"                         │
-│   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~      │
-│               [ What Trainees Must Understand First ]                  │
-│                                                                        │
-│    • Where files live (Hierarchical Filesystem & Paths)                │
-│    • How data is represented (Plain Text vs Binary, Formats)           │
-│    • Where execution happens (CPU vs RAM vs Storage)                   │
-│    • How programs communicate (Streams: STDIN, STDOUT, STDERR)         │
-│    • Operating system friction (Line endings, Permissions, CLI)        │
-│                                                                        │
-└────────────────────────────────────────────────────────────────────────┘
-```
+![The bioinformatics iceberg](images/bioinformatics_iceberg.jpeg)
 
 As trainers, especially in low-resource settings where hardware and bandwidth margins are thin, **we cannot afford to treat computational fundamentals as assumed knowledge**. Grounding our learners in clear mental models prevents panic, accelerates troubleshooting, and empowers them to become autonomous problem-solvers.
 
@@ -45,27 +28,7 @@ As trainers, especially in low-resource settings where hardware and bandwidth ma
 
 Before asking learners to run heavy bioinformatics tools, they need an intuitive mental model of what a computer does when executing an analysis.
 
-```
-┌───────────────────────────────────────────────────────────────────────┐
-│                     COMPUTER HARDWARE ARCHITECTURE                    │
-├───────────────────────────────────────────────────────────────────────┤
-│                                                                       │
-│      ┌─────────────────────┐             ┌─────────────────────┐      │
-│      │   Central Process   │             │   Random Access     │      │
-│      │     Unit (CPU)      │◄───────────►│    Memory (RAM)     │      │
-│      │  "The Chef's Hands" │  Ultra-fast │ "The Cutting Board" │      │
-│      └─────────────────────┘             └──────────┬──────────┘      │
-│                                                     │                 │
-│                                            Moderate │ High-volume     │
-│                                               Speed │ Transfer        │
-│                                                     │                 │
-│                                          ┌──────────▼──────────┐      │
-│                                          │  Secondary Storage  │      │
-│                                          │     (SSD / HDD)     │      │
-│                                          │    "The Pantry"     │      │
-│                                          └─────────────────────┘      │
-└───────────────────────────────────────────────────────────────────────┘
-```
+![Computer hardware architecture](images/hardware_architecture.jpeg)
 
 ### The Culinary Analogy: CPU, RAM, and Storage
 
@@ -153,6 +116,7 @@ This is consistently one of the highest-friction hurdles in introductory computa
 ::: {.callout-warning}
 ## Common File Naming Traps in Bioinformatics
 Novices coming from Windows/Office often use file names like `My TB Data (Final) 2026.fastq`. In the Unix terminal:
+
 1. **Spaces break arguments:** The shell interprets a space as a separator between two different parameters. `fastqc My TB Data.fastq` attempts to analyse three separate files: `My`, `TB`, and `Data.fastq`.
 2. **Special characters cause shell expansion:** Symbols like `(`, `)`, `*`, `?`, `&`, and `$` have special programmatic meanings in Bash.
 3. **Case sensitivity:** `Sample1.fastq` and `sample1.fastq` are two completely different files on Linux and HPC systems, whereas Windows may treat them as identical.
@@ -165,36 +129,21 @@ Novices coming from Windows/Office often use file names like `My TB Data (Final)
 
 A common misconception among biological learners is that all data files are fundamentally the same, just opened by different applications. Teaching the distinction between **human-readable plain text** and **machine-readable binary** is fundamental to bioinformatics.
 
-```
-┌───────────────────────────────────────────────────────────────────────────┐
-│                    HOW COMPUTERS ENCODE BIOLOGICAL DATA                   │
-├───────────────────────────────────────────────────────────────────────────┤
-│                                                                           │
-│  [ PLAIN TEXT ]                                 [ BINARY ]                │
-│  ASCII / UTF-8 Characters                       0s and 1s Encoded Directly│
-│                                                                           │
-│  >seq1                                          \x1f\x8b\x08\x04\x00\x00  │
-│  ATGCGATCGATCGATCG                              \x00\x00\xff\xec\xbd\x09  │
-│                                                                           │
-│  • Readable by humans (cat, head, nano)         • Unreadable in text edit │
-│  • Universal across programming languages       • Compact file size       │
-│  • Larger file footprint                        • Fast random access      │
-│  • Examples: FASTA, FASTQ, SAM, VCF, GFF3       • Examples: BAM, BCF, BAI │
-│                                                                           │
-└───────────────────────────────────────────────────────────────────────────┘
-```
+![How computers encode biological data](images/computer_encoding.jpeg)
 
 ### The Plain Text Currency of Bioinformatics
 
 Bioinformatics was built on plain text. Most raw and intermediate formats—FASTA (sequences), FASTQ (sequences + quality scores), SAM (alignments), VCF (variants), BED and GFF (genomic coordinates)—are simple text tables or delimited records.
 
 Because they are plain text:
+
 - They can be inspected, searched, filtered, and manipulated using standard command-line utilities (`head`, `grep`, `awk`, `cut`, `sed`, `sort`) without loading them into memory-heavy software.
 - They are future-proof and independent of proprietary software vendor lock-in.
 
 ### The Role of Compressed and Indexed Binary Formats
 
 Plain text is inefficient for multi-gigabyte datasets:
+
 - **Compression (`.gz`):** Gzip compression reduces genomic text files by 70–80%, saving vital disk space and network bandwidth in low-resource environments. Modern bioinformatics tools (e.g. `bwa`, `minimap2`, `fastp`, `samtools`) can read gzipped text streams directly without uncompressing them to disk first.
 - **Indexed Binary Formats (BAM, BCF, BigWig):** When inspecting a specific gene on chromosome 12, opening a 50 GB SAM text file requires reading the entire file from line 1. A BAM file stores the same data in compressed binary alongside an index file (`.bai`), allowing software (like IGV or `samtools`) to jump directly to the target coordinates in milliseconds.
 
@@ -206,6 +155,7 @@ One of the most frustrating "invisible bugs" encountered during workshops involv
 - **Windows:** Ends lines with a Carriage Return + Line Feed (`\r\n` or `CRLF`).
 
 When a learner downloads a script or tabular metadata file edited in Windows Notepad and executes it in Linux or WSL, the hidden `\r` (Carriage Return) character is interpreted as part of the command or variable name, generating bizarre errors:
+
 ```bash
 $ bash script.sh
 : command not found: 
@@ -226,30 +176,11 @@ Understanding the life cycle of a **process** and how it communicates through st
 2. **Process Spawned:** When executed, the operating system allocates a unique Process ID (`PID`), copies the executable into RAM, and begins executing instructions on CPU cores.
 3. **Execution State:** While running, the process consumes memory and CPU cycles. It can run in the **foreground** (locking the terminal until completion) or in the **background** (using `&` or tools like `tmux`/`screen`).
 4. **Termination & Exit Codes:** When finished, every process returns an integer **exit status code**:
+
    - `0` means complete success.
    - Any non-zero integer (e.g. `1`, `127`, `137`) indicates an error or abnormal termination.
 
-```
-                                 ┌───────────────┐
-                                 │ Standard In   │
-                                 │ (STDIN - fd 0)│
-                                 └───────┬───────┘
-                                         │
-                                         ▼
-                                ┌─────────────────┐
-                                │ RUNNING PROCESS │
-                                │  (e.g. samtools)│
-                                └────────┬────────┘
-                                         │
-                         ┌───────────────┴───────────────┐
-                         │                               │
-                         ▼                               ▼
-                 ┌───────────────┐               ┌───────────────┐
-                 │ Standard Out  │               │ Standard Error│
-                 │ (STDOUT - fd 1│               │ (STDERR - fd 2│
-                 │ Normal Results│               │ Logs & Alerts │
-                 └───────────────┘               └───────────────┘
-```
+![The three standard streams](images/standard_streams.jpeg)
 
 ### The Three Standard Streams
 
@@ -282,15 +213,7 @@ This saves gigabytes of temporary disk writes and reduces wear on consumer SSDs.
 
 In bioinformatics, the machine on your desk is often just a gateway to a more capable machine elsewhere.
 
-```
-  LOCAL MACHINE (Client)                           REMOTE SERVER (Host)
-┌─────────────────────────┐                     ┌─────────────────────────┐
-│ • Learner's Laptop      │    SSH Connection   │ • High-spec Workstation │
-│ • Terminal Emulator     ├────────────────────►│ • Cloud Instance / HPC  │
-│ • Minimal RAM / Storage │      Port 22        │ • Large RAM & CPU Cores │
-│ • Graphical OS          │◄────────────────────┤ • Multi-terabyte Array  │
-└─────────────────────────┘                     └─────────────────────────┘
-```
+![Remote computing](images/remote_computing.jpeg)
 
 ### Demystifying Key Remote Terms for Learners
 
@@ -314,17 +237,20 @@ Teaching computational concepts to adult biological researchers requires specifi
 
 ### 1. Concrete Before Abstract
 Do not introduce the concept of "regular expressions" or "piping" in the abstract. Always start with a tangible biological problem:
+
 - *Abstract:* "A pipe feeds stream 1 to stream 0." (Baffling to beginners)
 - *Concrete:* "We want to count how many sequences in this FASTA file have the word 'Plasmodium'. Let's search with `grep` and immediately send the matching lines to `wc -l` to count them."
 
 ### 2. Participatory Live Coding
 Avoid presenting code solely on static slides. Use **participatory live coding**:
+
 - Type commands in real time while learners type along on their own screens.
 - Keep your typing pace deliberately moderate.
 - Intentionally make a common typo (e.g. omitting a space, misspelling a path). Show the resulting error message, ask the room to diagnose it, and demonstrate the fix. This de-stigmatises errors and teaches real-world debugging.
 
 ### 3. Build Spatial Mental Models First
 Before having students type `cd ../../data`, draw the directory tree on a physical whiteboard. Ask learners:
+
 - *"Where is the terminal cursor standing right now?"*
 - *"If you want to reach the folder `data`, which branch of the tree must you climb?"*
 

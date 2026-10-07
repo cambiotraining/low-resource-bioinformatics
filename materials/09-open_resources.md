@@ -20,20 +20,15 @@ Creating a modern, high-quality bioinformatics curriculum from scratch requires 
 
 Fortunately, the global scientific community has embraced **Open Educational Resources (OER)**. Today, thousands of peer-reviewed, classroom-tested bioinformatics lessons, interactive workflows, and curated datasets are freely available online.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   THE CURRICULUM DEVELOPMENT DILEMMA                   │
-├───────────────────────────────────┬────────────────────────────────────┤
-│     BUILDING FROM SCRATCH         │        ADAPTING OPEN RESOURCES     │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ • 200+ hours of solo development  │ • 10–20 hours of localization      │
-│ • Untested in live classrooms     │ • Battle-tested by hundreds of     │
-│ • Unstandardised pedagogical flow │   international instructors        │
-│ • Rapidly becomes outdated        │ • Evidence-based lesson design     │
-│ • High risk of instructor burnout │ • Continuously updated by the      │
-│                                   │   global open-science community    │
-└───────────────────────────────────┴────────────────────────────────────┘
-```
+| Building from scratch | Adapting open resources |
+| :--- | :--- |
+| • 200+ hours of solo development | • 10–20 hours of localization |
+| • Untested in live classrooms | • Battle-tested by hundreds of international instructors |
+| • Unstandardised pedagogical flow | • Evidence-based lesson design |
+| • Rapidly becomes outdated | • Continuously updated by the global open-science community |
+| • High risk of instructor burnout | |
+
+: Table 1: The Curriculum development dilemma
 
 The role of a modern bioinformatics educator in a resource-limited setting is not to author every line of training material from scratch. **Your superpower is curating, contextualizing, and delivering existing open resources to meet the precise needs of your local learners.**
 
@@ -44,18 +39,7 @@ According to UNESCO, **Open Educational Resources (OER)** are learning, teaching
 
 Educational researcher David Wiley codified the operational definition of open content into the **"5R Permissions"**:
 
-```
-                               ┌───────────────────┐
-                               │   THE 5Rs OF OER  │
-                               └─────────┬─────────┘
-                                         │
-       ┌───────────────┬─────────────────┼─────────────────┬───────────────┐
-       ▼               ▼                 ▼                 ▼               ▼
-  [ RETAIN ]       [ REUSE ]         [ REVISE ]        [ REMIX ]     [ REDISTRIBUTE ]
- Make, own, and   Use content       Adapt, modify,    Combine with   Share copies of
- control copies   unaltered in      translate, and    other content  original or
- of the content   class or online   localize data     to create new  adapted versions
-```
+![The five R's of Open Educational Resources (OER)](images/five_rs.jpeg)
 
 1. **Retain:** The right to make, own, and control copies of the content (e.g. downloading lessons to offline USB drives without fear of expiration or paywalls).
 2. **Reuse:** The right to use the content in its original, unaltered form (e.g. running a Software Carpentry Unix tutorial in your workshop).
@@ -68,29 +52,14 @@ Educational researcher David Wiley codified the operational definition of open c
 
 Just as research data must be **FAIR** (Findable, Accessible, Interoperable, and Reusable), international bioinformatics training networks (including ELIXIR and the Global Bioinformatics Education Network) have established the **FAIR Principles for Training Materials**:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   FAIR PRINCIPLES IN BIOINFORMATICS TRAINING           │
-├─────────────────────┬──────────────────────────────────────────────────┤
-│ Principle           │ Practical Implementation for Instructors         │
-├─────────────────────┼──────────────────────────────────────────────────┤
-│ 1. Findable         │ • Deposit materials in indexed registries (TeSS) │
-│                     │ • Assign persistent identifiers (DOIs via Zenodo)│
-│                     │ • Include structured metadata (keywords, targets)│
-├─────────────────────┼──────────────────────────────────────────────────┤
-│ 2. Accessible       │ • Publish on open, barrier-free platforms (web)  │
-│                     │ • Guarantee clear access protocols (no paywalls) │
-│                     │ • Provide downloadable offline copies (PDF/HTML) │
-├─────────────────────┼──────────────────────────────────────────────────┤
-│ 3. Interoperable    │ • Use open, plain-text formats (Markdown, Quarto)│
-│                     │ • Reference standard biological ontologies (EDAM)│
-│                     │ • Avoid proprietary vendor-locked slide formats  │
-├─────────────────────┼──────────────────────────────────────────────────┤
-│ 4. Reusable         │ • Attach an explicit open license (e.g. CC BY)   │
-│                     │ • Define prerequisites & target learner personas │
-│                     │ • Provide executable code & micro-datasets       │
-└─────────────────────┴──────────────────────────────────────────────────┘
-```
+| Principle | Practical Implementation for Instructors |
+| :--- | :--- |
+| 1. Findable | • Deposit materials in indexed registries (TeSS)<br>• Assign persistent identifiers (DOIs via Zenodo)<br>• Include structured metadata (keywords, targets) |
+| 2. Accessible | • Publish on open, barrier-free platforms (web)<br>• Guarantee clear access protocols (no paywalls)<br>• Provide downloadable offline copies (PDF/HTML) |
+| 3. Interoperable | • Use open, plain-text formats (Markdown, Quarto)<br>• Reference standard biological ontologies (EDAM)<br>• Avoid proprietary vendor-locked slide formats |
+| 4. Reusable | • Attach an explicit open license (e.g. CC BY)<br>• Define prerequisites & target learner personas<br>• Provide executable code & micro-datasets |
+
+: Table 2: FAIR principles in bioinformatics training
 
 Adopting FAIR training practices ensures that your localized materials don't disappear on an abandoned hard drive when a grant concludes, but remain findable and reusable by educators worldwide.
 
@@ -101,28 +70,15 @@ A common misconception is that anything freely accessible on the internet is ope
 
 To grant the 5R permissions, authors attach **Creative Commons (CC)** licenses:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   CREATIVE COMMONS LICENSING SPECTRUM                  │
-├──────────────┬───────────────────┬──────────────┬──────────────────────┤
-│ License      │ Requirements      │ Is it OER?   │ Impact on Teaching   │
-├──────────────┼───────────────────┼──────────────┼──────────────────────┤
-│ CC0          │ Public Domain     │ Yes (Full)   │ Unconditional reuse  │
-│ (No Rights)  │ (No attribution)  │              │                      │
-├──────────────┼───────────────────┼──────────────┼──────────────────────┤
-│ CC BY        │ Attribution only  │ Yes (Gold    │ Ideal for science;   │
-│              │                   │ Standard)    │ free to adapt/remix  │
-├──────────────┼───────────────────┼──────────────┼──────────────────────┤
-│ CC BY-SA     │ Attribution +     │ Yes          │ Derived works must   │
-│              │ ShareAlike        │              │ keep the same license│
-├──────────────┼───────────────────┼──────────────┼──────────────────────┤
-│ CC BY-NC     │ Attribution +     │ Yes (With    │ Cannot be used in    │
-│              │ NonCommercial     │ Caveat)      │ fee-charging courses │
-├──────────────┼───────────────────┼──────────────┼──────────────────────┤
-│ CC BY-ND     │ Attribution +     │ ❌ NO!       │ Cannot adapt, modify,│
-│              │ NoDerivatives     │ (Not OER)    │ or translate files!  │
-└──────────────┴───────────────────┴──────────────┴──────────────────────┘
-```
+| License | Requirements | Is it OER? | Impact on Teaching |
+| :--- | :--- | :--- | :--- |
+| CC0 (No Rights) | Public Domain (No attribution) | Yes (Full) | Unconditional reuse |
+| CC BY | Attribution only | Yes (Gold Standard) | Ideal for science; free to adapt/remix |
+| CC BY-SA | Attribution + ShareAlike | Yes | Derived works must keep the same license |
+| CC BY-NC | Attribution + NonCommercial | Yes (With Caveat) | Cannot be used in fee-charging courses |
+| CC BY-ND | Attribution + NoDerivatives | ❌ NO! (Not OER) | Cannot adapt, modify, or translate files! |
+
+: Table 3: Creative commons licensing spectrum
 
 ::: {.callout-warning}
 ## The "NoDerivatives" Trap (CC BY-ND)
@@ -131,12 +87,14 @@ Materials licensed under **CC BY-ND** prohibit any modification or derivative wo
 
 ### How to Give Proper Attribution (The TASL Principle)
 When using or adapting OER content, follow the **TASL** framework:
+
 - **T**itle: What is the name of the resource?
 - **A**uthor: Who created it?
 - **S**ource: Where did you find it (link to repository)?
 - **L**icense: Under which CC license is it released (link to license)?
 
 *Example Citation:*
+
 > *"Adapted from 'Introduction to the Command Line for Genomics' by The Carpentries, licensed under CC BY 4.0. Regional malaria datasets substituted by Dr. A. Mensah."*
 
 
@@ -144,29 +102,14 @@ When using or adapting OER content, follow the **TASL** framework:
 
 Where can instructors find high-quality, pre-built training materials?
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                     KEY BIOINFORMATICS OER ECOSYSTEMS                  │
-├───────────────────────────────────┬────────────────────────────────────┤
-│ Community / Portal                │ What They Offer                    │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ The Carpentries                   │ Hands-on beginner foundational     │
-│ (carpentries.org)                 │ skills: Unix CLI, Git, Python, R,  │
-│                                   │ Genomics, Ecology, Metagenomics.   │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ Galaxy Training Network (GTN)     │ 400+ peer-reviewed tutorials with  │
-│ (training.galaxyproject.org)      │ matched workflows, slide decks, and│
-│                                   │ micro-datasets across all omics.   │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ ELIXIR TeSS                       │ European registry aggregating      │
-│ (tess.elixir-europe.org)          │ thousands of training events, FAIR │
-│                                   │ lesson packages, and learning paths│
-├───────────────────────────────────┼────────────────────────────────────┤
-│ H3ABioNet Training                │ Comprehensive curricula designed   │
-│ (h3abionet.org/training)          │ specifically for distributed,      │
-│                                   │ bandwidth-constrained African nodes│
-└───────────────────────────────────┴────────────────────────────────────┘
-```
+| Community / Portal | What They Offer |
+| :--- | :--- |
+| The Carpentries<br>(carpentries.org) | Hands-on beginner foundational skills: Unix CLI, Git, Python, R, Genomics, Ecology, Metagenomics. |
+| Galaxy Training Network (GTN)<br>(training.galaxyproject.org) | 400+ peer-reviewed tutorials with matched workflows, slide decks, and micro-datasets across all omics. |
+| ELIXIR TeSS<br>(tess.elixir-europe.org) | European registry aggregating thousands of training events, FAIR lesson packages, and learning paths |
+| H3ABioNet Training<br>(h3abionet.org/training) | Comprehensive curricula designed specifically for distributed, bandwidth-constrained African nodes |
+
+: Table 4: Key bioinformatics OER resources
 
 ### 1. The Carpentries (Software & Data Carpentry)
 - **Pedagogical Model:** Evidence-based, participatory live coding, formative assessment, and 2-day modular workshops.
@@ -186,33 +129,12 @@ Where can instructors find high-quality, pre-built training materials?
 Simply downloading an open curriculum created at a well-funded European or North American university and presenting it unaltered to an LMIC classroom often leads to failure.
 
 Western curricula frequently embed **hidden resource assumptions**:
+
 - *"Download this 15 GB reference file from NCBI during class."* (Classroom Wi-Fi collapses).
 - *"Run this Nextflow pipeline across 32 cores on your institutional cluster."* (Students only have 4 GB RAM laptops).
 - *"Let us explore mutations associated with cystic fibrosis in European populations."* (Completely divorced from the infectious disease or agricultural priorities of local trainees).
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   THE CONTEXTUALIZATION PROCESS                        │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                                        │
-│   Step 1: Strip Bandwidth Dependencies                                 │
-│   • Replace live downloads with local USB archives or pre-cached files │
-│   • Downsample 20 GB datasets into micro-datasets                      │
-│                                                                        │
-│   Step 2: Localize the Biological Problem                              │
-│   • Replace model organisms (mouse, zebrafish) with regional crops     │
-│     (sorghum, cassava) or endemic threats (malaria, TB, cholera, AMR) │
-│                                                                        │
-│   Step 3: Align Hardware Demands                                       │
-│   • Swap heavy pipeline tools for lightweight alternatives or provide  │
-│     pre-computed intermediate outputs ("cooking show" method)          │
-│                                                                        │
-│   Step 4: Cultural and Language Translation                            │
-│   • Translate terminal explanations into regional languages or         │
-│     relatable local metaphors                                          │
-│                                                                        │
-└────────────────────────────────────────────────────────────────────────┘
-```
+![The contextualisation process](images/contextualization.jpeg)
 
 ::: {.callout-note}
 ## The Power of Local Biological Relevance
@@ -224,25 +146,14 @@ Adult learners are motivated by immediate practical relevance (Knowles' andragog
 
 In low-resource venues, internet connections may drop completely for hours. A critical competence for trainers is **offline preparedness**—ensuring every webpage, manual, and dataset is cached locally before stepping into the classroom.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                     OFFLINE ARCHIVAL TOOLKIT                           │
-├───────────────────┬────────────────────────────────────────────────────┤
-│ Tool / Approach   │ Purpose & Command                                  │
-├───────────────────┼────────────────────────────────────────────────────┤
-│ wget --mirror     │ Recursively clones entire static HTML websites     │
-│                   │ wget --mirror --convert-links -P ./offline_site URL│
-├───────────────────┼────────────────────────────────────────────────────┤
-│ Quarto HTML Book  │ Renders entire curriculum into self-contained      │
-│                   │ offline HTML pages (e.g. this book's _site folder) │
-├───────────────────┼────────────────────────────────────────────────────┤
-│ Kiwix (.zim)      │ Offline reader for entire Wikipedia, BioStars, and │
-│                   │ StackOverflow medical & computational dumps        │
-├───────────────────┼────────────────────────────────────────────────────┤
-│ Local Zenodo Zip  │ Pre-download Zenodo micro-datasets into a single   │
-│                   │ zip archive distributed via USB thumb drives       │
-└───────────────────┴────────────────────────────────────────────────────┘
-```
+| Tool / Approach | Purpose & Command |
+| :--- | :--- |
+| wget --mirror | Recursively clones entire static HTML websites<br>`wget --mirror --convert-links -P ./offline_site URL` |
+| Quarto HTML Book | Renders entire curriculum into self-contained offline HTML pages (e.g. this book's _site folder) |
+| Kiwix (.zim) | Offline reader for entire Wikipedia, BioStars, and StackOverflow medical & computational dumps |
+| Local Zenodo Zip | Pre-download Zenodo micro-datasets into a single zip archive distributed via USB thumb drives |
+
+: Table 5: Offline archival tools
 
 ### 1. Mirroring Online Tutorials with `wget`
 You can download a complete static documentation site or tutorial with:
@@ -282,6 +193,7 @@ These exercises will test your ability to evaluate licenses, audit training mate
 You are organizing a 5-day regional bioinformatics workshop in East Africa. To cover venue rental, coffee breaks, and printed materials, your university charges participants a nominal registration fee of $30 USD.
 
 You identify three online tutorials you would like to adapt and bundle into the course manual:
+
 - **Tutorial A:** Marked *"Copyright © 2024 University X. All Rights Reserved."*
 - **Tutorial B:** Licensed under **CC BY-NC 4.0** (Attribution-NonCommercial).
 - **Tutorial C:** Licensed under **CC BY-SA 4.0** (Attribution-ShareAlike).
@@ -314,6 +226,7 @@ Review the legal distinction between commercial exploitation and non-profit cost
 You find a popular, well-written online tutorial on *"RNA-Seq Differential Expression Analysis"* published by an institute in the United States. 
 
 The original lesson:
+
 - Downloads a 12 GB paired-end mouse dataset from the NCBI SRA via `fastq-dump` during class.
 - Uses `STAR` aligner (requiring 32 GB of RAM to build the genome index).
 - Explores gene expression changes in mouse liver tissue following high-fat diet consumption.

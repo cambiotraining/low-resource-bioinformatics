@@ -19,22 +19,18 @@ In bioinformatics research, bigger is usually better. Scientists seek deep cover
 
 However, in **training**—particularly in resource-constrained classrooms—using full-scale research data is one of the most common causes of pedagogical failure.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   THE CLASSROOM RUNTIME TRAP                           │
-├───────────────────────────────────┬────────────────────────────────────┤
-│     FULL-SCALE RESEARCH DATA      │        MICRO-DATASET               │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ • 40 GB paired-end FASTQ files    │ • 15 MB subsampled FASTQ files     │
-│ • Requires 4–8 hours to download  │ • Downloads in 3 seconds / USB copy│
-│ • Requires 32–64 GB RAM (HPC only)│ • Runs in 350 MB RAM (any laptop)  │
-│ • Pipeline runs for 3.5 hours     │ • Pipeline runs in 25 seconds      │
-│ • Trainees stare at a frozen screen│ • Instant feedback, iteration,     │
-│   and lose focus                  │   and active learning              │
-└───────────────────────────────────┴────────────────────────────────────┘
-```
+| Full-scale research data | Micro-dataset |
+| :--- | :--- |
+| • 40 GB paired-end FASTQ files | • 15 MB subsampled FASTQ files |
+| • Requires 4–8 hours to download | • Downloads in 3 seconds / USB copy |
+| • Requires 32–64 GB RAM (HPC only) | • Runs in 350 MB RAM (any laptop) |
+| • Pipeline runs for 3.5 hours | • Pipeline runs in 25 seconds |
+| • Trainees stare at a frozen screen and lose focus | • Instant feedback, iteration, and active learning |
+
+: Table 1: The classroom runtime trap
 
 When an alignment or assembly step takes two hours to run during class:
+
 1. **Instruction halts:** The trainer has nothing to demonstrate while the computer crunches numbers.
 2. **Errors are catastrophic:** If a student misplaces a flag or mistypes a file path, they only discover the error after two hours of waiting.
 3. **Hardware collapses:** Student laptops run out of RAM, crash, or overheat, derailing the workshop.
@@ -82,25 +78,14 @@ Micro-datasets transform bioinformatics from a passive waiting game into an acti
 
 There are four primary methodologies for creating high-quality micro-datasets. Each method serves different biological and computational learning objectives:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   MICRO-DATASET ENGINEERING STRATEGIES                 │
-├─────────────────────┬───────────────────┬──────────────────────────────┤
-│ Strategy            │ How It Works      │ Best For Teaching            │
-├─────────────────────┼───────────────────┼──────────────────────────────┤
-│ 1. Random           │ Subsample a small │ Read QC, adapter trimming,   │
-│    Downsampling     │ fraction of reads │ fast mapping verification    │
-├─────────────────────┼───────────────────┼──────────────────────────────┤
-│ 2. Locus-Specific   │ Extract reads     │ Variant calling, AMR gene    │
-│    Extraction       │ mapping to 1 gene │ detection, coverage analysis │
-├─────────────────────┼───────────────────┼──────────────────────────────┤
-│ 3. Chromosome /     │ Use Chr21/22 or   │ Human genetics, eukaryotic   │
-│    Contig Slicing   │ a small plasmid   │ RNA-seq, genome browsers     │
-├─────────────────────┼───────────────────┼──────────────────────────────┤
-│ 4. Synthetic In     │ Generate reads    │ Teaching error profiles,     │
-│    Silico Simulation│ with known errors │ ground-truth benchmarking    │
-└─────────────────────┴───────────────────┴──────────────────────────────┘
-```
+| Strategy | How it works | Best for teaching |
+| :--- | :--- | :--- |
+| 1. Random downsampling | Subsample a small fraction of reads | Read QC, adapter trimming, fast mapping verification |
+| 2. Locus-specific extraction | Extract reads mapping to 1 gene | Variant calling, AMR gene detection, coverage analysis |
+| 3. Chromosome / contig slicing | Use Chr21/22 or a small plasmid | Human genetics, eukaryotic RNA-seq, genome browsers |
+| 4. Synthetic in silico simulation | Generate reads with known errors | Teaching error profiles, ground-truth benchmarking |
+
+: Table 2: Micro-dataset engineering strategies
 
 ### 1. Random Downsampling with `seqtk`
 
@@ -125,6 +110,7 @@ seqtk sample -s 100 raw_R2.fastq.gz 20000 | gzip > micro_R2.fastq.gz
 Random downsampling reduces coverage across the whole genome, which can make *de novo* assembly fragmented or variant calling under-powered. 
 
 A more elegant technique is **locus-specific extraction**:
+
 1. Map full-scale sequencing reads against a reference genome.
 2. Extract only the reads that align to a specific gene of interest (e.g. the 4.5 kb *rpoB* gene in *Mycobacterium tuberculosis* responsible for rifampicin antibiotic resistance).
 3. Convert those mapped reads back into raw FASTQ format.
@@ -146,6 +132,7 @@ samtools fastq -1 micro_rpoB_R1.fq.gz -2 micro_rpoB_R2.fq.gz -
 
 ### 4. In Silico Synthetic Datasets
 Using simulators like **Badread** (for Oxford Nanopore) or **InSilicoSeq / ART** (for Illumina), trainers can generate synthetic reads containing deliberate, ground-truth biological variants or quality anomalies:
+
 - A dataset with a known 5 bp deletion to teach variant validation.
 - A dataset with synthetic adapter contamination to teach trimming.
 
@@ -177,6 +164,7 @@ The solution is the **"Cooking Show" pedagogical technique**:
 ```
 
 This model provides the best of both worlds:
+
 1. **Mechanical Transparency:** Learners experience the real command-line execution and inspect intermediate files.
 2. **Biological Authenticity:** Downstream interpretation is performed on statistically robust, full-scale datasets.
 
@@ -188,6 +176,7 @@ When teaching with micro-datasets, instructors must be transparent with learners
 ::: {.callout-note}
 ## Essential Classroom Communication
 Always explain to your learners:
+
 - *"We are running this on a subsampled micro-dataset containing 30,000 reads so that our laptops can finish the calculation in 20 seconds."*
 - *"When you return to your laboratory and run this exact same command on a 40-million-read whole-genome dataset, the syntax and logic will be identical, but it will require 16 GB of RAM and 4 hours on your institutional server or HPC cluster."*
 :::
@@ -242,10 +231,12 @@ Recall that a standard FASTQ read consists of 4 lines, and both files must share
 ## Designing a Locus-Specific Training Dataset
 
 You are designing a 2-hour practical on detecting antimicrobial resistance (AMR) mutations in *Staphylococcus aureus*. 
+
 - **The Problem:** Full-genome alignment and variant calling takes 45 minutes per student, and the classroom laptops have only 4 GB RAM.
 - **The Target:** The *mecA* gene (which confers methicillin resistance / MRSA).
 
 Design a micro-dataset strategy that allows learners to run read alignment and variant calling live during class in under 2 minutes:
+
 1. What reference sequence should you provide to the learners?
 2. What reads should be included in the micro-dataset?
 3. What biological lesson can still be authentically demonstrated despite the tiny data footprint?
