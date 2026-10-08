@@ -103,22 +103,22 @@ Your training plan must address seven essential components. As you design, ensur
 
 ## Workshop Development Workflow: Step-by-Step
 
-Participants will work individually or in small teams (2–3 people) over a dedicated **3-to-4-hour design sprint** structured into five phases:
+Participants will work individually over a dedicated **day long design sprint** structured into five phases:
 
-| Phase | Duration | Key milestone |
-| :--- | :--- | :--- |
-| 1. Context & persona | 45 minutes | Complete venue profile & learner persona card |
-| 2. Backward design | 60 minutes | Draft Bloom outcomes & authentic assessment task |
-| 3. Technical plan | 60 minutes | Micro-dataset specs, install method, and Plan B matrix |
-| 4. Peer tuning exchange | 30 minutes | Structured peer review with neighboring team |
-| 5. The presentations & pitch | 10 mins per group | Pitch training plan to room with Q&A and facilitator feedback |
+| Phase | Key milestone |
+| :--- | :--- |
+| 1. Context & persona  | Complete venue profile & learner persona card |
+| 2. Backward design | Draft Bloom outcomes & authentic assessment task |
+| 3. Technical plan | Micro-dataset specs, install method, and Plan B matrix |
+| 4. Peer tuning exchange | Structured peer review with other participants |
+| 5. Pitch preparation | Prepare training plan to pitch to room and facilitators |
 
 : Table 2: The 5-phase design timeline
 
 
 ## Pitching Your Training Plan: Presentation Guidelines
 
-Each individual or team will deliver a **7-to-8 minute pitch** followed by **3–4 minutes of facilitator and peer Q&A**.
+Each individual  deliver a **10 minute pitch** followed by **3–4 minutes of facilitator and peer Q&A**.
 
 ### Recommended 6-Slide Presentation Structure:
 
@@ -210,6 +210,7 @@ Complete the following master blueprint for your proposed training program:
 ### Self-Audit Checklist Before Presentation
 
 Before presenting your blueprint to the room, verify that:
+
 - [ ] Every learning outcome starts with an observable action verb (no "understand", "learn", or "appreciate").
 - [ ] No tool requires live downloading during workshop hours.
 - [ ] All datasets run in under 60 seconds on a 4 GB RAM dual-core laptop.

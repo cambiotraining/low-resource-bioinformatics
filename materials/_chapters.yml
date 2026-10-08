@@ -9,6 +9,7 @@ book:
         - materials/06-training_design.md
         - materials/07-lesson_planning.md
         - materials/08-assessments.md
+        - materials/08b-course_materials.md
     - part: "What to Teach"
       chapters:
         - materials/09-open_resources.md
@@ -20,6 +21,8 @@ book:
         - materials/15-hpc.md
         - materials/16-micro_datasets.md
         - materials/17-data_interpretation.md
-    - part: "Design your Training"
+        - materials/17b-responsible_ai.md
+    - part: "Design and Sustain your Training"
       chapters:
         - materials/18-design_your_training.md
+        - materials/19-communities_of_practice.md

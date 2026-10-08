@@ -46,10 +46,12 @@ Malcolm Knowles and colleagues (2015) identified core assumptions that distingui
 
 ### 1. The Need to Know
 Adults need to know **why** they need to learn something before undertaking to learn it. They resist learning things simply because an instructor says "it's on the syllabus."
+
 - *In Bioinformatics:* Never introduce a tool (e.g. `fastp` or `samtools`) with raw syntax alone. First demonstrate the problem: *"Here is an unaligned read file with adapter contamination. If we don't trim these sequences, 15% of our reads will fail to map to the reference genome, wasting your sequencing budget."*
 
 ### 2. The Learner’s Self-Concept
 Adults possess a deep psychological need to be perceived as self-directed, autonomous individuals. When placed in situations where they are treated like passive schoolchildren or talked down to, they experience cognitive friction and resentment.
+
 - *In Bioinformatics:* Avoid rigid, lockstep dictation. Give learners autonomy over project choices, choice of example datasets, and space for exploratory debugging.
 
 ### 3. The Role of Learner Experience
@@ -63,10 +65,12 @@ Adults enter the classroom with a vast reservoir of prior professional and perso
 
 ### 4. Readiness to Learn
 Adults become ready to learn things when they experience a need to know them in order to cope with real-life situations, career requirements, or research challenges.
+
 - *In Bioinformatics:* Trainees rarely attend workshops for abstract curiosity; they attend because they have sequencing data sitting on a hard drive that they cannot analyze, or a grant review demanding computational validation. Align workshop exercises with their immediate professional needs.
 
 ### 5. Orientation to Learning
 Children are subject-centred (e.g. "We are studying History or Mathematics today"). Adults are **problem-centred** or **task-centred**.
+
 - *In Bioinformatics:* Structure lessons around authentic scientific questions: *"Can we identify the transmission cluster in this hospital outbreak?"* rather than *"Chapter 3: The Syntax of BCFtools."*
 
 ### 6. Motivation
@@ -82,6 +86,7 @@ One of the most complex psychological dynamics in bioinformatics workshops is th
 Your adult learners are typically accomplished professionals: senior clinicians, postdoctoral researchers, university lecturers, or laboratory heads. In their laboratories, they are respected authorities. 
 
 When they sit in front of a Linux terminal and receive an error message as basic as `command not found` or `permission denied`, they suddenly feel reduced to complete incompetence. This triggers:
+
 - **Terminal Anxiety:** Fear that typing an incorrect command will crash or permanently erase their machine.
 - **Imposter Syndrome:** The belief that "everyone else in the room understands this except me."
 - **Silence and Withdrawal:** Refusing to raise hands or ask for help, preferring to fall behind silently rather than risk public embarrassment.
@@ -121,7 +126,7 @@ In low-resource settings, the principles of adult learning intersect with system
 
 - **High Opportunity Cost:** Adult professionals taking 3–5 days away from clinical wards, wet laboratories, or heavy teaching loads need to know their investment of time will immediately translate into tangible productivity. If a course wastes two days on failed installations, learners will disengage.
 - **The "Lone Bioinformatician" Reality:** Many adult trainees are the sole individual from their institution attending the course. They carry the immense burden of needing to return home and become the computational expert, mentor, and pipeline developer for their entire department.
-- **Empowerment Through Local Relevance:** Adult learners in LMICs are intensely motivated by solving regional health and agricultural problems (e.g. local AMR surveillance, malaria eradication, climate-resilient crop breeding). When instructors replace abstract Western examples with datasets reflecting their local reality, learning ceases to be an academic exercise—it becomes an act of scientific self-determination.
+- **Empowerment Through Local Relevance:** Adult learners in LMICs are intensely motivated by solving regional health and agricultural problems (e.g. local AMR surveillance, malaria eradication, climate-resilient crop breeding). When instructors replace abstract examples with datasets reflecting their local reality, learning ceases to be an academic exercise—it becomes an act of scientific self-determination.
 
 
 ## Interactive Exercises for Future Trainers
