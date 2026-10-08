@@ -39,41 +39,7 @@ In low-resource environments, researchers rarely own personal high-spec workstat
 
 To use a cluster effectively, learners need a clear mental model of how an HPC environment is physically and logically partitioned.
 
-```
-                                  [ EXTERNAL USERS ]
-                                  (Laptops over SSH)
-                                          │
-                                          ▼
-                                ┌───────────────────┐
-                                │    LOGIN NODE     │
-                                │ (The Front Desk)  │
-                                │ • Edit scripts    │
-                                │ • Submit jobs     │
-                                │ • Check queues    │
-                                └─────────┬─────────┘
-                                          │
-                                          ▼
-                                ┌───────────────────┐
-                                │   SLURM SCHEDULER │
-                                │  "Traffic Control"│
-                                └─────────┬─────────┘
-                                          │
-              ┌───────────────────────────┼───────────────────────────┐
-              ▼                           ▼                           ▼
-     ┌─────────────────┐         ┌─────────────────┐         ┌─────────────────┐
-     │  COMPUTE NODE 1 │         │  COMPUTE NODE 2 │         │  COMPUTE NODE N │
-     │  (e.g. 64 Cores,│         │  (e.g. 64 Cores,│         │  (e.g. 64 Cores,│
-     │   256 GB RAM)   │         │   256 GB RAM)   │         │   256 GB RAM)   │
-     └────────┬────────┘         └────────┬────────┘         └────────┬────────┘
-              │                           │                           │
-              └───────────────────────────┴───────────────────────────┘
-                                          │
-                                          ▼
-                                ┌───────────────────┐
-                                │  SHARED STORAGE   │
-                                │   (NFS / Lustre)  │
-                                └───────────────────┘
-```
+![HPC as an airport](images/hpc_anatomy.jpeg)
 
 ### The Airport Terminal Analogy
 
@@ -166,16 +132,7 @@ echo "Assembly completed successfully at: $(date)"
 
 ### 2. Managing Jobs: The Four Essential Commands
 
-```
-       sbatch                          squeue                           scancel
-   "Submit my job"               "Check queue status"              "Cancel my job"
-        │                                 │                               │
-        ▼                                 ▼                               ▼
-┌─────────────────┐             ┌───────────────────┐           ┌─────────────────┐
-│ sbatch job.sh   │             │ squeue -u $USER   │           │ scancel 10842   │
-│ Submitted 10842 │             │ JOBID ST TIME NODES│          │ Terminated.     │
-└─────────────────┘             └───────────────────┘           └─────────────────┘
-```
+![Essential SLURM commands](images/slurm_commands.jpeg)
 
 | Command | Purpose | Useful Flags |
 | :------ | :------ | :----------- |
@@ -255,24 +212,7 @@ This gives you total software autonomy without requiring administrative privileg
 
 In resource-constrained environments, compute capacity is scarce and shared among many researchers. Asking for excessive resources "just to be safe" wastes cluster capacity and inflates queue wait times.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   THE OVER-ALLOCATION PROBLEM                          │
-├───────────────────────────────────┬────────────────────────────────────┤
-│ ❌ Over-Allocated Request:        │ ✅ Right-Sized Request:            │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ #SBATCH --cpus-per-task=32        │ #SBATCH --cpus-per-task=8          │
-│ #SBATCH --mem=128G                │ #SBATCH --mem=16G                  │
-│ #SBATCH --time=48:00:00           │ #SBATCH --time=03:00:00            │
-│                                   │                                    │
-│ Actual Usage:                     │ Actual Usage:                      │
-│ • Uses 8 cores (24 idle cores!)   │ • Uses 8 cores (100% efficient)    │
-│ • Uses 12 GB RAM (116 GB wasted!) │ • Uses 12 GB RAM (Comfortable)     │
-│ • Finishes in 1 hour 45 minutes   │ • Finishes in 1 hour 45 minutes    │
-│                                   │                                    │
-│ Penalty: Waits 2 days in queue!   │ Benefit: Starts in 5 minutes!      │
-└───────────────────────────────────┴────────────────────────────────────┘
-```
+![The over-allocation problem](images/over_allocation.jpeg)
 
 ### Inspecting Past Performance with `sacct`
 

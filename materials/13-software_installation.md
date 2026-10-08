@@ -23,23 +23,7 @@ In low-resource environments, software installation is compounded by three syste
 2. **Hardware Constraints:** Older laptops with 4 GB of RAM frequently crash when running memory-intensive dependency solvers (such as classic Conda).
 3. **Restricted Permissions:** Learners in institutional computer labs often lack administrative (`sudo` or root) privileges, rendering system-wide package managers (`apt`, `yum`) unusable.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   THE WORKSHOP INSTALLATION TRAP                       │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                                        │
-│   Scenario A: Live Installation during Workshop                        │
-│   • 09:00 - Class starts: "Please install Conda and tools"             │
-│   • 09:30 - Wi-Fi collapses under 30 concurrent downloads              │
-│   • 11:00 - Instructors still troubleshooting missing C++ libraries    │
-│   • 12:30 - Lunch break: 0 biology taught, learners demoralized        │
-│                                                                        │
-│   Scenario B: Resource-Aware Pre-Flight Strategy                       │
-│   • Week before: Pre-flight test script or pre-packaged USB delivery   │
-│   • 09:00 - Class starts: Tools ready, immediate hands-on analysis!    │
-│                                                                        │
-└────────────────────────────────────────────────────────────────────────┘
-```
+![The workshop installation trap](images/installation_trap.jpeg)
 
 As an instructor, your goal is to equip learners with sustainable installation skills for their future research while safeguarding workshop instructional time from installation chaos.
 
@@ -106,20 +90,16 @@ Beginners often ask: *"Why do I have to type `./fastp` when I am inside the fold
 
 Bioinformatics tools can be installed via several distinct modalities. Understanding the trade-offs allows trainers to choose the right approach for each setting:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   SPECTRUM OF INSTALLATION METHODS                     │
-├─────────────────────┬───────────────────┬──────────────┬───────────────┤
-│ Method              │ Ease for Beginners│ Root Needed? │ Offline-Ready?│
-├─────────────────────┼───────────────────┼──────────────┼───────────────┤
-│ Static Binaries     │ ★★★★★ (Easiest)   │ No           │ ★★★★★         │
-│ Containers (Appt.)  │ ★★★★☆             │ No           │ ★★★★★         │
-│ Micromamba / Mamba  │ ★★★★☆             │ No           │ ★★★★☆         │
-│ Language Pkgs (pip) │ ★★★☆☆             │ No           │ ★★★☆☆         │
-│ System Pkgs (apt)   │ ★★★☆☆             │ Yes (Root)   │ ★★☆☆☆         │
-│ Compile from Source │ ★☆☆☆☆ (Hardest)   │ Sometimes    │ ★☆☆☆☆         │
-└─────────────────────┴───────────────────┴──────────────┴───────────────┘
-```
+| Method | Ease for beginners | Root needed? | Offline-ready? |
+| :--- | :--- | :--- | :--- |
+| Static binaries | ★★★★★ (Easiest) | No | ★★★★★ |
+| Containers (Appt.) | ★★★★☆ | No | ★★★★★ |
+| Micromamba / Mamba | ★★★★☆ | No | ★★★★☆ |
+| Language pkgs (pip) | ★★★☆☆ | No | ★★★☆☆ |
+| System pkgs (apt) | ★★★☆☆ | Yes (root) | ★★☆☆☆ |
+| Compile from source | ★☆☆☆☆ (Hardest) | Sometimes | ★☆☆☆☆ |
+
+: Table 1: Spectrum of installation methods
 
 ### 1. Static and Pre-Compiled Binaries: The Low-Resource Champions
 
@@ -136,20 +116,7 @@ A **statically linked binary** has all of its supporting libraries compiled dire
 
 For software with complex multi-language dependencies, package managers are essential. In bioinformatics, the **Conda** ecosystem (specifically the **Bioconda** and **Conda-forge** channels) is the standard.
 
-```
-       ┌─────────────────────────────────────────────────┐
-       │                 THE CONDA ECOSYSTEM             │
-       ├────────────────────────┬────────────────────────┤
-       │ conda-forge            │ bioconda               │
-       │ (General scientific    │ (Specialized genomic & │
-       │  libraries, Python, R) │  bioinformatics tools) │
-       └────────────────────────┴────────────────────────┘
-                                │
-                                ▼
-       ┌─────────────────────────────────────────────────┐
-       │   Client: Mamba / Micromamba (C++ fast solver)  │
-       └─────────────────────────────────────────────────┘
-```
+![The conda ecoystem](images/conda_ecosystem.jpeg)
 
 ### Why Classic Conda Fails on Low-Resource Hardware
 
@@ -229,27 +196,7 @@ Many R bioinformatics packages (e.g. `DESeq2`, `RCurl`, `xml2`) are wrappers aro
 
 How can instructors deliver a hands-on workshop when the classroom internet is unreliable or completely absent?
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   OFFLINE CONDA PACKING WORKFLOW                       │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                                        │
-│  1. Instructor Machine (High-Speed Internet at Home/Office):           │
-│     mamba create -n course_env -c bioconda fastp bwa samtools          │
-│     pip install conda-pack                                             │
-│     conda-pack -n course_env -o course_env.tar.gz                      │
-│                                                                        │
-│  2. Physical Transfer (USB Thumb Drives):                              │
-│     Copy course_env.tar.gz onto 5 USB flash drives                     │
-│                                                                        │
-│  3. Student Machine (Offline Classroom):                               │
-│     mkdir -p ~/miniconda3/envs/course_env                              │
-│     tar -xzf /media/usb/course_env.tar.gz -C ~/miniconda3/envs/course_env│
-│     conda activate course_env                                          │
-│     * Tools are immediately available with ZERO network traffic!       │
-│                                                                        │
-└────────────────────────────────────────────────────────────────────────┘
-```
+![Offline conda packing workflow](images/packaging_workflow.jpeg)
 
 ### 1. `conda-pack`: Transporting Pre-Built Environments
 `conda-pack` is an open-source tool that archives an existing Conda environment into a `.tar.gz` file. 

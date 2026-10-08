@@ -37,28 +37,7 @@ Before the 1950s, cargo was loaded loosely onto ships as "break bulk"—sacks of
 **Software containers are the standardized shipping boxes of computing.** The host operating system doesn't need to know what specific libraries or Python versions are inside; it simply runs the container.
 :::
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   VIRTUAL MACHINES vs CONTAINERS                       │
-├───────────────────────────────────┬────────────────────────────────────┤
-│     VIRTUAL MACHINE (Heavy)       │        CONTAINER (Lightweight)     │
-├───────────────────────────────────┼────────────────────────────────────┤
-│   ┌───────────────────────────┐   │   ┌────────────────────────────┐   │
-│   │   Bioinformatics App      │   │   │    Bioinformatics App      │   │
-│   ├───────────────────────────┤   │   ├────────────────────────────┤   │
-│   │   Libraries & Binaries    │   │   │    Libraries & Binaries    │   │
-│   ├───────────────────────────┤   │   └────────────────────────────┘   │
-│   │   Full Guest OS (e.g. 4GB)│   │                                    │
-│   └───────────────────────────┘   │   ┌────────────────────────────┐   │
-│   ┌───────────────────────────┐   │   │ Container Engine (Apptainer│   │
-│   │ Hypervisor (VirtualBox)   │   │   │  or Docker)                │   │
-│   ├───────────────────────────┤   ├───┴────────────────────────────┤   │
-│   │   Host Operating System   │   │     Host Operating System      │   │
-│   ├───────────────────────────┤   ├────────────────────────────────┤   │
-│   │   Physical Hardware       │   │     Physical Hardware          │   │
-│   └───────────────────────────┘   └────────────────────────────────┘   │
-└───────────────────────────────────┴────────────────────────────────────┘
-```
+![Virtual machines versus containers](images/vm_containers.jpeg)
 
 ### Key Differences Every Trainer Should Know
 
@@ -149,19 +128,7 @@ Notice how much simpler this is for beginners: there is no complex volume mounti
 
 Trainers and researchers rarely need to build containers from scratch using custom `Dockerfiles`. The global scientific community maintains **BioContainers** (`https://biocontainers.pro`), an open-source architecture that automatically builds, tests, and publishes container images for every package added to Bioconda.
 
-```
-       Bioconda Recipe (e.g. samtools)
-                     │
-                     ▼ (Automated Continuous Integration)
-       ┌─────────────────────────────┐
-       │     BioContainers Build     │
-       └──────────────┬──────────────┘
-                      │
-       ┌──────────────┴──────────────┐
-       ▼                             ▼
-  Docker Hub / Quay.io         Galaxy Tool Shed
-  (Ready to docker pull)      (Ready to apptainer build)
-```
+![Using Biocontainers](images/biocontainers.jpeg)
 
 To find and use a tool, search for it on `https://quay.io/organization/biocontainers`:
 ```bash
@@ -178,22 +145,7 @@ A typical bioinformatics container ranges from 500 MB to 3 GB in size. If 25 wor
 - The network connection will collapse immediately.
 - Trainees will face timeout errors, partial downloads, and high mobile data bills.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   CLASSROOM BANDWIDTH COLLAPSE                         │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                                        │
-│   ❌ The Naive Approach:                                               │
-│      25 students × 1.5 GB Container = 37.5 GB simultaneous download    │
-│      Over shared 10 Mbps Wi-Fi: ~8.5 hours download time!              │
-│                                                                        │
-│   ✅ The Resource-Aware Approach:                                      │
-│      Instructor downloads image once before the course.                │
-│      Transfers image offline via USB sticks or Local LAN mirror.       │
-│      Download time during class: 0 minutes!                            │
-│                                                                        │
-└────────────────────────────────────────────────────────────────────────┘
-```
+![Classroom bandwidth collapse](images/bandwidth_collapse.jpeg)
 
 ### Practical Offline Distribution Workflows
 
@@ -241,7 +193,7 @@ When introducing containers to novice learners, avoid cognitive overload by stru
    Help learners distinguish between the container command and the biological command:
    ```bash
    apptainer exec fastp.sif fastp -i sample.fq -o clean.fq
-   └─── Container invocation ──┘ └─── Standard bioinformatic command ───┘
+   └ Container invocation ┘ └ Standard bioinformatic command ┘
    ```
    Show them that everything after `fastp.sif` is identical to what they would type if the tool were installed directly on their system.
 3. **Use Concrete Visual Aids:**

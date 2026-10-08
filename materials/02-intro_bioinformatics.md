@@ -36,16 +36,16 @@ In practice, these disciplines overlap heavily. A working bioinformatician frequ
 
 ## The Foundational Pillars of Bioinformatics
 
-To be an effective practitioner—and an effective trainer—one must recognise that bioinformatics is supported by three distinct pillars. An imbalance among these three pillars is one of the most common causes of difficulty for learners:
+To be an effective practitioner, and an effective trainer, one must recognise that bioinformatics is supported by three distinct pillars. An imbalance among these three pillars is one of the most common causes of difficulty for learners:
 
 1. **Biological Domain Knowledge:**
    Bioinformatics is driven by biological questions. Without an understanding of molecular biology, experimental design, and the limitations of laboratory assays (e.g. library preparation biases, PCR duplicates, sequencing platform error profiles), computational analysis becomes an exercise in blindly running commands. As trainers, we must constantly tether computational steps back to the biological question: *Why are we trimming reads? What does an alignment score signify biologically?*
 
 2. **Computational and Software Skills:**
-   Biological data files are typically far too large to open in spreadsheet applications like Microsoft Excel. Bioinformaticians rely on the Unix/Linux command-line environment, scripting languages (principally Python and R), file format standards (FASTQ, FASTA, SAM/BAM, VCF, GFF/GTF), version control (Git), and containerisation (Docker, Singularity/Apptainer). Mastery of these tools allows researchers to handle data systematically, automate multi-step analyses, and ensure reproducibility.
+   Biological data files are typically too large to open in spreadsheet applications like Microsoft Excel. Bioinformaticians rely on the Unix/Linux command-line environment, scripting languages (principally Python and R), file format standards (FASTQ, FASTA, SAM/BAM, VCF, GFF/GTF), version control (Git), and containerisation (Docker, Singularity/Apptainer). Mastery of these tools allows researchers to handle data systematically, automate multi-step analyses, and ensure reproducibility.
 
 3. **Statistical and Quantitative Rigour:**
-   Modern omics technologies generate high-dimensional data where the number of measured features (e.g. 20,000 genes) far exceeds the number of biological replicates. Understanding concepts such as multiple testing correction (e.g. False Discovery Rate), normalisation strategies, batch effects, and statistical power is critical to prevent spurious discoveries.
+   Modern 'omics technologies generate high-dimensional data where the number of measured features (e.g. 20,000 genes) far exceeds the number of biological replicates. Understanding concepts such as multiple testing correction (e.g. False Discovery Rate), normalisation strategies, batch effects, and statistical power is critical to prevent spurious discoveries.
 
 
 ## Why Bioinformatics Matters in Low-Resource Settings

@@ -42,34 +42,7 @@ A **micro-dataset** is a deliberately engineered, downscaled dataset that preser
 
 In adult learning theory, skill acquisition relies on **tight feedback loops**:
 
-```
-        ┌────────────────────────────────────────────────┐
-        │             THE ACTIVE LEARNING CYCLE          │
-        └───────────────────────┬────────────────────────┘
-                                │
-                                ▼
-                      ┌───────────────────┐
-                      │   Type Command    │
-                      └─────────┬─────────┘
-                                │
-                                ▼
-                      ┌───────────────────┐
-                      │ Run (20 Seconds!) │
-                      └─────────┬─────────┘
-                                │
-                                ▼
-                      ┌───────────────────┐
-                      │   Inspect Output  │
-                      └─────────┬─────────┘
-                                │
-            ┌───────────────────┴───────────────────┐
-            ▼                                       ▼
-    [ Success / Insights ]                  [ Mistake / Bug ]
-            │                                       │
-            ▼                                       ▼
-  Try different parameter                Fix typo immediately
-  (e.g. change quality cut-off)          (Learn real debugging)
-```
+![Rapid feedback loops](images/feedback_loops.jpeg)
 
 Micro-datasets transform bioinformatics from a passive waiting game into an active experimental laboratory. Trainees can experiment with parameter tuning—such as comparing assembly results with different k-mer lengths or trimming thresholds—and observe the consequences immediately.
 
@@ -143,25 +116,7 @@ A common question from trainers is: *"If we use micro-datasets, how do we teach 
 
 The solution is the **"Cooking Show" pedagogical technique**:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   THE "COOKING SHOW" PEDAGOGICAL MODEL                 │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                                        │
-│   Step 1: The Live Recipe (Micro-dataset)                              │
-│   • Instructor chops the vegetables live in front of the audience      │
-│   • Trainees type commands, run QC and read alignment live             │
-│   • Runs in 30 seconds: learners understand inputs, flags, and outputs │
-│                                                                        │
-│   Step 2: "Here is one I baked earlier!" (Pre-Computed Output)         │
-│   • Trainer says: "Now that we know how alignment works, let's open    │
-│     the pre-computed count matrix from all 40 full-scale samples."     │
-│   • Trainees immediately proceed to R / DESeq2 for statistical         │
-│     modeling and pathway enrichment without waiting 20 hours for       │
-│     the upstream alignment.                                            │
-│                                                                        │
-└────────────────────────────────────────────────────────────────────────┘
-```
+![The cooking show pedagogical model](images/cooking_show.jpeg)
 
 This model provides the best of both worlds:
 

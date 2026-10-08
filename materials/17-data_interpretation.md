@@ -17,24 +17,7 @@ title: Data Interpretation
 
 A recurring pitfall in bioinformatics education is stopping the lesson the moment a computational tool finishes running. A pipeline printing `Exit status 0` or generating a 20,000-row variant call format (VCF) file is merely the end of computation—it is the **beginning** of scientific inquiry.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   THE PIPELINE COMPLETION FALLACY                      │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                                        │
-│   ❌ The Technician View:                                              │
-│      Raw Reads ──► Pipeline Executes ──► Files Generated ──► DONE!     │
-│      *(Did the analysis answer the question? Are the variants real?    │
-│        Are these results biologically plausible? Unknown!)*            │
-│                                                                        │
-│   ✅ The Scientific View:                                              │
-│      Raw Reads ──► Processing ──► Multi-Stage QC ──► Statistical Model │
-│                                                              │         │
-│      Actionable Biological Insight ◄── Visual Validation ◄───┘         │
-│      *(Is this resistance mutation true? Which pathways are altered?)* │
-│                                                                        │
-└────────────────────────────────────────────────────────────────────────┘
-```
+![The pipeline completion fallacy](images/pipeline_completion.jpeg)
 
 For adult learners—who are predominantly clinicians, epidemiologists, agricultural researchers, and molecular biologists—the value of bioinformatics lies in **data interpretation**:
 

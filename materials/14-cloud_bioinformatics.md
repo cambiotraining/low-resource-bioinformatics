@@ -36,31 +36,7 @@ However, cloud computing is not an unalloyed silver bullet. For researchers in l
 
 When discussing "the cloud," educators often conflate very different service models. Helping learners distinguish these models clarifies what technical skills are required:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                     THE CLOUD SERVICE PYRAMID                          │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                                        │
-│                      [ Software as a Service ]                         │
-│                               (SaaS)                                   │
-│                  Examples: Galaxy, BaseSpace, NCBI                     │
-│               • Pure GUI web interface, zero coding                   │
-│               • Great for wet-lab novices, limited customisation       │
-│             ─────────────────────────────────────────────              │
-│                     [ Platform as a Service ]                          │
-│                               (PaaS)                                   │
-│                Examples: Terra.bio, Google Colab, AnVIL                │
-│               • Managed environments (Jupyter, WDL/Cromwell)           │
-│               • Standardized workflows, zero server administration     │
-│           ─────────────────────────────────────────────────            │
-│                   [ Infrastructure as a Service ]                      │
-│                               (IaaS)                                   │
-│                     Examples: AWS EC2, GCP Compute, Azure              │
-│               • Rent raw virtual Linux machines, disks, networks       │
-│               • Total control, requires Linux/DevOps expertise         │
-│                                                                        │
-└────────────────────────────────────────────────────────────────────────┘
-```
+![The cloud service pyramid](images/cloud_services.jpeg)
 
 ### 1. Software as a Service (SaaS): Free Platforms like Galaxy
 - **Galaxy (`usegalaxy.org`, `usegalaxy.eu`, `usegalaxy.org.au`):** A web-based scientific analysis platform that provides thousands of bioinformatics tools behind a point-and-click GUI.
@@ -106,21 +82,7 @@ Storing human genomic or pathogen sequence data on commercial cloud servers loca
 
 The single most important computational principle in cloud bioinformatics is: **Bring the compute to the data, not the data to the compute.**
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   THE DATA LOCALITY PRINCIPLE                          │
-├───────────────────────────────────┬────────────────────────────────────┤
-│      ❌ THE WRONG WAY             │         ✅ THE CLOUD WAY           │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ 1. Download 50 GB SRA dataset to  │ 1. Spin up an ephemeral cloud VM   │
-│    local laptop (takes 3 days)    │    in the SAME region as the data  │
-│ 2. Process locally on 4-core CPU  │ 2. Stream data directly from SRA   │
-│    (runs for 48 hours)            │    to VM at 10 Gbps (takes 1 min!) │
-│ 3. Laptop overheats or power dies │ 3. Process with 32 cores in 1 hour │
-│ 4. Total: 5 days, high failure    │ 4. Download ONLY the 5 MB summary  │
-│    risk, zero reproducibility     │    VCF table back to local laptop  │
-└───────────────────────────────────┴────────────────────────────────────┘
-```
+![The data locality principle](images/data_locality.jpeg)
 
 Because public repositories (NCBI SRA, ENA, 1000 Genomes, GISAID mirrors) are already mirrored in major commercial cloud storage buckets (AWS Open Data, Google Cloud Public Datasets), launching an analysis inside that same cloud region enables blazing-fast internal transfer speeds (often exceeding 10 Gbps) at **zero data egress fees**.
 
