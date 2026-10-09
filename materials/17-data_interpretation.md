@@ -104,26 +104,7 @@ You will find 1,000 "statistically significant" genes entirely by random chance.
 - **Bonferroni Correction:** Multiplies each $p$-value by the total number of tests ($p_{\text{adj}} = p \times m$). Highly conservative; frequently eliminates true biological discoveries in omics studies.
 - **Benjamini-Hochberg False Discovery Rate (FDR / $q$-value):** Controls the proportion of false positives among all rejected null hypotheses. An $\text{FDR} < 0.05$ means that among the genes called significant, at most 5% are expected to be false discoveries. This is the gold standard in RNA-seq and GWAS.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   VOLCANO PLOT: COMBINING P-VALUE & EFFECT SIZE        │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                                        │
-│   -log10(p-value)                                                      │
-│        ▲                                                               │
-│     10 │               • (Upregulated)         • (Downregulated)       │
-│        │                 High effect             High effect           │
-│        │                 High significance       High significance     │
-│      6 │                                                               │
-│        │  - - - - - - - - - - - - - - - - - - - - - - (FDR < 0.05)     │
-│      2 │         •               •       •                             │
-│        │       (Statistically significant, but negligible fold-change) │
-│      0 └─────────────────────────────────────────────────────────►     │
-│       -4              -2               0               +2             +4
-│                                 log2(Fold Change)                      │
-│                                                                        │
-└────────────────────────────────────────────────────────────────────────┘
-```
+![Volcano plot: combining p-value and effect size](images/volcano_plot.jpeg)
 
 Teach learners to evaluate **both** dimensions of the Volcano plot:
 

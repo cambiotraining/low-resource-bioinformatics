@@ -19,33 +19,7 @@ Throughout this course, you have explored both **how to teach** (adult learning 
 
 Now, it is time to transition from being a student of pedagogy to becoming an **architect of bioinformatics training**.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                        THE CAPSTONE JOURNEY                            │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                                        │
-│   [ How to Teach ]                [ What to Teach ]                    │
-│   • Andragogy                     • Core Concepts                      │
-│   • Live Coding                   • Practical Unix                     │
-│   • Backward Design               • Containers & Installation          │
-│   • Formative Assessment          • Micro-datasets & Interpretation    │
-│           │                               │                            │
-│           └───────────────────────┬───────┘                            │
-│                                   │                                    │
-│                                   ▼                                    │
-│             ┌───────────────────────────────────────────┐              │
-│             │     YOUR ACTIONABLE TRAINING PROPOSAL     │              │
-│             │   "A battle-tested, resource-resilient    │              │
-│             │    workshop plan for your home community" │              │
-│             └─────────────────────┬─────────────────────┘              │
-│                                   │                                    │
-│                                   ▼                                    │
-│             ┌───────────────────────────────────────────┐              │
-│             │         PEER REVIEW & PRESENTATION        │              │
-│             └───────────────────────────────────────────┘              │
-│                                                                        │
-└────────────────────────────────────────────────────────────────────────┘
-```
+![The capstone journey](images/capstone_journey.jpeg)
 
 The goal of this capstone activity is not to complete an abstract theoretical assignment. Your deliverable is a **fully developed, practical workshop plan** that you can take back to your home institution, research group, or national network and deliver to real learners.
 

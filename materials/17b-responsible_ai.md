@@ -19,19 +19,15 @@ In well-funded research hubs, novice bioinformaticians are surrounded by experie
 
 In many low-resource institutions, however, researchers work as **"lone bioinformaticians"**. They are often the only person in their department attempting to run high-throughput sequencing pipelines. When an analysis throws a cryptic stack trace or an environmental error, they have no local mentor to turn to.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   THE PROMISE OF AI IN LOW-RESOURCE CONTEXTS           │
-├───────────────────────────────────┬────────────────────────────────────┤
-│     WITHOUT AI (Isolated)         │       WITH AI (Empowered)          │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ • Stuck on syntax error for days  │ • Immediate error log explanation  │
-│ • No local code reviewer          │ • 24/7 interactive code review     │
-│ • Baffled by complex shell flags  │ • Plain-language syntax breakdowns │
-│ • Slow, manual boilerplate writing│ • Rapid shell/Python scaffolding   │
-│ • High dropout / project stalls   │ • Maintained momentum & confidence │
-└───────────────────────────────────┴────────────────────────────────────┘
-```
+| Without AI (Isolated) | With AI (Empowered) |
+| :--- | :--- |
+| • Stuck on syntax error for days | • Immediate error log explanation |
+| • No local code reviewer | • 24/7 interactive code review |
+| • Baffled by complex shell flags | • Plain-language syntax breakdowns |
+| • Slow, manual boilerplate writing | • Rapid shell/Python scaffolding |
+| • High dropout / project stalls | • Maintained momentum & confidence |
+
+: Table 1: The promise of AI in low-resource contexts
 
 Generative Artificial Intelligence (Large Language Models such as Claude, Gemini, ChatGPT, and local open-source models) can serve as a transformative **equalizer**. It acts as a tireless, 24/7 personal tutor that can explain error messages, generate initial pipeline templates, and demystify Linux commands.
 
@@ -42,29 +38,14 @@ However, like any powerful laboratory instrument, AI can produce catastrophic re
 
 Large language models are probabilistic word prediction engines, not biological execution environments. In specialized scientific computing, they frequently fail in predictable ways:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                     COMMON AI HAZARDS IN BIOINFORMATICS                │
-├─────────────────────┬───────────────────┬──────────────────────────────┤
-│ Hazard              │ Mechanism         │ Biological Consequence       │
-├─────────────────────┼───────────────────┼──────────────────────────────┤
-│ 1. Flag             │ Models invent plausible- │ Pipeline crashes with       │
-│    Hallucination    │ sounding flags that │ `unrecognized option` or   │
-│                     │ do not exist      │ silently misbehaves          │
-├─────────────────────┼───────────────────┼──────────────────────────────┤
-│ 2. Deprecated       │ Trained on older  │ Recommends dead tools        │
-│    Syntax & Tools   │ web data (e.g.    │ (TopHat2, Python 2) rather   │
-│                     │ Biostars archives)│ than modern standards        │
-├─────────────────────┼───────────────────┼──────────────────────────────┤
-│ 3. Biological       │ Confabulates gene │ Claims non-existent SNPs     │
-│    Confabulation    │ targets or cites  │ cause drug resistance; cites │
-│                     │ fake literature   │ fabricated PubMed DOIs       │
-├─────────────────────┼───────────────────┼──────────────────────────────┤
-│ 4. The Copy-Paste   │ Learners bypass   │ Zero skill retention;        │
-│    Blindspot        │ cognitive effort  │ completely helpless when     │
-│                     │ during training   │ the AI prompt fails          │
-└─────────────────────┴───────────────────┴──────────────────────────────┘
-```
+| Hazard | Mechanism | Biological Consequence |
+| :--- | :--- | :--- |
+| **1. Flag Hallucination** | Models invent plausible-sounding flags that do not exist | Pipeline crashes with `unrecognized option` or silently misbehaves |
+| **2. Deprecated Syntax & Tools** | Trained on older web data (e.g. Biostars archives) | Recommends dead tools (TopHat2, Python 2) rather than modern standards |
+| **3. Biological Confabulation** | Confabulates gene targets or cites fake literature | Claims non-existent SNPs cause drug resistance; cites fabricated PubMed DOIs |
+| **4. The Copy-Paste Blindspot** | Learners bypass cognitive effort during training | Zero skill retention; completely helpless when the AI prompt fails |
+
+: Table 2: Common AI hazards in bioinformatics
 
 ### 1. Flag Hallucinations: Mixing Tools
 LLMs frequently merge options from competing tools. For example, when asked to write a BWA-MEM command, an AI might insert `--local` (a Bowtie2 flag) or `--very-sensitive`. In other cases, it will invent flags that sound intuitive (e.g. `fastp --min-depth 20`) but have never existed in the tool's source code.
@@ -99,82 +80,28 @@ Bioinformatics researchers must observe strict **ethical and regulatory red line
 
 Vague prompts produce hallucinated, generic code. High-quality computational prompts provide explicit technical context:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   THE 5-POINT TECHNICAL PROMPT FORMULA                 │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                                        │
-│   1. Role Specification:                                               │
-│      "Act as an expert bioinformatician specializing in bacterial AMR."│
-│                                                                        │
-│   2. Exact Software & Version:                                         │
-│      "Using SAMtools version 1.19 and BCFtools 1.19 on Linux Ubuntu."  │
-│                                                                        │
-│   3. Explicit File Schemas & Formats:                                  │
-│      "Input: coordinate-sorted, indexed BAM file of M. tuberculosis."  │
-│                                                                        │
-│   4. Exact Error Trace (if debugging):                                 │
-│      "I ran command X and received exact error message Y."             │
-│                                                                        │
-│   5. Clear Constraints:                                                │
-│      "Provide a robust Bash command using set -euo pipefail.           │
-│       Do not use Python or external R packages."                       │
-│                                                                        │
-└────────────────────────────────────────────────────────────────────────┘
-```
+![The 5-point technical prompt formula](images/prompt_formula.jpeg)
 
 
 ## The "Trust but Verify" Protocol
 
 Never copy-paste AI-generated code directly into your production research pipeline. Follow this four-step verification protocol:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   THE "TRUST BUT VERIFY" PROTOCOL                      │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                                        │
-│   Step 1: Inspect the Binary Help Page                                 │
-│   • Run: tool --help | grep "flag"                                     │
-│   • Verify that every flag in the AI output actually exists!           │
-│                                │                                       │
-│                                ▼                                       │
-│   Step 2: Dry Run on a Micro-Dataset                                   │
-│   • Execute the code on a 10,000-read test file first.                 │
-│   • Never run unverified AI code on your 100-sample master dataset.    │
-│                                │                                       │
-│                                ▼                                       │
-│   Step 3: Audit Output Schema and Dimensions                           │
-│   • Check line counts (wc -l) and header records (head -n 20).         │
-│   • Did the command produce real data or an empty 0-byte file?         │
-│                                │                                       │
-│                                ▼                                       │
-│   Step 4: Biological Sanity Check                                      │
-│   • Are the resulting variant counts, depths, and lengths plausible?   │
-│                                                                        │
-└────────────────────────────────────────────────────────────────────────┘
-```
+![The 'Trust but verify' protocol](images/trust_verify.jpeg)
 
 
 ## Establishing a Course AI Policy
 
 As an instructor, you cannot ban AI—your students will inevitably use it. Instead, establish a transparent **Course AI Policy** that encourages productive use while safeguarding foundational learning:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   SAMPLE WORKSHOP AI POLICY                            │
-├───────────────────────────────────┬────────────────────────────────────┤
-│           ✅ PERMITTED & ENCOURAGED│           ❌ RESTRICTED            │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ • Pasting cryptic terminal error  │ • Generating code during initial   │
-│   messages for explanation        │   mental-model building exercises  │
-│ • Asking AI to explain Bash flags │ • Submitting unverified AI code    │
-│   or regular expressions          │   for capstone assessments         │
-│ • Generating descriptive comments │ • Uploading real clinical or       │
-│   for complex code blocks         │   patient genomic datasets         │
-│ • Brainstorming alternative tools │ • Copy-pasting without being able  │
-│   for a specific biological assay │   to explain what each flag does   │
-└───────────────────────────────────┴────────────────────────────────────┘
-```
+| ✅ Permitted & Encouraged | ❌ Restricted |
+| :--- | :--- |
+| • Pasting cryptic terminal error messages for explanation | • Generating code during initial mental-model building exercises |
+| • Asking AI to explain Bash flags or regular expressions | • Submitting unverified AI code for capstone assessments |
+| • Generating descriptive comments for complex code blocks | • Uploading real clinical or patient genomic datasets |
+| • Brainstorming alternative tools for a specific biological assay | • Copy-pasting without being able to explain what each flag does |
+
+: Table 3: Sample workshop AI policy
 
 
 ## Interactive Exercises for Future Trainers

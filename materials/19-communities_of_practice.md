@@ -21,21 +21,14 @@ A familiar and heartbreaking cycle exists in global bioinformatics capacity deve
 3. On the final afternoon, certificates are distributed amidst celebrations.
 4. **On "Day Four"**, participants return to their home institutions... and reality hits.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                      THE "DAY FOUR" TRAJECTORY                         │
-├───────────────────────────────────┬────────────────────────────────────┤
-│     WITHOUT COMMUNITY (Isolation) │       WITH COMMUNITY (Sustained)   │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ • Sole researcher using Linux     │ • Weekly peer troubleshooting group│
-│ • Departmental PI demands instant │ • Shared scripts and container     │
-│   results but provides no compute │   libraries across laboratories    │
-│ • First major bug causes project  │ • Safe space to ask questions      │
-│   to stall for 6 months           │   without judgment                 │
-│ • Within 1 year: Skills forgotten,│ • Within 1 year: Confident analyst,│
-│   data unanalyzed, money wasted   │   co-author, and future trainer    │
-└───────────────────────────────────┴────────────────────────────────────┘
-```
+| Without Community (Isolation) | With Community (Sustained) |
+| :--- | :--- |
+| • Sole researcher using Linux | • Weekly peer troubleshooting group |
+| • Departmental PI demands instant results but provides no compute | • Shared scripts and container libraries across laboratories |
+| • First major bug causes project to stall for 6 months | • Safe space to ask questions without judgment |
+| • Within 1 year: Skills forgotten, data unanalyzed, money wasted | • Within 1 year: Confident analyst, co-author, and future trainer |
+
+: Table 1: The "Day Four" trajectory
 
 When trainees return to departments where no one else codes, they encounter the **"Lone Bioinformatician" Syndrome**. Without local code review, shared computing infrastructure, or technical mentorship, post-workshop skill attrition is near 100%.
 
@@ -48,23 +41,7 @@ In educational theory, cognitive scientists Jean Lave and Etienne Wenger demonst
 
 A **Community of Practice** is not a formal administrative committee; it is a group of people who share a passion for something they do and learn how to do it better as they interact regularly:
 
-```
-                               ┌───────────────────┐
-                               │   THE DOMAIN      │
-                               │ Shared challenge: │
-                               │   Bioinformatics  │
-                               └─────────┬─────────┘
-                                         │
-                 ┌───────────────────────┴───────────────────────┐
-                 │                                               │
-                 ▼                                               ▼
-       ┌───────────────────┐                           ┌───────────────────┐
-       │   THE COMMUNITY   │                           │   THE PRACTICE    │
-       │ Relationships,    │◄─────────────────────────►│ Shared code,      │
-       │ peer trust, and   │                           │ workflows, tools, │
-       │ mutual support    │                           │ and lessons       │
-       └───────────────────┘                           └───────────────────┘
-```
+![The community of practice framework](images/community_practice.jpeg)
 
 1. **The Domain:** A shared identity and commitment to solving genomic and computational biology problems.
 2. **The Community:** Mutual relationships, regular meetups, peer coaching, and psychological safety.
@@ -75,29 +52,14 @@ A **Community of Practice** is not a formal administrative committee; it is a gr
 
 Starting a community does not require institutional approval, budgets, or formal syllabi. The most successful groups start small and informal:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   GRASSROOTS COMMUNITY FORMATS                         │
-├─────────────────────┬───────────────────┬──────────────────────────────┤
-│ Format              │ Structure         │ Why It Works                 │
-├─────────────────────┼───────────────────┼──────────────────────────────┤
-│ 1. Hacky Hour /     │ 1 hour weekly;    │ Zero preparation required;   │
-│    Coding Clinic    │ coffee shop or    │ informal, welcoming, focuses │
-│                     │ seminar room      │ on live code debugging       │
-├─────────────────────┼───────────────────┼──────────────────────────────┤
-│ 2. Carpentries      │ 2 hours bi-weekly;│ Structured, self-paced       │
-│    Study Group      │ working through an│ progression through an open  │
-│                     │ open tutorial     │ curriculum                   │
-├─────────────────────┼───────────────────┼──────────────────────────────┤
-│ 3. Methods Journal  │ 1 hour monthly;   │ Connects biological domain   │
-│    Club             │ dissecting a code │ literature directly to computational│
-│                     │ repository        │ reproducibility              │
-├─────────────────────┼───────────────────┼──────────────────────────────┤
-│ 4. "Bug-Busting"    │ Half-day sprint;  │ High-energy collective focus │
-│    Hackathon        │ collaborative work│ on a shared institutional    │
-│                     │ on shared data    │ sequencing dataset           │
-└─────────────────────┴───────────────────┴──────────────────────────────┘
-```
+| Format | Structure | Why It Works |
+| :--- | :--- | :--- |
+| **1. Hacky Hour / Coding Clinic** | 1 hour weekly; coffee shop or seminar room | Zero preparation required; informal, welcoming, focuses on live code debugging |
+| **2. Carpentries Study Group** | 2 hours bi-weekly; working through an open tutorial | Structured, self-paced progression through an open curriculum |
+| **3. Methods Journal Club** | 1 hour monthly; dissecting a code repository | Connects biological domain literature directly to computational reproducibility |
+| **4. "Bug-Busting" Hackathon** | Half-day sprint; collaborative work on shared data | High-energy collective focus on a shared institutional sequencing dataset |
+
+: Table 2: Grassroots community formats for bioinformatics sustainability
 
 ### The "Hacky Hour" Protocol
 - **What it is:** A recurring informal meetup (e.g. every Thursday from 16:00 to 17:00).
@@ -110,24 +72,7 @@ Starting a community does not require institutional approval, budgets, or formal
 
 Local groups in resource-constrained environments cannot survive in isolation. Connecting grassroots institutional clubs into continental and global federations provides access to compute, advanced mentors, and international collaborators:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   THE NESTED COMMUNITY ECOSYSTEM                       │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                                        │
-│   [ GLOBAL ]        The Carpentries | Galaxy Community | ISCB          │
-│                            ▲                                           │
-│                            │                                           │
-│   [ CONTINENTAL ]   H3ABioNet | ASBCB | APBioNET | EMBnet              │
-│                            ▲                                           │
-│                            │                                           │
-│   [ NATIONAL ]      National Research & Education Networks (NRENs)     │
-│                            ▲                                           │
-│                            │                                           │
-│   [ INSTITUTIONAL ] Local University Hacky Hour / Study Group          │
-│                                                                        │
-└────────────────────────────────────────────────────────────────────────┘
-```
+![The nested community ecosystem](images/community_ecosystem.jpeg)
 
 ### Key Regional Networks:
 - **Pan-African Networks:**

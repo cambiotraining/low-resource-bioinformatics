@@ -20,20 +20,16 @@ For decades, academic course materials consisted of proprietary desktop files: M
 - **Format Inflexibility:** Updating a command requires manually copying and pasting changes across slide decks, student handouts, and instructor cheatsheets.
 - **Barrier to Contribution:** Proprietary formats prevent open-source community contributions, translations, and seamless adaptation.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   PROPRIETARY FORMATS vs OPEN AUTHORING                │
-├───────────────────────────────────┬────────────────────────────────────┤
-│     PROPRIETARY (Word / PPT)      │       OPEN AUTHORING (Quarto / Git)│
-├───────────────────────────────────┼────────────────────────────────────┤
-│ • Binary, closed formats          │ • Human-readable plain text (.md)  │
-│ • "Track changes" confusion       │ • Precise Git version control      │
-│ • Format locked (Word $\neq$ Web) │ • Single source $\rightarrow$ Web, │
-│ • Expensive software licenses     │   PDF, and Slides simultaneously   │
-│ • Hard to search or link          │ • Fully searchable, accessible web │
-│ • Hidden behind email attachments │ • Free global hosting on GitHub    │
-└───────────────────────────────────┴────────────────────────────────────┘
-```
+| Proprietary (Word / PPT) | Open Authoring (Quarto / Git) |
+| :--- | :--- |
+| • Binary, closed formats | • Human-readable plain text (.md) |
+| • "Track changes" confusion | • Precise Git version control |
+| • Format locked (Word ≠ Web) | • Single source → Web, PDF, and Slides simultaneously |
+| • Expensive software licenses | • Fully searchable, accessible web |
+| • Hard to search or link | • Free global hosting on GitHub |
+| • Hidden behind email attachments | |
+
+: Table 1: Comparison between proprietary formats and open authoring tools
 
 Modern bioinformatics training leverages **open-source authoring frameworks**. By writing materials in plain text using **Markdown** and compiling them with **Quarto**, instructors create reproducible, multi-format curricula that are free to host, easy to maintain, and resilient in low-resource environments.
 
@@ -42,25 +38,7 @@ Modern bioinformatics training leverages **open-source authoring frameworks**. B
 
 **Quarto** is an open-source scientific and technical publishing system that transforms plain-text Markdown into rich websites, books, presentations, and documents.
 
-```
-                             ┌───────────────────┐
-                             │ Source Documents  │
-                             │ (Markdown: .md)   │
-                             └─────────┬─────────┘
-                                       │
-                                       ▼
-                             ┌───────────────────┐
-                             │   Quarto Engine   │
-                             │ (Embedded Pandoc) │
-                             └─────────┬─────────┘
-                                       │
-        ┌──────────────────────────────┼──────────────────────────────┐
-        ▼                              ▼                              ▼
-┌──────────────────┐          ┌──────────────────┐          ┌──────────────────┐
-│ Interactive Web  │          │ Printable PDF /  │          │ PowerPoint / HTML│
-│ (Static HTML)    │          │ Offline Manual   │          │ Slide Decks      │
-└──────────────────┘          └──────────────────┘          └──────────────────┘
-```
+![Quarto and markdown](images/quarto_markdown.jpeg)
 
 ### Why Quarto Excels for Technical Training
 1. **Single-Source Publishing:** You write your lesson content once. Quarto can render that single source into an interactive website, a downloadable PDF manual, or a PowerPoint slide deck (`format: pptx`).
@@ -113,28 +91,7 @@ Universities in low-resource settings often lack dedicated web hosting budgets o
 
 **GitHub Pages** provides completely free, high-speed, secure web hosting for static websites directly from a GitHub code repository:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   CONTINUOUS DEPLOYMENT WORKFLOW                       │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                                        │
-│   1. Instructor edits markdown locally:                                │
-│      git commit -m "Update variant calling module"                     │
-│      git push origin main                                              │
-│                                │                                       │
-│                                ▼                                       │
-│   2. GitHub Actions automated runner triggers:                         │
-│      • Installs Quarto                                                 │
-│      • Runs: quarto render                                             │
-│      • Compiles static HTML into gh-pages branch                       │
-│                                │                                       │
-│                                ▼                                       │
-│   3. Website published instantly worldwide:                            │
-│      https://username.github.io/my-bioinformatics-course/              │
-│      (Fast CDN, SSL encryption, zero hosting fees, 100% uptime!)       │
-│                                                                        │
-└────────────────────────────────────────────────────────────────────────┘
-```
+![Continuous deployment workflow](images/continuous_deployment.jpeg)
 
 
 ## Designing for Low-Bandwidth and Offline Venues
@@ -145,12 +102,14 @@ Open authoring allows trainers to build **offline-first curricula**:
 
 ### 1. Self-Contained Static HTML Bundles (`_site/`)
 When Quarto renders a website, all HTML files, CSS stylesheets, icons, and JavaScript navigation scripts are compiled into a standalone folder called `_site/`:
+
 - **The USB "Sneakernet" Workflow:** The instructor zips the `_site/` directory into `course_website.zip` (~10–20 MB) and copies it onto USB flash drives.
 - Students unzip the archive onto their local laptops and double-click `index.html`.
 - **Result:** The entire course website opens in any browser with functioning sidebar navigation, search indexing, and styling—with **zero internet connection required**!
 
 ### 2. Image Optimization for Constrained Networks
 High-resolution smartphone photos and uncompressed screenshots bloat course repositories. A 10 MB PNG file will choke a slow classroom connection:
+
 - Compress all diagrams and screenshots to WebP or optimized PNG before committing:
   ```bash
   # Optimize PNG files to under 100 KB
@@ -162,25 +121,13 @@ High-resolution smartphone photos and uncompressed screenshots bloat course repo
 
 Teaching materials represent substantial scholarly work, yet instructors often receive minimal academic recognition for developing them. Adopting open scientific standards makes your curriculum **citable, discoverable, and credit-bearing**:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   MAKING COURSE MATERIALS CITABLE                      │
-├───────────────────────────────────┬────────────────────────────────────┤
-│ Mechanism                         │ Practical Benefit                  │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ 1. CITATION.cff File              │ GitHub automatically displays an   │
-│                                   │ "APA / BibTeX Citation" button on  │
-│                                   │ the repository page.               │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ 2. Zenodo DOI Integration         │ Free, permanent digital object     │
-│                                   │ identifier (DOI) indexed in Google │
-│                                   │ Scholar and Web of Science.        │
-├───────────────────────────────────┼────────────────────────────────────┤
-│ 3. Creative Commons License       │ Explicit CC BY 4.0 license grants  │
-│    (LICENSE.md)                   │ reuse rights while legally         │
-│                                   │ mandating attribution to you.      │
-└───────────────────────────────────┴────────────────────────────────────┘
-```
+| Mechanism | Practical Benefit |
+| :--- | :--- |
+| **1. CITATION.cff File** | GitHub automatically displays an "APA / BibTeX Citation" button on the repository page. |
+| **2. Zenodo DOI Integration** | Free, permanent digital object identifier (DOI) indexed in Google Scholar and Web of Science. |
+| **3. Creative Commons License (`LICENSE.md`)** | Explicit CC BY 4.0 license grants reuse rights while legally mandating attribution to you. |
+
+: Table 2: Making course materials citable
 
 ### Setting Up a `CITATION.cff` File
 Place a `CITATION.cff` file in your repository root:
@@ -207,6 +154,7 @@ These exercises will guide you in structuring an open lesson and configuring aut
 ## Restructuring a Wall of Text into Scaffolded Markdown
 
 You receive a draft lesson from a guest lecturer submitted as a plain Word document:
+
 > *"Students should know how to run BWA. BWA is a Burrows-Wheeler aligner. First you must index the genome with bwa index ref.fa. Be careful because indexing human takes 3 hours and 5 GB of RAM so use our small phage genome instead. After indexing, run bwa mem ref.fa r1.fq r2.fq > out.sam. Now answer this question: what happens if you forget to index first?"*
 
 Rewrite this paragraph into structured Quarto Markdown:

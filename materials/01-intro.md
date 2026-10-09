@@ -14,9 +14,9 @@ title: Course Introduction & Orientation
 
 ## Welcome to Teaching Bioinformatics
 
-Welcome to *Teaching Bioinformatics in Low-resource Settings*. This course is not a standard bioinformatics workshop where you learn how to assemble a genome or call variants. Instead, it is an intensive **train-the-trainer programme** designed to transform subject-matter specialists—researchers, core facility analysts, clinicians, and university lecturers—into resilient, empathetic, and highly effective computational educators.
+Welcome to *Teaching Bioinformatics in Low-resource Settings*. This course is not a standard bioinformatics workshop where you learn how to assemble a genome or call variants. Instead, it is an intensive **train-the-trainer programme** designed to transform subject-matter specialists (researchers, core facility analysts, clinicians, and university lecturers) into resilient, empathetic, and highly effective computational educators.
 
-Worldwide, bioinformatics has transitioned from an esoteric academic sub-discipline into the operational backbone of modern life sciences, clinical diagnostics, and public health surveillance. Yet, the vast majority of bioinformatics educational resources and training methodologies originate in high-income research hubs. These curricula routinely take foundational infrastructure for granted:
+Worldwide, bioinformatics has transitioned from an niche academic sub-discipline into the operational backbone of modern life sciences, clinical diagnostics, and public health surveillance. Yet, the vast majority of bioinformatics educational resources and training methodologies originate in high-income research hubs. These curricula routinely take foundational infrastructure for granted:
 
 - Unmetered, multi-gigabit fibre-optic campus Wi-Fi.
 - Immediate access to institutional High-Performance Computing (HPC) clusters or pre-funded cloud accounts.
@@ -32,19 +32,15 @@ This course exists to demonstrate that **world-class bioinformatics training doe
 
 Educators in resource-constrained environments confront a unique dynamic known as the **Double Hurdle**. In a standard classroom, learners face only one primary challenge: mastering the academic curriculum. In low-resource settings, both instructors and students must clear two distinct hurdles simultaneously:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                          THE DOUBLE HURDLE                             │
-├────────────────────────────────────┬───────────────────────────────────┤
-│    1. PEDAGOGICAL & COGNITIVE      │     2. INFRASTRUCTURAL & MATERIAL │
-├────────────────────────────────────┼───────────────────────────────────┤
-│ • Abstract command-line syntax     │ • Rolling blackouts & power cuts  │
-│ • "Expert-Novice Blind Spot"       │ • Severe bandwidth & download caps│
-│ • Acute terminal anxiety & shame   │ • Heterogeneous, low-spec laptops │
-│ • Cognitive load overload          │ • Windows CRLF / permission bugs  │
-│ • Heavy clinical/wet-lab burdens   │ • Absence of institutional HPC/IT │
-└────────────────────────────────────┴───────────────────────────────────┘
-```
+| 1. Pedagogical & cognitive | 2. Infrastructural & material |
+| :--- | :--- |
+| • Abstract command-line syntax | • Rolling blackouts & power cuts |
+| • "Expert-novice blind spot" | • Severe bandwidth & download caps |
+| • Acute terminal anxiety & shame | • Heterogeneous, low-spec laptops |
+| • Cognitive load overload | • Windows CRLF / permission bugs |
+| • Heavy clinical/wet-lab burdens | • Absence of institutional HPC/IT |
+
+: Table 1: The double hurdle
 
 ### 1. The Pedagogical and Cognitive Hurdle
 Adult learners in your workshops are typically accomplished professionals: senior microbiologists, physicians, parasitologists, or postgraduates. In their laboratories or clinics, they command respect. When seated in front of a raw Unix terminal, a single cryptic error message (`command not found`, `permission denied`, or `SyntaxError`) can induce acute **terminal anxiety** and imposter syndrome. If instructors rush through commands or take over keyboards, adult learners disengage and conclude that bioinformatics is an elitist discipline reserved for computer scientists.
@@ -59,27 +55,24 @@ As an educator in these settings, your job is not merely to transmit technical k
 
 This course is organised into three integrated parts, moving systematically from pedagogical foundations to technical toolsets, and culminating in a full curriculum design sprint:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                        COURSE CURRICULUM ROADMAP                       │
-├─────────────────────────┬─────────────────────────┬────────────────────┤
-│   PART 1: HOW TO TEACH  │   PART 2: WHAT TO TEACH │    PART 3: SUSTAIN │
-├─────────────────────────┼─────────────────────────┼────────────────────┤
-│ • What is Bioinformatics│ • Open Resources (FAIR) │ • Capstone Training│
-│ • Adult Learning (Andr.)│ • Core Computing Concs  │   Design Sprint    │
-│ • Active Strategies     │ • Practical UNIX & Bash │ • Pitching Your    │
-│ • Effective Delivery    │ • Containers (Apptainer)│   Workshop Plan    │
-│ • Training Design (Bwd) │ • Software Installation │ • Communities of   │
-│ • Lesson Planning Arc   │ • Cloud vs Locality     │   Practice         │
-│ • Formative Assessment  │ • HPC SLURM Workflows   │ • Combating Lone   │
-│ • Authoring with Quarto │ • Micro-datasets        │   Bioinformatician │
-│                         │ • Data Interpretation   │   Syndrome         │
-│                         │ • Responsible AI Mentors│                    │
-└─────────────────────────┴─────────────────────────┴────────────────────┘
-```
+| Part 1: How to Teach | Part 2: What to Teach | Part 3: Sustain |
+| :--- | :--- | :--- |
+| • What is Bioinformatics | • Open Resources (FAIR) | • Capstone Training Design Sprint |
+| • Adult Learning (Androgogy) | • Core Computing Concs | • Pitching Your Workshop Plan |
+| • Active Strategies | • Practical UNIX & Bash | • Communities of Practice |
+| • Effective Delivery | • Containers (Apptainer) | • Combating Lone Bioinformatician Syndrome |
+| • Training Design (Bwd) | • Software Installation | |
+| • Lesson Planning Arc | • Cloud vs Locality | |
+| • Formative Assessment | • HPC SLURM Workflows | |
+| • Authoring with Quarto | • Micro-datasets | |
+| | • Data Interpretation | |
+| | • Responsible AI Mentors | |
+
+: Table 2: Course curriculum roadmap for trainer development
 
 ### Part 1: How to Teach Bioinformatics (Chapters 1–8)
 We begin with the human element:
+
 - **Adult Learning Theory (Andragogy):** Understanding Knowles' principles, managing cognitive load, and dismantling the "Expert-Novice Paradox".
 - **Active Teaching Methodologies:** Mastering participatory live coding, faded examples, and driver-navigator pair programming.
 - **Classroom Orchestration:** Cultivating psychological safety, managing helpers with the "hands-off-keyboard" rule, and timing with the Rule of Thirds.
@@ -90,6 +83,7 @@ We begin with the human element:
 
 ### Part 2: What to Teach: The Low-Resource Toolset (Chapters 9–17)
 Next, we explore how to adapt computational bioinformatics content for constrained environments:
+
 - **Open Educational Resources:** Repurposing high-quality curricula from The Carpentries, Galaxy Training Network (GTN), and H3ABioNet.
 - **Computational Fundamentals:** demystifying hardware (RAM vs CPU vs disk), memory exhaustion (`Killed 137`), plain text vs binary formats, and Windows CRLF issues.
 - **Defensive UNIX & Scripting:** Teaching file inspection without Microsoft Excel corruption, tabular wrangling with `awk` and `cut`, and bulletproof scripting with `set -euo pipefail`.
@@ -102,6 +96,7 @@ Next, we explore how to adapt computational bioinformatics content for constrain
 
 ### Part 3: Design and Sustain your Training (Chapters 18–19)
 Finally, you will synthesize everything you have learned into actionable practice:
+
 - **The Capstone Design Sprint:** You will design a complete, customized bioinformatics workshop plan for your home institution and pitch it to your peers and instructors for feedback.
 - **Communities of Practice:** Strategies to overcome post-workshop attrition, dismantle the "lone bioinformatician syndrome", and launch sustainable local study groups and Hacky Hours.
 
@@ -154,7 +149,7 @@ Notice that almost every trainer in low-resource settings identifies similar bot
 - **The "Installation Abyss":** In many traditional workshops, the entire first day is lost to troubleshooting package dependencies, leaving students exhausted before any biological concepts are introduced.
 - **Post-Workshop Isolation:** Students leave inspired, but within two weeks hit an unexplained error on their own data and give up because they lack local peer support.
 
-Keep your answers close at hand. Throughout this course, you will refine these notes into your master Capstone Blueprint in Chapter 18.
+Keep your answers close at hand. Throughout this course, you will refine these notes into your master Capstone Blueprint in Chapter 20.
 :::
 :::
 
