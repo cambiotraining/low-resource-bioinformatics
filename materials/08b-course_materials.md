@@ -15,6 +15,7 @@ title: Authoring and Publishing Course Materials
 ## Introduction: Beyond Static Documents
 
 For decades, academic course materials consisted of proprietary desktop files: Microsoft Word documents, PowerPoint slide decks, and exported PDFs. While familiar, these formats create severe maintenance and accessibility friction in computational training:
+
 - **Version Control Failure:** Collaboration results in messy email attachments like `Module1_v2_final_edited_AM.docx`.
 - **Format Inflexibility:** Updating a command requires manually copying and pasting changes across slide decks, student handouts, and instructor cheatsheets.
 - **Barrier to Contribution:** Proprietary formats prevent open-source community contributions, translations, and seamless adaptation.

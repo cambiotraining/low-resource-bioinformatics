@@ -15,6 +15,7 @@ title: Building Communities of Practice
 ## Introduction: The "Day Four" Crisis
 
 A familiar and heartbreaking cycle exists in global bioinformatics capacity development:
+
 1. Enthusiastic researchers attend an intensive 3-day bioinformatics workshop.
 2. They master Linux navigation, run quality trimming, and execute variant calling with flying colors.
 3. On the final afternoon, certificates are distributed amidst celebrations.
@@ -164,6 +165,7 @@ These exercises will guide you in designing a viable launch plan for an institut
 You are returning to your home institution after completing this training course. You want to launch a bi-weekly "Bioinformatics Hacky Hour" to support your department's postgraduate students and junior researchers.
 
 Draft an actionable launch strategy addressing:
+
 1. **The Name, Timing, and Physical Venue.**
 2. **How you will pitch the initiative to students without making it feel like extra coursework.**
 3. **The agenda for the very first meeting (Kickoff session).**

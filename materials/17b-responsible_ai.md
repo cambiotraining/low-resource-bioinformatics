@@ -71,6 +71,7 @@ LLMs frequently merge options from competing tools. For example, when asked to w
 
 ### 2. The Trap of Outdated Standards
 Because training data contains vast amounts of legacy forum discussions from 2012–2018, models frequently suggest obsolete bioinformatics practices:
+
 - Recommending `TopHat` instead of `HISAT2` or `STAR`.
 - Using deprecated GATK3 syntax (`-T UnifiedGenotyper`) instead of GATK4 (`HaplotypeCaller`).
 - Writing Python 2 scripts that fail on modern Linux operating systems.
