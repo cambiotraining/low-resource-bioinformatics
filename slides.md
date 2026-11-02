@@ -493,29 +493,36 @@ format:
 - **Classroom Architectures:** Use the Galaxy Training Network (GTN) or GitHub Codespaces (60 free core-hours/month) to avoid requiring student credit cards.
 
 
-# Module 15: High Performance Computing (HPC)
+# Module 15: Using an HPC or Server for Training
 
-## Cluster Architecture: The Airport Analogy
-- **Login Node = The Airport Departure Hall:**
-  - Strictly for light tasks: editing scripts, checking queues, submitting jobs.
-  - **The Golden Rule:** Never execute heavy compute on the login node!
-- **Workload Scheduler (SLURM) = Air Traffic Control:**
-  - Allocates CPUs, RAM, and time limits; manages queues.
-- **Compute Nodes = The Airplanes:**
-  - Headless multi-core workhorses where computations actually run.
-- **Shared Filesystem = The Baggage System:**
-  - Accessible across all nodes identically.
+## The Server as a Pedagogical Shield
+- **Eliminating the "Installation Abyss":**
+  - Equalizes heterogeneous, low-spec learner laptops (2–4 GB RAM, Windows 7/10/11, locked hospital laptops).
+  - Provides a single, uniform Linux environment with pre-configured tools, paths, and reference genomes.
+- **Topologies for Low-Resource Venues:**
+  - **In-Room Local Server (Offline LAN):** Portable mini-PC/workstation + local Wi-Fi router. *Zero internet required!*
+  - **Institutional / Regional HPC:** High compute capacity, but requires dedicated SLURM training reservations/QoS.
+  - **Cloud Training VM:** Disposable 32-core IaaS instance; requires reliable internet and billing controls.
 
-## SLURM Batch Management & Etiquette
-- **Batch Scripts (`#SBATCH` directives):**
-  - Specify `--cpus-per-task`, `--mem`, `--time`, and log files.
-  - Always include `set -euo pipefail` and module loads.
-- **Core Commands:** `sbatch` (submit), `squeue -u $USER` (monitor), `scancel` (abort).
-- **Interactive Prototyping:**
-  - Use `srun --pty bash -i` to test commands on a compute node safely.
-- **The "Good Citizen" Model:**
-  - Use `sacct` post-mortem profiling to inspect actual memory (`MaxRSS`) and runtime.
-  - Right-size requests to prevent over-allocation and reduce queue wait times.
+## Defending Against the "Thundering Herd"
+- **The Classroom Crisis:** 25 students press [Enter] at the same second $\rightarrow$ CPU/RAM saturation $\rightarrow$ OOM crash.
+- **Standalone Server Safeguards:**
+  - Hard per-user limits using `cgroups` v2 and `/etc/security/limits.conf` (restrict `nproc`, `as`, `maxlogins`).
+  - Enforce thread limits: wrapper scripts that intercept and cap flags (e.g. max `-t 2`).
+- **HPC / SLURM Safeguards:**
+  - Dedicated reservation (`--reservation=workshop2026`) and QoS (`MaxJobsPerUser=2`).
+  - Automated watchdog to prevent students from executing heavy compute on the login node.
+- **Storage Hygiene:** Pre-build reference indices in a shared read-only directory (`chmod 555 /shared/`); enforce disk quotas on `/home`.
+
+## Low-Friction Access & Live Monitoring
+- **Browser-Based Access Over HTTPS (Port 443):**
+  - Use **JupyterHub**, **RStudio Server**, or **`ttyd`** web terminals instead of raw SSH.
+  - *Benefits:* Zero client installation, traverses firewalls blocking Port 22, and persists sessions if Wi-Fi flickers.
+  - If using raw SSH: auto-launch `tmux` in `.bashrc` so disconnects don't terminate running pipelines.
+- **The Trainer's Operations Cockpit:**
+  - Keep a secondary screen with `htop` / `glances` / `squeue` to track load average, swap churn, and I/O wait (`wa`).
+- **Contingency Tier 2 & 3:**
+  - Always carry "Cooking Show" pre-computed outputs and standalone micro-datasets on USB flash drives.
 
 
 # Module 16: Utilising Micro-datasets

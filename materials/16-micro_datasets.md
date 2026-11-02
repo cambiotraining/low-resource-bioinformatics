@@ -13,11 +13,11 @@ title: Utilising Micro-datasets
 - Package lightweight data bundles that can be distributed instantly over slow networks, mobile data, or USB drives.
 :::
 
-## Introduction: The Live Training Dilemma
+## Introduction
 
 In bioinformatics research, bigger is usually better. Scientists seek deep coverage, large sample cohorts, and whole-genome sequencing (WGS) datasets to maximize statistical power. 
 
-However, in **training**—particularly in resource-constrained classrooms—using full-scale research data is one of the most common causes of pedagogical failure.
+However, in **training**, particularly in resource-constrained classrooms, using full-scale research data is one of the most common causes of teaching failure.
 
 | Full-scale research data | Micro-dataset |
 | :--- | :--- |
@@ -27,7 +27,7 @@ However, in **training**—particularly in resource-constrained classrooms—usi
 | • Pipeline runs for 3.5 hours | • Pipeline runs in 25 seconds |
 | • Trainees stare at a frozen screen and lose focus | • Instant feedback, iteration, and active learning |
 
-: Table 1: The classroom runtime trap
+: Table 1: Full-scale research data versus micro-datasets
 
 When an alignment or assembly step takes two hours to run during class:
 
@@ -37,15 +37,13 @@ When an alignment or assembly step takes two hours to run during class:
 
 A **micro-dataset** is a deliberately engineered, downscaled dataset that preserves the exact format, structural integrity, and biological signatures of real-world data, but executes in **seconds or a few minutes** on modest consumer hardware.
 
-
 ## The Pedagogical Power of Rapid Feedback Loops
 
 In adult learning theory, skill acquisition relies on **tight feedback loops**:
 
 ![Rapid feedback loops](images/feedback_loops.jpeg)
 
-Micro-datasets transform bioinformatics from a passive waiting game into an active experimental laboratory. Trainees can experiment with parameter tuning—such as comparing assembly results with different k-mer lengths or trimming thresholds—and observe the consequences immediately.
-
+Micro-datasets transform bioinformatics from a passive waiting game into an active experimental laboratory. Trainees can experiment with parameter tuning, such as comparing assembly results with different k-mer lengths or trimming thresholds—and observe the consequences immediately.
 
 ## Strategies for Engineering Micro-datasets
 
@@ -60,12 +58,12 @@ There are four primary methodologies for creating high-quality micro-datasets. E
 
 : Table 2: Micro-dataset engineering strategies
 
-### 1. Random Downsampling with `seqtk`
+**1. Random Downsampling with `seqtk`**
 
 The simplest approach is randomly sampling a small fraction of reads (e.g. 50,000 reads out of 5,000,000).
 
 ::: {.callout-warning}
-## The Paired-End Synchronization Trap
+## Paired-End Synchronization
 In paired-end sequencing, Read 1 (`_R1.fq`) and Read 2 (`_R2.fq`) must appear in the exact same sequence order line-by-line. If you randomly sample `R1` and `R2` independently with different random seeds, the read pairs will be mismatched, and downstream aligners will fail with `mate pair missing` errors.
 
 **Rule:** Always use a fixed random seed (`-s 100`) when sampling paired reads:
@@ -78,7 +76,7 @@ seqtk sample -s 100 raw_R1.fastq.gz 20000 | gzip > micro_R1.fastq.gz
 seqtk sample -s 100 raw_R2.fastq.gz 20000 | gzip > micro_R2.fastq.gz
 ```
 
-### 2. Locus-Specific Extraction: Real Biology in Miniature
+**2. Locus-Specific Extraction: Real Biology in Miniature**
 
 Random downsampling reduces coverage across the whole genome, which can make *de novo* assembly fragmented or variant calling under-powered. 
 
@@ -99,16 +97,17 @@ samtools fastq -1 micro_rpoB_R1.fq.gz -2 micro_rpoB_R2.fq.gz -
 
 *The Result:* The micro-dataset is under 2 MB in size, but retains **80× depth of coverage** over the target gene! Trainees can run QC, alignment, and variant calling in 15 seconds, and successfully detect the clinical drug-resistance mutation.
 
-### 3. Slicing Reference Genomes: Small Model Organisms
-- When teaching eukaryotic genomics, never use the full 3.1 GB human reference genome. Use human **Chromosome 22** or **Chromosome 21**, or a 2 Mb region.
-- When teaching bacterial genomics, use a small plasmid (e.g. 50 kb) or viral genome (e.g. SARS-CoV-2, 29.9 kb). A complete SARS-CoV-2 genome can be assembled *de novo* using SPAdes in under 45 seconds on an ordinary laptop!
+**3. Slicing Reference Genomes: Small Model Organisms**
 
-### 4. In Silico Synthetic Datasets
-Using simulators like **Badread** (for Oxford Nanopore) or **InSilicoSeq / ART** (for Illumina), trainers can generate synthetic reads containing deliberate, ground-truth biological variants or quality anomalies:
+- When teaching eukaryotic genomics, never use the full 3.1 GB human reference genome. Use human **Chromosome 22** or **Chromosome 21**, or a 2 Mb region.
+- When teaching bacterial genomics, use a small plasmid (e.g. 50 kb) or viral genome (e.g. SARS-CoV-2, 29.9 kb). A complete SARS-CoV-2 genome can be assembled *de novo* using SPAdes in under 45 seconds on an ordinary laptop.
+
+**4. In Silico Synthetic Datasets**
+
+Using simulators like **Badread** (for Oxford Nanopore) or **InSilicoSeq / ART** (for Illumina) can generate synthetic reads containing deliberate, ground-truth biological variants or quality anomalies:
 
 - A dataset with a known 5 bp deletion to teach variant validation.
 - A dataset with synthetic adapter contamination to teach trimming.
-
 
 ## The "Cooking Show" Model: Staged Workflows
 
@@ -123,7 +122,6 @@ This model provides the best of both worlds:
 1. **Mechanical Transparency:** Learners experience the real command-line execution and inspect intermediate files.
 2. **Biological Authenticity:** Downstream interpretation is performed on statistically robust, full-scale datasets.
 
-
 ## Managing Learner Expectations
 
 When teaching with micro-datasets, instructors must be transparent with learners about what is happening behind the scenes:
@@ -137,7 +135,6 @@ Always explain to your learners:
 :::
 
 If you fail to clarify this, learners may develop unrealistic expectations, assuming full-scale bioinformatics pipelines take 30 seconds, or become baffled when their research datasets fail to run on a personal laptop.
-
 
 ## Interactive Exercises for Future Trainers
 

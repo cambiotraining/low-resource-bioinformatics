@@ -8,7 +8,7 @@ project:
   output-dir: _site
   render:
     - index.md
-    - setup.md
+    #- setup.md
     - materials/*
 
 format: crit-format-html
@@ -58,8 +58,8 @@ book:
       chapters: 
         - text: "Overview"
           href: index.md
-        - text: "Data & Setup"
-          href: setup.md
+        #- text: "Data & Setup"
+         # href: setup.md
         - text: "Introduction"
           href: materials/01-intro.md    
   appendices: 

@@ -14,7 +14,7 @@ title: Authoring and Publishing Course Materials
 
 ## Introduction: Beyond Static Documents
 
-For decades, academic course materials consisted of proprietary desktop files: Microsoft Word documents, PowerPoint slide decks, and exported PDFs. While familiar, these formats create severe maintenance and accessibility friction in computational training:
+Traditionally, academic course materials have consisted of proprietary desktop files: Microsoft Word documents, PowerPoint slide decks, and exported PDFs. While familiar, these formats can create severe maintenance and accessibility friction in computational training:
 
 - **Version Control Failure:** Collaboration results in messy email attachments like `Module1_v2_final_edited_AM.docx`.
 - **Format Inflexibility:** Updating a command requires manually copying and pasting changes across slide decks, student handouts, and instructor cheatsheets.
@@ -45,10 +45,9 @@ Modern bioinformatics training leverages **open-source authoring frameworks**. B
 2. **Executable Code Blocks:** If teaching Python, R, or Bash, Quarto can execute code blocks during rendering, ensuring that example outputs, plots, and tables are always synchronized with the code.
 3. **Zero Licensing Costs:** Quarto is completely free and cross-platform (Linux, macOS, Windows).
 
-
 ## Visual Scaffolding with Callout Blocks
 
-Novice learners struggle to parse walls of unformatted text. Effective course design uses **callout boxes** to establish clear visual hierarchy and guide cognitive focus.
+Novice learners struggle to parse large amounts of unformatted text. Effective course design uses **callout boxes** to establish clear visual hierarchy and guide cognitive focus.
 
 In Quarto, callouts are created using the `::: {.callout-<type>}` syntax:
 
@@ -84,7 +83,6 @@ Hidden model solution revealed on click.
 - **`callout-warning` / `callout-caution` (Orange/Red):** Critical warnings (e.g. irreversible `rm` commands, line-ending mismatches, or laptop battery warnings).
 - **`callout-exercise`:** Numbered active learning exercises with collapsible answers, allowing learners to attempt challenges before inspecting solutions.
 
-
 ## Zero-Cost Web Hosting with GitHub Pages
 
 Universities in low-resource settings often lack dedicated web hosting budgets or suffer from restrictive IT department firewalls.
@@ -92,7 +90,6 @@ Universities in low-resource settings often lack dedicated web hosting budgets o
 **GitHub Pages** provides completely free, high-speed, secure web hosting for static websites directly from a GitHub code repository:
 
 ![Continuous deployment workflow](images/continuous_deployment.jpeg)
-
 
 ## Designing for Low-Bandwidth and Offline Venues
 
@@ -103,7 +100,7 @@ Open authoring allows trainers to build **offline-first curricula**:
 ### 1. Self-Contained Static HTML Bundles (`_site/`)
 When Quarto renders a website, all HTML files, CSS stylesheets, icons, and JavaScript navigation scripts are compiled into a standalone folder called `_site/`:
 
-- **The USB "Sneakernet" Workflow:** The instructor zips the `_site/` directory into `course_website.zip` (~10–20 MB) and copies it onto USB flash drives.
+- **The USB Workflow:** The instructor zips the `_site/` directory into `course_website.zip` (~10–20 MB) and copies it onto USB flash drives.
 - Students unzip the archive onto their local laptops and double-click `index.html`.
 - **Result:** The entire course website opens in any browser with functioning sidebar navigation, search indexing, and styling—with **zero internet connection required**!
 
@@ -115,7 +112,6 @@ High-resolution smartphone photos and uncompressed screenshots bloat course repo
   # Optimize PNG files to under 100 KB
   optipng -o5 materials/images/*.png
   ```
-
 
 ## Academic Credit & Scholarly Archiving
 
@@ -144,7 +140,6 @@ version: 1.0.0
 date-released: 2026-03-15
 license: CC-BY-4.0
 ```
-
 
 ## Interactive Exercises for Future Trainers
 
@@ -200,7 +195,7 @@ BWA-MEM will abort immediately with:
 Because BWA relies on five binary index files (`.amb`, `.ann`, `.bwt`, `.pac`, `.sa`), mapping cannot begin without the prior indexing step.
 :::
 :::
-```
+
 :::
 :::
 

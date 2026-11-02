@@ -5,26 +5,26 @@ title: Designing Training
 ::: {.callout-tip}
 #### Learning Objectives
 
-- Apply the **Backward Design** framework to structure bioinformatics courses around desired competencies and authentic evidence rather than software tool lists.
+- Apply the **Backward Design** framework to structure bioinformatics courses around desired competencies and authentic evidence rather than lists of software tools.
 - Develop realistic **Learner Personas** that capture professional motivations, domain backgrounds, and technical/infrastructure constraints.
 - Formulate precise, measurable learning outcomes using revised **Bloom's Taxonomy** action verbs.
 - Construct **Concept Maps** to identify prerequisite knowledge dependencies and prevent hidden cognitive leaps.
 - Incorporate low-resource realities (bandwidth limits, hardware ceilings, offline requirements) as primary architectural constraints during initial curriculum design.
 :::
 
-## Introduction: The "Forward Design" Trap
+## Introduction: The Classic "Forward Design" Approach
 
 When asked to design a new bioinformatics workshop, instructors often begin by listing software tools:
 
 > *"We have three days. Let's do FastQC on Monday, BWA and SAMtools on Tuesday, and GATK on Wednesday."*
 
-This approach—known as **Forward Design**—is driven by content rather than learning. The instructor decides what tools they want to demonstrate, creates lectures around tool syntax, and at the end of the course wonders why students are unable to analyze their own research data independently.
+This approach, known as **Forward Design**, is driven by content rather than learning. The instructor decides what tools they want to demonstrate, and creates lectures around tool syntax. The issue with this is that at the end of the course, the students may be unable to analyze their own research data independently.
 
 | FORWARD DESIGN (Content) | BACKWARD DESIGN (Outcomes) |
 | :--- | :--- |
 | 1. Pick tools (FastQC, BWA, GATK) | 1. Identify Desired Results:<br>What will learners be able to DO at the end of the course? |
 | 2. Design lectures around syntax | 2. Determine Acceptable Evidence:<br>How will they demonstrate it? |
-| 3. Give students a canned script | 3. Plan Learning Experiences:<br>What datasets and scaffolding lead to that outcome? |
+| 3. Give students a script | 3. Plan Learning Experiences:<br>What datasets and scaffolding lead to that outcome? |
 | 4. Hope that learning occurred | |
 
 : Table 1: Forward design versus backward design
@@ -34,9 +34,9 @@ This approach—known as **Forward Design**—is driven by content rather than l
 
 ## Stage 1: Learner Personas — Knowing Your Audience
 
-You cannot design an effective curriculum for "anyone interested in bioinformatics." A 50-year-old hospital pathologist has fundamentally different technical baselines, career incentives, and hardware constraints than a 22-year-old master's student in computer science.
+You cannot design an effective curriculum for "anyone interested in bioinformatics." A 50 year-old hospital pathologist has fundamentally different technical baselines, career incentives, and hardware constraints than a 22 year-old master's student in computer science.
 
-A **Learner Persona** is a short, fictional archetype that embodies the characteristics, prior knowledge, motivations, and pain points of your target audience.
+A **Learner Persona** is a short, fictional archetype (profile) that embodies the characteristics, prior knowledge, motivations, and potential difficulties of your target audience.
 
 ![Anatomy of a Learner Persona](images/learner_persona.jpeg)
 
@@ -48,7 +48,6 @@ When planning your curriculum, consult your persona to resolve pedagogical debat
   $\rightarrow$ Look at Dr. Amina: No! She lacks root permissions and needs to solve a clinical problem, not learn software engineering. Provide a pre-built static binary or container.
 - *"Should we use a 15 GB human exome dataset?"*
   $\rightarrow$ Look at Dr. Amina: No! Her laptop has 8 GB RAM and her focus is bacterial AMR. Use a 2 MB locus-targeted bacterial micro-dataset.
-
 
 ## Stage 2: Formulating Measurable Learning Outcomes
 
@@ -90,7 +89,6 @@ Design your **summative challenge** or end-of-module practical first:
 - *Acceptable Evidence (Assessment):* Provide learners with a raw paired-end micro-dataset of an uncharacterized *Klebsiella* isolate. Give them 45 minutes to run QC, map reads to a reference contig, call variants, and report which antibiotic the strain is resistant to.
 - *Instructional Plan:* Now design the specific live coding sessions, faded examples, and command deconstructions needed to equip them for that challenge!
 
-
 ## Concept Mapping: Mapping Dependencies
 
 Bioinformatics learning is strictly hierarchical. You cannot teach read mapping before learners understand file paths; you cannot teach variant filtering before they understand VCF columns.
@@ -99,7 +97,7 @@ A **Concept Map** is a visual diagram connecting concepts with labeled relations
 
 ![Example concept map](images/concept_map.jpeg)
 
-If an instructor tries to teach quality trimming without verifying that students understand relative paths, the lesson will collapse into frantic troubleshooting of `No such file or directory` errors.
+If an instructor tries to teach quality trimming without verifying that students understand relative paths, the lesson will collapse into the troubleshooting of `No such file or directory` errors.
 
 
 ## Designing with Low-Resource Constraints as First Principles
@@ -113,8 +111,7 @@ In low-resource environments, constraints are not bugs; they are fundamental des
 | 3. Non-Root Lab Permissions | Tools must run in user space (static binaries, Micromamba environments, or Apptainer). |
 | 4. Modular Schedule | Break curriculum into self-contained 2-hour modules that can survive sudden power outages. |
 
-: Constraint-first curriculum audit
-
+: Constraint-first curriculum design
 
 ## Interactive Exercises for Future Trainers
 
@@ -123,7 +120,7 @@ These exercises will guide you through building a learner persona and mapping a 
 ::: {.callout-exercise}
 ## Creating a Contextualized Learner Persona
 
-You are tasked with designing a 3-day workshop titled *"Practical Pathogen Genomics for Outbreak Surveillance"* to be held at a public research institute in West Africa.
+You are tasked with designing a three day workshop titled *"Practical Pathogen Genomics for Outbreak Surveillance"* to be held at a public research institute in West Africa.
 
 Develop a complete **Learner Persona** for this course by specifying:
 
@@ -187,16 +184,15 @@ Apply the three stages of **Backward Design** to restructure this module:
 :::
 :::
 
-
 ## Summary
 
 ::: {.callout-tip}
 #### Key Points
 
-- **Begin with the End in Mind:** Backward Design guarantees that every lecture, tool, and practical directly serves measurable student competencies rather than software vendor lists.
-- **Anchor Design in Real Personas:** Create concrete learner personas that reflect real-world technical baselines, professional incentives, and institutional hardware constraints.
+- **Begin with the End in Mind:** Backward Design guarantees that every lecture, tool, and practical directly serves measurable student competencies rather than lists of commonly used software.
+- **Anchor Design in Real Personas:** Create learner personas that reflect real-world technical baselines, professional incentives, and institutional hardware constraints.
 - **Use Measurable Action Verbs:** Eliminate vague "zombie verbs" (understand, appreciate); use Bloom’s Taxonomy verbs (execute, diagnose, differentiate, validate) to define observable outcomes.
-- **Assess Before You Teach:** Design the summative challenge and evidence of mastery before drafting presentation slides.
+- **Assess Before You Teach:** Design the summative challenge and evidence of competence before drafting presentation slides.
 - **Map Dependencies Explicitly:** Use concept maps to diagnose prerequisite bottlenecks and prevent cognitive leaps in the classroom.
 - **Design for Constraints:** Treat limited bandwidth, low RAM, and lack of root permissions as primary architectural design parameters from day one.
 :::

@@ -16,7 +16,7 @@ title: What is Bioinformatics?
 
 At its core, **bioinformatics** is an interdisciplinary field that develops and applies computational, mathematical, and statistical methods to store, manage, analyse, and interpret biological data. 
 
-The term was coined in 1970 by Paulien Hogeweg and Ben Hesper to define "the study of informatic processes in biotic systems". Today, bioinformatics has evolved into an indispensable component of the biological sciences. It transforms vast amounts of raw data—such as nucleotide sequences, protein structures, and mass spectra—into actionable biological knowledge.
+The term was coined in 1970 by Paulien Hogeweg and Ben Hesper to define "the study of informatic processes in biotic systems". Today, bioinformatics has evolved into an indispensable component of the biological sciences. It transforms vast amounts of raw data, such as nucleotide sequences, protein structures, and mass spectra, into actionable biological knowledge.
 
 ![What is bioinformatics?](images/bioinformatics.jpeg)
 
@@ -36,13 +36,13 @@ In practice, these disciplines overlap heavily. A working bioinformatician frequ
 
 ## The Foundational Pillars of Bioinformatics
 
-To be an effective practitioner, and an effective trainer, one must recognise that bioinformatics is supported by three distinct pillars. An imbalance among these three pillars is one of the most common causes of difficulty for learners:
+To be an effective practitioner, and an effective trainer, you must recognise that bioinformatics is supported by three distinct pillars. An imbalance among these three pillars is one of the most common causes of difficulty for learners:
 
 1. **Biological Domain Knowledge:**
-   Bioinformatics is driven by biological questions. Without an understanding of molecular biology, experimental design, and the limitations of laboratory assays (e.g. library preparation biases, PCR duplicates, sequencing platform error profiles), computational analysis becomes an exercise in blindly running commands. As trainers, we must constantly tether computational steps back to the biological question: *Why are we trimming reads? What does an alignment score signify biologically?*
+   Bioinformatics is driven by biological questions. Without an understanding of molecular biology, experimental design, and the limitations of laboratory assays (e.g. library preparation biases, PCR duplicates, sequencing platform error profiles), computational analysis becomes an exercise in blindly running commands. As trainers, we must align computational steps back to the biological question: *Why are we trimming reads? What does an alignment score signify biologically?*
 
 2. **Computational and Software Skills:**
-   Biological data files are typically too large to open in spreadsheet applications like Microsoft Excel. Bioinformaticians rely on the Unix/Linux command-line environment, scripting languages (principally Python and R), file format standards (FASTQ, FASTA, SAM/BAM, VCF, GFF/GTF), version control (Git), and containerisation (Docker, Singularity/Apptainer). Mastery of these tools allows researchers to handle data systematically, automate multi-step analyses, and ensure reproducibility.
+   Biological data files are typically too large to open in spreadsheet applications like Microsoft Excel. Bioinformaticians rely on the Unix/Linux command-line environment, scripting languages (Python and R), file format standards (FASTQ, FASTA, SAM/BAM, VCF, GFF/GTF), version control (Git), and containerisation (Docker, Singularity/Apptainer). Mastery of these tools allows researchers to handle data systematically, automate multi-step analyses, and ensure reproducibility.
 
 3. **Statistical and Quantitative Rigour:**
    Modern 'omics technologies generate high-dimensional data where the number of measured features (e.g. 20,000 genes) far exceeds the number of biological replicates. Understanding concepts such as multiple testing correction (e.g. False Discovery Rate), normalisation strategies, batch effects, and statistical power is critical to prevent spurious discoveries.
@@ -50,10 +50,11 @@ To be an effective practitioner, and an effective trainer, one must recognise th
 
 ## Why Bioinformatics Matters in Low-Resource Settings
 
-Bioinformatics offers an unprecedented opportunity to democratise scientific discovery and public health surveillance, especially in low- and middle-income countries (LMICs):
+Bioinformatics offers us the opportunity to democratise scientific discovery and public health surveillance, especially in low- and middle-income countries (LMICs):
 
-### 1. Tackling Local Health and Agricultural Priorities
-Low-resource regions often bear the heaviest burdens of endemic infectious diseases (such as malaria, tuberculosis, cholera, HIV, and neglected tropical diseases), emerging epidemic outbreaks, antimicrobial resistance (AMR), and climate-induced food insecurity. 
+**1. Tackling Local Health and Agricultural Priorities**
+
+Low-resource regions often bear the heaviest burdens of endemic infectious diseases such as malaria, tuberculosis, cholera, HIV, and neglected tropical diseases, emerging epidemic outbreaks, antimicrobial resistance (AMR), and climate-induced food insecurity. 
 
 Locally driven bioinformatics empowers researchers and public health agencies to:
 
@@ -62,12 +63,14 @@ Locally driven bioinformatics empowers researchers and public health agencies to
 - Characterise local crop and livestock varieties to breed climate-resilient strains.
 - Catalogue and preserve regional biodiversity.
 
-### 2. Dismantling "Helicopter / Parachute Science"
+**2. Dismantling "Helicopter/Parachute Science"**
+
 Historically, many research initiatives in LMICs followed an extractive model: samples were collected locally, exported to institutions in high-income countries for sequencing and analysis, and published with minimal or purely nominal local participation. 
 
 Building local bioinformatics capacity flips this power dynamic. When local scientists possess the expertise to analyse and interpret their own data, they retain ownership of biological resources, drive the research agenda based on national priorities, and translate findings directly to local healthcare and agricultural policies.
 
-### 3. High Scientific Impact with Modest Capital Investment
+**3. High Scientific Impact with Modest Capital Investment**
+
 Building and maintaining wet laboratories requires continuous investments: specialized reagents, expensive consumables, reliable cold-chain storage, and costly equipment service contracts. 
 
 In contrast, bioinformatics leverages computational power, open-source software, and globally shared public repositories (e.g. NCBI, EBI, GISAID). A single computer with skilled analytical talent can conduct world-class discovery science, re-analyse published datasets, and generate publishable insights without requiring millions of dollars in laboratory infrastructure.
@@ -86,25 +89,27 @@ In contrast, bioinformatics leverages computational power, open-source software,
 
 While the promise of bioinformatics is vast, performing and teaching bioinformatics in resource-constrained environments presents unique practical hurdles. As an educator, your training design must directly account for these real-world constraints rather than ignoring them.
 
-### 1. Technical & Infrastructural Barriers
-- **Unreliable or High-Cost Internet Bandwidth:** Live downloads of multi-gigabyte reference genomes or raw read archives (FASTQ files) often fail, choke institutional connections, or incur high cellular data costs.
-- **Power Grid Instability:** Unscheduled power outages can corrupt ongoing pipeline runs and disrupt classroom sessions unless uninterruptible power supplies (UPS) or cloud-hosted sessions are used.
-- **Hardware Limitations:** Learners frequently bring personal laptops with modest specifications (e.g. 4–8 GB RAM, dual-core processors, limited disk space, 32-bit or older Windows systems), which cannot execute memory-heavy tools like standard genome aligners or de novo assemblers.
+**1. Technical and Infrastructural Barriers**
+
+- **Unreliable or high-Cost Internet Bandwidth:** Live downloads of large reference genomes or raw sequence data (FASTQ files) often fail, choke institutional connections, or incur high cellular data costs.
+- **Unreliable power supply:** Unscheduled power outages can terminate ongoing pipeline runs and disrupt classroom sessions unless uninterruptible power supplies (UPS) or cloud-hosted sessions are used.
+- **Hardware Limitations:** Learners frequently bring personal laptops with modest specifications (e.g. 4–8 GB RAM, dual-core processors, limited disk space, 32-bit or older Windows systems) which cannot execute memory-heavy tools like standard genome aligners or *de novo* assemblers.
 - **Absence of Local HPC Facilities:** Many universities and institutes lack dedicated High-Performance Computing clusters, system administrators, or stable server environments.
 
-### 2. Educational & Human Capital Barriers
-- **Curricular Silos:** Biological science curricula in many institutions rarely include foundational computer science, Linux command line, or programming. Trainees are often exposed to computation for the first time during postgraduate studies.
+**2. Educational & Human Capital Barriers**
+
+- **Unbalanced Curricular:** Biological science curricula in many institutions rarely include foundational computer science, Linux command line, or programming. Trainees are often exposed to computation for the first time during postgraduate studies.
 - **The "Lone Bioinformatician":** Many trainees return from workshops to departments where they are the sole individual with computational skills, lacking local peer support, code review, or experienced mentorship.
 - **High Attrition:** Skilled computational personnel are frequently recruited away by international organisations or private industry, leaving local institutions in a cycle of constant capacity rebuilding.
 
 ::: {.callout-important}
-## The "Double Hurdle" in Bioinformatics Training
-Adult learners from wet-lab or clinical backgrounds face two steep cognitive hurdles simultaneously:
+##  Bioinformatics training for wet lab and clinical scientists
+Learners from wet-lab or clinical backgrounds face two challenges to their learning simultaneously:
 
-1. **New Conceptual Complexity:** Learning abstract biological and statistical algorithms (e.g. de Bruijn graphs, hidden Markov models, Bayesian phylogenetics).
-2. **New Technical Modality:** Interacting with a computer via a text-only terminal, understanding absolute vs. relative file paths, handling syntax errors, and managing command flags.
+1. **Conceptual Complexity:** Learning abstract biological and statistical algorithms (e.g. de Bruijn graphs, hidden Markov models, Bayesian phylogenetics).
+2. **Technical Challenges:** Interacting with a computer via a text-only terminal, understanding absolute vs. relative file paths, handling syntax errors, and managing command flags.
 
-If both hurdles are presented at once with complex, multi-gigabyte files, cognitive overload occurs quickly. Effective training separates these hurdles and builds mastery incrementally.
+If both challenges are presented at once with complex, large files, mental overload occurs quickly. Effective training separates these challenges and builds competence incrementally.
 :::
 
 
@@ -116,10 +121,10 @@ As trainers, we must adopt **resource-aware pedagogy**:
 
 | Conventional Training Assumption | Resource-Aware Pedagogical Strategy |
 | :------------------------------- | :---------------------------------- |
-| "Download this 5 GB FASTQ dataset" | Use **micro-datasets** (subsampled, downsampled to a few thousand reads) that execute in seconds on a basic laptop. |
+| "Download this 1 GB FASTQ file" | Use **micro-datasets** (downsampled to a few thousand reads) that execute in seconds on a basic laptop. |
 | "Run this tool on our local HPC cluster" | Teach using lightweight environments: local containers, lightweight virtual machines, or portable web-based interfaces. |
 | "Install software via complex compilation" | Pre-configure environments (Conda/Mamba, Docker/Singularity) or provide self-contained sandboxes. |
-| "Follow this 50-step copy-paste script" | Focus on conceptual understanding: input files, parameter intuition, output interpretation, and troubleshooting. |
+| "Follow this 50-step copy-paste script" | Focus on conceptual understanding: input files, understanding parameters, output interpretation and troubleshooting. |
 | "Look up documentation online" | Provide offline-accessible documentation, cheatsheets, and pre-cached local resources. |
 
 
@@ -138,14 +143,14 @@ Think about the specific group of learners you plan to train in your institution
 4. **Actionable Adaptation:** Identify one potential point of failure during a live hands-on workshop and describe how you would design an offline fallback.
 
 ::: {.callout-hint}
-Consider common issues such as 30 students trying to download a 200 MB reference genome at the same minute, or Windows laptops lacking a native Unix environment.
+Consider common issues such as 30 students trying to download a 200 MB reference genome at the same time, or Windows laptops lacking a native Unix environment.
 :::
 
 ::: {.callout-answer}
 
 - **Hardware & OS:** In many LMIC settings, over 80% of learners use Windows laptops with 4–8 GB RAM. Recommended strategies include using WSL2 (Windows Subsystem for Linux), web-based platforms, or lightweight Linux live USBs.
 - **Connectivity:** Never rely on live downloads during a workshop. Trainers should pre-load all datasets, software packages (or container images), and documentation onto shared USB thumb drives or a local classroom server (e.g. Raspberry Pi or local Wi-Fi router).
-- **Prior Experience:** Most life-science learners have never used the terminal. Dedicate time to core navigation (`cd`, `ls`, `pwd`) and mental models of the filesystem before introducing bioinformatics tools.
+- **Prior Experience:** Most life-science learners have never used the terminal. Dedicate time to core navigation (`cd`, `ls`, `pwd`) and models of the filesystem before introducing bioinformatics tools.
 - **Offline Fallback:** Always maintain pre-computed intermediate and final output files. If an assembly or alignment tool fails or runs too slowly on a participant's laptop, they can immediately load the pre-computed output and continue with downstream interpretation without falling behind.
 :::
 :::
@@ -167,7 +172,7 @@ List at least **four distinct computational concepts or hidden assumptions** tha
 
 1. **Working Directory & File Paths:** The learner must understand that `sample1_R1.fastq.gz` must exist in the *current directory*, or else provide relative/absolute paths.
 2. **Command Syntax & Flags:** The learner must recognise that `-i`, `-I`, `-o`, `-O`, and `-w` are flags (arguments) modifying how `fastp` operates, and that case sensitivity matters (`-i` vs `-I`).
-3. **Line Continuations (`\`):** The backslash is a shell continuation character. Typing a space after the backslash causes syntax errors that bewilder novices.
+3. **Line Continuations (`\`):** The backslash is a shell continuation character. Typing a space after the backslash causes syntax errors that confuse novices.
 4. **Hardware Resources (`-w 4`):** The `-w 4` flag requests 4 worker threads. On a dual-core laptop, this can cause sluggishness or confusion about what "threads" mean.
 5. **Output Redirection & Formats:** The command produces both compressed sequence files (`.fastq.gz`) and an HTML report (`.html`), requiring an understanding of how to view each file type.
 
@@ -181,9 +186,9 @@ List at least **four distinct computational concepts or hidden assumptions** tha
 ::: {.callout-tip}
 #### Key Points
 
-- **Bioinformatics** is an intrinsically multidisciplinary science combining biological knowledge, computational skills, and statistical rigour to turn biological data into meaningful insights.
-- In low-resource settings, bioinformatics is a powerful equalizer—allowing impactful research, disease surveillance, and scientific independence with minimal wet-lab capital expenditure.
+- **Bioinformatics** is a multidisciplinary science combining biological knowledge, computational skills, and statistical rigour to turn biological data into meaningful insights.
+- In low-resource settings, bioinformatics is a powerful equalizer, allowing impactful research, disease surveillance, and scientific independence with minimal wet-lab capital expenditure.
 - Trainers must recognise the reality of their learners' environments: limited bandwidth, power instability, consumer-grade hardware, and minimal prior computational experience.
-- The **"double hurdle"** requires separating biological concepts from computational syntax, preventing cognitive overload in adult learners.
-- Effective training in resource-limited contexts relies on resource-aware approaches: **micro-datasets**, offline-first materials, scaffolded command-line learning, and pre-computed fallbacks.
+- Overcoming the conceptual and technical challenges presented to wet lab and clinical scientists requires separating biological concepts from computational syntax, preventing cognitive overload in learners.
+- Effective training in resource-limited contexts relies on resource-aware approaches: **micro-datasets**, offline materials, scaffolded command-line learning, and pre-computed outputs.
 :::

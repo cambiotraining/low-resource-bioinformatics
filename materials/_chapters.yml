@@ -1,6 +1,6 @@
 book:
   chapters:
-    - part: "How to Teach Bioinformatics"
+    - part: "Principles of Bioinformatics Training Design"
       chapters:
         - materials/02-intro_bioinformatics.md
         - materials/03-adult_learning.md
@@ -9,19 +9,17 @@ book:
         - materials/06-training_design.md
         - materials/07-lesson_planning.md
         - materials/08-assessments.md
-        - materials/08b-course_materials.md
-    - part: "What to Teach"
+        - materials/17b-responsible_ai.md
+    - part: "Building Practical & Scaleable Bioinformatics Training "
       chapters:
         - materials/09-open_resources.md
-        - materials/10-computational_concepts.md
-        - materials/11-practical_unix.md
         - materials/12-containerisation.md
         - materials/13-software_installation.md
         - materials/14-cloud_bioinformatics.md
         - materials/15-hpc.md
         - materials/16-micro_datasets.md
-        - materials/17-data_interpretation.md
-        - materials/17b-responsible_ai.md
+        - materials/08b-course_materials.md
+        - materials/20-case_studies.md
     - part: "Design and Sustain your Training"
       chapters:
         - materials/18-design_your_training.md

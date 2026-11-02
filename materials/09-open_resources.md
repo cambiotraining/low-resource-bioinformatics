@@ -16,7 +16,7 @@ title: Open Educational Resources
 
 ## Introduction: Why Reinvent the Wheel?
 
-Creating a modern, high-quality bioinformatics curriculum from scratch requires hundreds of hours of design, code testing, dataset curating, and slide preparation. For educators in low- and middle-income countries (LMICs)—who frequently balance heavy university teaching loads, clinical duties, wet-lab management, and administrative responsibilities—building an entire curriculum from the ground up is an overwhelming burden.
+Creating a modern, high-quality bioinformatics curriculum from scratch requires hundreds of hours of design, code testing, dataset curating, and slide preparation. For educators in low- and middle-income countries (LMICs), who frequently balance heavy university teaching loads, clinical duties, wet-lab management, and administrative responsibilities, building an entire curriculum from the ground up is an overwhelming burden.
 
 Fortunately, the global scientific community has embraced **Open Educational Resources (OER)**. Today, thousands of peer-reviewed, classroom-tested bioinformatics lessons, interactive workflows, and curated datasets are freely available online.
 
@@ -30,7 +30,7 @@ Fortunately, the global scientific community has embraced **Open Educational Res
 
 : Table 1: The Curriculum development dilemma
 
-The role of a modern bioinformatics educator in a resource-limited setting is not to author every line of training material from scratch. **Your superpower is curating, contextualizing, and delivering existing open resources to meet the precise needs of your local learners.**
+The role of a modern bioinformatics educator in a resource-limited setting is not to author every line of training material from scratch. **Your aim is curating, contextualizing, and delivering existing open resources to meet the precise needs of your local learners.**
 
 
 ## What Are Open Educational Resources? The 5Rs
@@ -111,24 +111,26 @@ Where can instructors find high-quality, pre-built training materials?
 
 : Table 4: Key bioinformatics OER resources
 
-### 1. The Carpentries (Software & Data Carpentry)
+**1. The Carpentries (Software & Data Carpentry)**
+
 - **Pedagogical Model:** Evidence-based, participatory live coding, formative assessment, and 2-day modular workshops.
 - **Why it matters:** The curriculum is maintained as open-source Markdown files on GitHub. Anyone can clone a lesson, modify it, and run a workshop freely.
 
-### 2. The Galaxy Training Network (GTN)
+**2. The Galaxy Training Network (GTN)**
+
 - **Pedagogical Model:** Complete end-to-end learning modules. Every tutorial includes a written step-by-step narrative, interactive Galaxy workflow, lecture slides, and direct links to public Zenodo datasets.
 - **Why it matters:** Eliminates command-line and local software hurdles entirely; tutorials can be run directly on free public Galaxy servers (`usegalaxy.org`, `usegalaxy.eu`).
 
-### 3. H3ABioNet Curricula
+**3. H3ABioNet Curricula**
+
 - Designed specifically for Pan-African training across distributed classrooms with mixed computing infrastructure.
 - Features standardized container images, pre-recorded lectures paired with local in-person teaching assistants, and bandwidth-efficient practicals.
 
-
-## The Contextualization Imperative: Adapting OER for LMICs
+## Adapting OER for LMICs
 
 Simply downloading an open curriculum created at a well-funded European or North American university and presenting it unaltered to an LMIC classroom often leads to failure.
 
-Western curricula frequently embed **hidden resource assumptions**:
+Curricula from high-resource settings frequently embed **hidden resource assumptions**:
 
 - *"Download this 15 GB reference file from NCBI during class."* (Classroom Wi-Fi collapses).
 - *"Run this Nextflow pipeline across 32 cores on your institutional cluster."* (Students only have 4 GB RAM laptops).
@@ -155,7 +157,8 @@ In low-resource venues, internet connections may drop completely for hours. A cr
 
 : Table 5: Offline archival tools
 
-### 1. Mirroring Online Tutorials with `wget`
+**1. Mirroring Online Tutorials with `wget`**
+
 You can download a complete static documentation site or tutorial with:
 ```bash
 wget \
@@ -168,20 +171,19 @@ wget \
 ```
 Students can open the downloaded `index.html` file in any browser without an internet connection.
 
-### 2. Distributing Pre-Rendered Course Books
-Because modern course templates (such as this Quarto framework) render into static HTML (`_site/`), instructors can zip the rendered `_site` directory and distribute it via USB drives. Students navigate the entire course book locally with functioning navigation bars, search indexing, and embedded images—completely offline.
+**2. Distributing Pre-Rendered Course Books**
 
+Because modern course templates (such as this Quarto framework) render into static HTML (`_site/`), instructors can zip the rendered `_site` directory and distribute it via USB drives. Students navigate the entire course book locally with functioning navigation bars, search indexing, and embedded images—completely offline.
 
 ## Contributing Back to the Commons
 
-Open science is not a one-way street. When educators in low-resource settings adapt global materials, their modifications are of immense value to the rest of the world.
+Open science is a collaborative endeavour. When educators in low-resource settings adapt global materials, their modifications are of immense value to the rest of the world.
 
 ### Ways to Give Back:
 1. **Share Your Micro-Datasets:** Upload your subsampled, localized datasets to public repositories like **Zenodo** or GitHub with a CC BY license and a DOI.
 2. **Submit Upstream Bug Fixes:** When you spot broken commands, typos, or outdated URLs in a Carpentries or Galaxy tutorial, submit a Pull Request on GitHub.
 3. **Publish Translations:** Translate open tutorials or command cheatsheets into regional languages (e.g. French, Spanish, Portuguese, Swahili, Arabic).
 4. **Share Course Webpages:** Use modern templates (like this Quarto course repository) to publish your adapted workshop materials publicly on GitHub Pages so other regional trainers can benefit.
-
 
 ## Interactive Exercises for Future Trainers
 
@@ -190,7 +192,7 @@ These exercises will test your ability to evaluate licenses, audit training mate
 ::: {.callout-exercise}
 ## Evaluating Open Licenses for Workshop Use
 
-You are organizing a 5-day regional bioinformatics workshop in East Africa. To cover venue rental, coffee breaks, and printed materials, your university charges participants a nominal registration fee of $30 USD.
+You are organizing a 5 day regional bioinformatics workshop in East Africa. To cover venue rental, coffee breaks, and printed materials, your university charges participants a nominal registration fee of $30 USD.
 
 You identify three online tutorials you would like to adapt and bundle into the course manual:
 
@@ -199,7 +201,7 @@ You identify three online tutorials you would like to adapt and bundle into the 
 - **Tutorial C:** Licensed under **CC BY-SA 4.0** (Attribution-ShareAlike).
 
 1. Can you legally download, modify, and print Tutorial A for your participants?
-2. Does charging a $30 cost-recovery registration fee violate the NonCommercial restriction of Tutorial B?
+2. Does charging a $30 cost-recovery registration fee violate the non-commercial restriction of Tutorial B?
 3. What legal obligation do you have if you adapt Tutorial C and distribute the revised manual to your students?
 
 ::: {.callout-hint}
@@ -213,7 +215,7 @@ Review the legal distinction between commercial exploitation and non-profit cost
    **No.** Without an explicit open license, international copyright law prohibits unauthorized copying, modification, or redistribution, even for non-profit education. You must contact the original authors to obtain written permission.
 
 2. **Tutorial B (CC BY-NC 4.0):**
-   **High legal ambiguity / Risk.** Creative Commons defines NonCommercial as *"not primarily intended for or directed towards commercial advantage or monetary compensation"*. While charging a nominal registration fee to cover catering/venue costs is considered cost-recovery by educators, some institutional legal teams interpret any fee as commercial. If possible, seek clarification from the author or choose a pure **CC BY** resource to avoid legal ambiguity.
+   **High legal ambiguity / Risk.** Creative Commons defines non-commercial as *"not primarily intended for or directed towards commercial advantage or monetary compensation"*. While charging a nominal registration fee to cover catering/venue costs is considered cost-recovery by educators, some institutional legal teams interpret any fee as commercial. If possible, seek clarification from the author or choose a pure **CC BY** resource to avoid legal ambiguity.
 
 3. **Tutorial C (CC BY-SA 4.0):**
    **Yes, you can freely use, adapt, and print it.** However, under the **ShareAlike (SA)** clause, your adapted manual must also be released under the exact same **CC BY-SA 4.0** license, and you must provide proper attribution (TASL) to the original creators.
@@ -221,7 +223,7 @@ Review the legal distinction between commercial exploitation and non-profit cost
 :::
 
 ::: {.callout-exercise}
-## Auditing and Contextualizing a Western OER Lesson
+## Auditing and Contextualizing a High-resource Setting OER Lesson
 
 You find a popular, well-written online tutorial on *"RNA-Seq Differential Expression Analysis"* published by an institute in the United States. 
 
@@ -256,11 +258,11 @@ Audit this lesson and describe three concrete modifications you must make to ada
 ::: {.callout-tip}
 #### Key Points
 
-- **Leverage Existing OER:** Avoid curriculum burnout by adapting battle-tested, peer-reviewed educational materials from global communities rather than writing courses from scratch.
+- **Leverage Existing OER:** Avoid curriculum burnout by adapting previously tested, peer-reviewed educational materials from global communities rather than writing courses from scratch.
 - **The 5Rs Define Openness:** True OER grants the rights to **Retain, Reuse, Revise, Remix, and Redistribute** content freely.
 - **Adopt FAIR Training Principles:** Ensure training materials are **Findable, Accessible, Interoperable, and Reusable** by using open formats (Markdown/Quarto), attaching DOIs, and providing clear metadata.
 - **Choose the Right License:** Favor **CC BY** (Attribution) for maximum educational flexibility; avoid **CC BY-ND** (NoDerivatives), which legally prohibits adapting or translating materials.
-- **Contextualization is Mandatory:** Never deliver Western curricula unexamined. Proactively strip bandwidth-heavy live downloads, right-size compute requirements for modest hardware, and replace generic model organisms with regionally relevant health and agricultural datasets.
+- **Contextualization is Mandatory:** Never deliver curricula from high-resources settings unexamined. Proactively strip bandwidth-heavy live downloads, right-size compute requirements for modest hardware, and replace generic model organisms with regionally relevant health and agricultural datasets.
 - **Plan for Offline Delivery:** Mirror websites (`wget --mirror`), package static HTML books, and distribute micro-datasets on USB flash drives to insulate courses from internet outages.
 - **Contribute Back:** Complete the open-science cycle by publishing your localized micro-datasets, exercises, and translations under open licenses with DOIs on platforms like Zenodo and GitHub.
 :::

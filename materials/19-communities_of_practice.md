@@ -16,7 +16,7 @@ title: Building Communities of Practice
 
 A familiar and heartbreaking cycle exists in global bioinformatics capacity development:
 
-1. Enthusiastic researchers attend an intensive 3-day bioinformatics workshop.
+1. Enthusiastic researchers attend an intensive three day bioinformatics workshop.
 2. They master Linux navigation, run quality trimming, and execute variant calling with flying colors.
 3. On the final afternoon, certificates are distributed amidst celebrations.
 4. **On "Day Four"**, participants return to their home institutions... and reality hits.
@@ -26,14 +26,13 @@ A familiar and heartbreaking cycle exists in global bioinformatics capacity deve
 | • Sole researcher using Linux | • Weekly peer troubleshooting group |
 | • Departmental PI demands instant results but provides no compute | • Shared scripts and container libraries across laboratories |
 | • First major bug causes project to stall for 6 months | • Safe space to ask questions without judgment |
-| • Within 1 year: Skills forgotten, data unanalyzed, money wasted | • Within 1 year: Confident analyst, co-author, and future trainer |
+| • Within one year: Skills forgotten, data unanalyzed, money wasted | • Within one year: Confident analyst, co-author, and future trainer |
 
-: Table 1: The "Day Four" trajectory
+: Table 1: The post-standard trajectory
 
 When trainees return to departments where no one else codes, they encounter the **"Lone Bioinformatician" Syndrome**. Without local code review, shared computing infrastructure, or technical mentorship, post-workshop skill attrition is near 100%.
 
 Training courses cannot end when the final slide is projected. **True capacity building requires cultivating local and regional Communities of Practice (CoPs) to sustain learning over the long haul.**
-
 
 ## The Community of Practice (CoP) Framework
 
@@ -46,7 +45,6 @@ A **Community of Practice** is not a formal administrative committee; it is a gr
 1. **The Domain:** A shared identity and commitment to solving genomic and computational biology problems.
 2. **The Community:** Mutual relationships, regular meetups, peer coaching, and psychological safety.
 3. **The Practice:** Developing a shared repertoire of resources, reusable Bash scripts, container images, local cheatsheets, and troubleshooting experience.
-
 
 ## Lightweight Formats for Local Communities
 
@@ -105,7 +103,7 @@ To build an enduring community:
 These exercises will guide you in designing a viable launch plan for an institutional community of practice.
 
 ::: {.callout-exercise}
-## Designing a 6-Month Hacky Hour Launch Plan
+## Designing a Six Month Hacky Hour Launch Plan
 
 You are returning to your home institution after completing this training course. You want to launch a bi-weekly "Bioinformatics Hacky Hour" to support your department's postgraduate students and junior researchers.
 
@@ -149,7 +147,7 @@ Focus on low barriers to entry: emphasize peer troubleshooting, informal discuss
 
 Your university department chair believes that informal coding clubs are a distraction from wet-lab benchwork: *"Our students should be in the lab running PCRs, not drinking coffee and staring at computers."*
 
-Craft a persuasive 3-point counter-pitch demonstrating how a local bioinformatics Community of Practice directly enhances departmental research output and funding competitiveness.
+Craft a persuasive three point counter-pitch demonstrating how a local bioinformatics Community of Practice directly enhances departmental research output and funding competitiveness.
 
 ::: {.callout-answer}
 ### The Departmental Pitch

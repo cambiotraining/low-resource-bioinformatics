@@ -1,5 +1,5 @@
 ---
-title: Adult Learning Principles
+title: Learning Principles
 ---
 
 ::: {.callout-tip}
@@ -7,9 +7,8 @@ title: Adult Learning Principles
 
 - Distinguish between pedagogy (child learning) and andragogy (adult learning), identifying why traditional teacher-centred models fail in professional bioinformatics training.
 - Apply Knowles’ six core assumptions of andragogy to the design and delivery of bioinformatics workshops.
-- Navigate the "Expert-Novice Paradox"—where learners possess deep domain expertise in biology or clinical medicine while simultaneously being complete novices in computing.
 - Mitigate imposter syndrome, terminal anxiety, and the psychological vulnerability adult scientists experience when learning computational tools.
-- Transition instructor practice from an authoritative "sage on the stage" (content transmitter) to an empathetic "guide on the side" (facilitator of learning).
+- Transition instructor practice from an authoritative content transmitter to an empathetic facilitator of learning.
 - Design learning activities centered on immediate problem-solving, local relevance, and active knowledge co-construction.
 :::
 
@@ -28,7 +27,7 @@ In professional training, this traditional teacher-centred approach frequently l
 
 Even though the term "pedagogy" is colloquially used in academic discourse as a general synonym for teaching, this course strictly adopts an **andragogical framework**.
 
-| PEDAGOGY (Child / Traditional) | ANDRAGOGY (Adult Learning) |
+| Pedagogy (Child / Traditional) | Andragogy (Adult Learning) |
 | :--- | :--- |
 | Learner is dependent on teacher | Learner is self-directed |
 | Teacher controls content & pace | Learner shares control & goals |
@@ -44,17 +43,20 @@ Even though the term "pedagogy" is colloquially used in academic discourse as a 
 
 Malcolm Knowles and colleagues (2015) identified core assumptions that distinguish adult learners. Understanding these assumptions allows bioinformatics instructors to design empathetic, highly effective training programs:
 
-### 1. The Need to Know
+**1. The Need to Know**
+
 Adults need to know **why** they need to learn something before undertaking to learn it. They resist learning things simply because an instructor says "it's on the syllabus."
 
 - *In Bioinformatics:* Never introduce a tool (e.g. `fastp` or `samtools`) with raw syntax alone. First demonstrate the problem: *"Here is an unaligned read file with adapter contamination. If we don't trim these sequences, 15% of our reads will fail to map to the reference genome, wasting your sequencing budget."*
 
-### 2. The Learner’s Self-Concept
-Adults possess a deep psychological need to be perceived as self-directed, autonomous individuals. When placed in situations where they are treated like passive schoolchildren or talked down to, they experience cognitive friction and resentment.
+**2. The Learner’s Self-Concept**
+
+Adults need to be perceived as self-directed, autonomous individuals. When placed in situations where they are treated like passive schoolchildren or talked down to, they may experience cognitive friction and resentment.
 
 - *In Bioinformatics:* Avoid rigid, lockstep dictation. Give learners autonomy over project choices, choice of example datasets, and space for exploratory debugging.
 
-### 3. The Role of Learner Experience
+**3. The Role of Learner Experience**
+
 Adults enter the classroom with a vast reservoir of prior professional and personal experience. This experience is a rich resource for learning, but it also carries entrenched mental models and cognitive biases.
 
 - *In Bioinformatics:* Tap into their wet-lab knowledge. An experienced molecular biologist already understands PCR amplification, primer design, and DNA denaturation. Connect computational steps directly to the physical benchwork they already master:
@@ -63,46 +65,27 @@ Adults enter the classroom with a vast reservoir of prior professional and perso
   - *Read alignment $\rightarrow$ Hybridization of primers.*
   - *PCR duplicates $\rightarrow$ Over-amplification on the thermal cycler.*
 
-### 4. Readiness to Learn
+**4. Readiness to Learn**
+
 Adults become ready to learn things when they experience a need to know them in order to cope with real-life situations, career requirements, or research challenges.
 
 - *In Bioinformatics:* Trainees rarely attend workshops for abstract curiosity; they attend because they have sequencing data sitting on a hard drive that they cannot analyze, or a grant review demanding computational validation. Align workshop exercises with their immediate professional needs.
 
-### 5. Orientation to Learning
+**5. Orientation to Learning**
+
 Children are subject-centred (e.g. "We are studying History or Mathematics today"). Adults are **problem-centred** or **task-centred**.
 
 - *In Bioinformatics:* Structure lessons around authentic scientific questions: *"Can we identify the transmission cluster in this hospital outbreak?"* rather than *"Chapter 3: The Syntax of BCFtools."*
 
-### 6. Motivation
+** 6. Motivation**
+
 While adults respond to external motivators (e.g. promotion, certificates, higher salary), the most potent motivators are internal: job satisfaction, self-esteem, curiosity, and the desire to overcome a research barrier.
-
-
-## The "Expert-Novice Paradox" in Bioinformatics Training
-
-One of the most complex psychological dynamics in bioinformatics workshops is the **Expert-Novice Paradox**:
-
-![The Expert-Novice Paradox](images/expert_novice.jpeg)
-
-Your adult learners are typically accomplished professionals: senior clinicians, postdoctoral researchers, university lecturers, or laboratory heads. In their laboratories, they are respected authorities. 
-
-When they sit in front of a Linux terminal and receive an error message as basic as `command not found` or `permission denied`, they suddenly feel reduced to complete incompetence. This triggers:
-
-- **Terminal Anxiety:** Fear that typing an incorrect command will crash or permanently erase their machine.
-- **Imposter Syndrome:** The belief that "everyone else in the room understands this except me."
-- **Silence and Withdrawal:** Refusing to raise hands or ask for help, preferring to fall behind silently rather than risk public embarrassment.
-
-::: {.callout-important}
-## Creating Psychological Safety
-As an instructor, explicitly acknowledge this paradox on the first morning:
-*"Every person in this room is an expert in their biological domain. Today, we are learning a new language. You will make syntax errors, and the computer will complain. Making syntax errors does not reflect your intelligence—it is the universal, inevitable process of learning to code. Let's normalize errors together."*
-:::
-
 
 ## Shifting Roles: From Teacher to Facilitator
 
 Applying andragogy requires redefining the instructor's professional identity:
 
-| THE TRADITIONAL TEACHER | THE LEARNING FACILITATOR |
+| The Traditional Teacher | The Learning Facilitator |
 | :--- | :--- |
 | "I hold the knowledge" | "We co-construct knowledge" |
 | Transmits fixed syllabus | Manages the learning process |
@@ -110,6 +93,7 @@ Applying andragogy requires redefining the instructor's professional identity:
 | Evaluates and grades students | Promotes self-evaluation |
 | Focuses on presentation skills | Focuses on relational & process design skills |
 
+: Table 1: Teacher versus facilitator
 
 Following Knowles *et al.* (2015), the facilitator prepares in advance an operational structure involving:
 
@@ -136,7 +120,7 @@ These exercises will challenge you to identify andragogical principles in action
 ::: {.callout-exercise}
 ## Transforming a Teacher-Centred Lecture
 
-You are reviewing an introductory lesson plan designed by a colleague for a 2-day variant-calling workshop for hospital microbiologists. 
+You are reviewing an introductory lesson plan designed by a colleague for a two day variant-calling workshop for hospital microbiologists. 
 
 The current lesson plan reads:
 
@@ -203,7 +187,6 @@ Professor K. visibly stiffens, crosses their arms, pushes their laptop away, and
 #### Key Points
 
 - **Andragogy Governs Adult Learning:** Adult learners are self-directed, bring vast reservoirs of domain experience, and learn best when knowledge is problem-centred, immediately applicable, and internally motivated.
-- **The Expert-Novice Paradox Requires Empathy:** Life-science researchers are domain experts who feel intense psychological vulnerability when reduced to novices in computational environments. Instructors must normalize errors and build psychological safety.
 - **Connect Computational Syntax to Wet-Lab Concepts:** Ground abstract command-line concepts in the physical biology they already understand (e.g. connecting quality scores to gel electrophoresis or PCR duplicates to over-cycling).
 - **Shift from Teacher to Facilitator:** Abandon the "sage on the stage" model. Successful trainers manage the learning environment, design authentic practical experiences, and facilitate active inquiry rather than delivering monologues.
 - **Maximize Relevance in Low-Resource Contexts:** Respect the high opportunity cost of adult professional training by using authentic local health and agricultural datasets that empower trainees to solve pressing regional challenges.

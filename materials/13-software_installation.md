@@ -5,7 +5,7 @@ title: Software Installation
 ::: {.callout-tip}
 #### Learning Objectives
 
-- Explain how operating systems discover and execute programs via the `$PATH` environment variable and file permissions.
+- Understand how operating systems discover and execute programs via the `$PATH` environment variable and file permissions.
 - Evaluate the spectrum of bioinformatics installation methods (static binaries, Conda/Mamba, language package managers, system packages, and source compilation) based on resource constraints.
 - Manage isolated computational environments using Mamba and Micromamba to prevent dependency conflicts and avoid memory-exhaustion crashes.
 - Deploy offline installation workflows (such as `conda-pack` and USB-distributed binary caches) in classrooms with limited or zero internet connectivity.
@@ -13,9 +13,9 @@ title: Software Installation
 - Design pre-course installation clinics and automated verification scripts to ensure zero classroom downtime on day one.
 :::
 
-## Introduction: The Installation Dilemma in Bioinformatics
+## Introduction: Bioinformatics Installation
 
-Few tasks induce as much anxiety in beginner bioinformaticians as installing software. Unlike consumer applications installed with a single click from an app store, bioinformatics tools often exist as command-line binaries, Python scripts, R packages, or raw C/C++ source code. 
+Installing bioinformatics software has traditionally been difficult and often frustrating. Unlike consumer applications installed with a single click from an app store, bioinformatics tools often exist as command-line binaries, Python scripts, R packages, or raw C/C++ source code. 
 
 In low-resource environments, software installation is compounded by three systemic hurdles:
 
@@ -25,16 +25,15 @@ In low-resource environments, software installation is compounded by three syste
 
 ![The workshop installation trap](images/installation_trap.jpeg)
 
-As an instructor, your goal is to equip learners with sustainable installation skills for their future research while safeguarding workshop instructional time from installation chaos.
-
+As an instructor, your goal is to provide learners with sustainable installation skills for their future research while safeguarding workshop instructional time from installation chaos.
 
 ## How the Operating System Finds Software: Demystifying `$PATH`
 
-Before teaching package managers, instructors must demystify how the operating system executes a command. Novice learners frequently encounter the error `command not found` and assume their installation failed, when in reality the executable simply resides in an unindexed folder.
+Before understanding package managers, you must understand how the operating system executes a command. You may frequently encounter the error `command not found` and assume the installation failed, when in reality the executable simply resides in an unindexed folder.
 
 ### The `$PATH` Environment Variable
 
-When a user types `fastp` and hits **Enter**, the operating system does not search the entire computer. Instead, it consults an environment variable called `$PATH`—a colon-separated list of directories where executable programs reside.
+When a user types `fastp` and hits **Enter**, the operating system does not search the entire computer. Instead, it consults an environment variable called `$PATH`, a colon-separated list of directories where executable programs reside.
 
 ```
 User types: fastp
@@ -88,7 +87,7 @@ Beginners often ask: *"Why do I have to type `./fastp` when I am inside the fold
 
 ## The Spectrum of Installation Methods
 
-Bioinformatics tools can be installed via several distinct modalities. Understanding the trade-offs allows trainers to choose the right approach for each setting:
+Bioinformatics tools can be installed via several distinct methods. Understanding the pros and cons of each allows trainers to choose the right approach for each setting:
 
 | Method | Ease for beginners | Root needed? | Offline-ready? |
 | :--- | :--- | :--- | :--- |
@@ -101,7 +100,7 @@ Bioinformatics tools can be installed via several distinct modalities. Understan
 
 : Table 1: Spectrum of installation methods
 
-### 1. Static and Pre-Compiled Binaries: The Low-Resource Champions
+## Static and Pre-Compiled Binaries
 
 A **statically linked binary** has all of its supporting libraries compiled directly into a single executable file. It has no external dependencies.
 
@@ -110,7 +109,6 @@ A **statically linked binary** has all of its supporting libraries compiled dire
   - Zero dependencies: no Python, Perl, or Conda required.
   - Extremely small download footprint (typically 5 MB – 25 MB).
   - Can be downloaded once, placed onto a USB drive, copied into any user's `~/.local/bin/` folder, and executed immediately.
-
 
 ## Modern Package Management: Conda, Mamba, and Micromamba
 
@@ -132,15 +130,15 @@ Classic `conda` was written in Python and uses a Boolean Satisfiability (SAT) so
 **Micromamba** goes one step further: it is a single, self-contained C++ executable (~10 MB) that requires **no existing Python installation** and can create complete bioinformatics environments from scratch.
 
 ::: {.callout-tip}
-## Best Practice: Always Teach Micromamba / Mamba
-When teaching package management in low-resource workshops, always recommend Mamba or Miniforge instead of the bloated Anaconda Distribution (which installs over 5 GB of unneeded data science libraries).
+## Best Practice: Always Use Micromamba / Mamba
+When dealing with package management in low-resource workshops, always recommend Mamba or Miniforge instead of the bloated Anaconda Distribution (which installs over 5 GB of unneeded data science libraries).
 :::
 
-### Essential Environment Hygiene: The "Never Base" Rule
+### Never Install Software into the Base Environment
 
-One of the most frequent support tickets in bioinformatics is a corrupted base environment. 
+One of the most software related issues that arises in bioinformatics is a corrupted base environment. 
 
-**Rule to teach your learners:** *Never install research tools into the `base` environment.* Always create dedicated, isolated environments for distinct projects:
+*Never install research tools into the `base` environment.* Always create dedicated, isolated environments for distinct projects:
 
 ```bash
 # Create a dedicated environment for bacterial genome assembly
@@ -156,7 +154,6 @@ mamba env list
 # Deactivate when finished
 mamba deactivate
 ```
-
 
 ## Managing Python and R Dependencies
 
@@ -185,7 +182,7 @@ BiocManager::install("DESeq2")
 ```
 
 ::: {.callout-warning}
-## The Hidden C Library Trap in R
+## Hidden C Libraries and R
 Many R bioinformatics packages (e.g. `DESeq2`, `RCurl`, `xml2`) are wrappers around underlying C/C++ libraries. Installing them from source in R on a clean Linux machine will fail if system libraries like `libxml2-dev`, `libcurl4-openssl-dev`, or `libssl-dev` are missing.
 
 *Trainer Advice:* If students are working on Linux or WSL, prefer installing R packages via Conda/Mamba (`mamba install r-deseq2`), which installs the underlying compiled system libraries automatically without requiring root permissions.
@@ -311,7 +308,7 @@ Check whether the directory containing `seqkit` is in the user's `$PATH`, and wh
 ::: {.callout-exercise}
 ## Selecting the Best Installation Strategy
 
-You are designing a 4-day metagenomics workshop for 20 master's students at an institute in East Africa. The institutional computer lab has 10 desktop machines running an old version of Ubuntu Linux without internet access. Students will bring 10 personal Windows laptops connected to an unstable 4 Mbps shared mobile Wi-Fi hotspot.
+You are designing a 4 day metagenomics workshop for 20 master's students at an institute in East Africa. The institutional computer lab has 10 desktop machines running an old version of Ubuntu Linux without internet access. Students will bring 10 personal Windows laptops connected to an unstable 4 Mbps shared mobile Wi-Fi hotspot.
 
 The course requires `fastp`, `megahit`, and `kraken2` (with an 8 GB mini-database).
 
@@ -338,7 +335,7 @@ For each of the two groups (Lab Desktops vs. Personal Windows Laptops), select t
 
 - **The `$PATH` Variable Controls Execution:** The operating system searches only directories listed in `$PATH`. Understanding paths and the executable bit (`chmod +x`) resolves the vast majority of "command not found" errors.
 - **Prefer Mamba/Micromamba Over Classic Conda:** Classic Conda is prone to memory exhaustion (OOM crashes) on 4 GB–8 GB laptops due to its heavy Python solver. Mamba and Micromamba solve environments rapidly with minimal RAM.
-- **Isolate Project Environments:** Enforce the "Never Base" rule—never install research tools directly into the base Conda environment.
+- **Isolate Project Environments:** Never install research tools directly into the base Conda environment.
 - **Static Binaries are Low-Resource Allies:** Standalone compiled binaries (e.g. `fastp`, `seqkit`) have zero dependencies, tiny download footprints, and can be circulated offline via USB.
 - **Bypass Classroom Bandwidth with Offline Packaging:** Tools like `conda-pack` and pre-built container images allow trainers to distribute complete, complex pipelines on USB flash drives without consuming a single megabyte of classroom internet.
 - **Never Waste Day One on Installation:** Run pre-course virtual installation clinics and provide automated pre-flight check scripts to ensure learners are ready to analyze data from minute one.

@@ -13,7 +13,7 @@ title: Cloud-based Bioinformatics
 - Design classroom cloud architectures (e.g. centralized web servers, GitHub Codespaces) that eliminate the need for student credit cards or local software installations.
 :::
 
-## Introduction: The Cloud Paradigm in Resource-Limited Settings
+## Introduction: Using Cloud Computing in Resource-Limited Settings
 
 In many low- and middle-income countries (LMICs), establishing and maintaining a traditional institutional high-performance computing (HPC) cluster is prohibitively challenging. Hardware procurement involves heavy import tariffs, maintenance requires specialized system administrators, and unconditioned server rooms are vulnerable to electrical brownouts, power spikes, and air-conditioning failures.
 
@@ -29,80 +29,86 @@ In many low- and middle-income countries (LMICs), establishing and maintaining a
 
 : Table 1: On-premises server versus cloud computing
 
-However, cloud computing is not an unalloyed silver bullet. For researchers in low-resource environments, the cloud introduces new, non-trivial friction points: financial barriers, international currency restrictions, high upload latencies, and data sovereignty considerations.
+However, cloud computing is not necessarily the answer to all your computational research problems. For researchers in low-resource environments, the cloud introduces new, non-trivial challenges: financial barriers, international currency restrictions, high upload latencies, and data sovereignty considerations.
 
 
 ## The Three Clouds: IaaS, PaaS, and SaaS in Bioinformatics
 
-When discussing "the cloud," educators often conflate very different service models. Helping learners distinguish these models clarifies what technical skills are required:
+When discussing "the cloud," it's important to understand the different service models. Understanding these models clarifies what technical skills are required:
 
 ![The cloud service pyramid](images/cloud_services.jpeg)
 
-### 1. Software as a Service (SaaS): Free Platforms like Galaxy
+**1. Software as a Service (SaaS): Free Platforms like Galaxy**
+
 - **Galaxy (`usegalaxy.org`, `usegalaxy.eu`, `usegalaxy.org.au`):** A web-based scientific analysis platform that provides thousands of bioinformatics tools behind a point-and-click GUI.
 - **Why it matters for training:** It is completely free for academic users, provides generous storage and compute quotas, requires zero command-line knowledge, and eliminates all local installation hurdles. Learners can run complex RNA-seq or variant calling workflows from a basic mobile browser or low-spec laptop.
 
-### 2. Platform as a Service (PaaS): Interactive Notebooks & Portals
+**2. Platform as a Service (PaaS): Interactive Notebooks & Portals**
+
 - **Google Colab & Kaggle Kernels:** Provide free, cloud-hosted Jupyter Notebook environments with access to free GPUs (NVIDIA T4s) and TPUs. They are ideal for teaching Python-based data science, machine learning in genomics, or structural biology tools like ColabFold.
 - **Biomedical Cloud Portals (Terra.bio, AnVIL):** Managed platforms designed specifically for genomic research, hosting massive public datasets alongside standardized workflow execution engines (e.g. WDL/Nextflow).
 
-### 3. Infrastructure as a Service (IaaS): Raw Compute Instances
+**3. Infrastructure as a Service (IaaS): Raw Compute Instances**
+
 - **Commercial Providers (AWS, Google Cloud, Microsoft Azure):** Users launch raw virtual machines (e.g. Amazon EC2, Google Compute Engine) running Ubuntu Linux.
 - **Full Autonomy:** The user has full root access to install any software, run custom pipelines, and configure CPU/RAM allocations freely.
-
 
 ## The Low-Resource Realities of Cloud Computing
 
 While cloud infrastructure eliminates local hardware maintenance, instructors teaching in or from low-resource regions must proactively address four systemic challenges:
 
-### 1. The Bandwidth Bottleneck: Upload vs. Download Asymmetry
+**1. The Bandwidth Bottleneck: Upload vs. Download Asymmetry**
+
 In many LMICs, internet connections are highly asymmetric: download speeds might reach 10–20 Mbps, while upload speeds hover around 1–2 Mbps or suffer high packet loss.
 
 - Uploading a 50 GB paired-end sequencing run from a local lab to an AWS S3 bucket over a 2 Mbps connection will take **more than 55 hours of uninterrupted connectivity**—an impossibility in areas with daily power shedding.
-- *The Solution:* The **Data Locality Principle** (see below).
+- *The Solution:* **Data Locality** (see below).
 
-### 2. Financial Friction and Currency Controls
+**2. Financial Friction and Currency Controls**
+
 Commercial cloud providers require billing via credit cards in US Dollars, Euros, or British Pounds.
 
 - Many public universities in developing nations lack institutional credit cards.
 - Strict national foreign currency restrictions or severe inflation can make international card payments difficult or unpredictable.
 - *The Solution:* Academic credit grants (e.g. AWS Cloud Credit for Research, Google Cloud Research Grants) and centralized institutional vouchers.
 
-### 3. "Bill Shock": The Cost Management Imperative
+**3. "Bill Shock" and Cost Management**
+
 Unlike physical hardware where costs are fixed at purchase, cloud instances accrue charges every second they exist.
 
 - Leaving a 32-core instance with 128 GB RAM (`r5.8xlarge`, costing ~$2.00/hour) running over an unattended weekend costs $100. Leaving it forgotten for a month costs **over $1,400 USD**—a catastrophic blow to a small research grant.
 - *The Solution:* Automated shutdown scripts, spot instances, and hard budget alarms.
 
-### 4. Data Sovereignty and Ethics
-Storing human genomic or pathogen sequence data on commercial cloud servers located in US or European data centers may conflict with national data protection regulations or local research ethics protocols. Trainers should educate learners on national health data laws and institutional compliance before migrating clinical data to commercial clouds.
+**4. Data Sovereignty and Ethics**
+
+Storing human genomic or pathogen sequence data on commercial cloud servers located in US or European data centers may conflict with national data protection regulations or local research ethics protocols. Trainers should understand national health data laws and institutional compliance before migrating clinical data to commercial clouds.
 
 
-## The Core Architectural Principle: Data Locality
+## Data Locality: Bring the Compute to the Data
 
 The single most important computational principle in cloud bioinformatics is: **Bring the compute to the data, not the data to the compute.**
 
-![The data locality principle](images/data_locality.jpeg)
+![The importance of data locality](images/data_locality.jpeg)
 
-Because public repositories (NCBI SRA, ENA, 1000 Genomes, GISAID mirrors) are already mirrored in major commercial cloud storage buckets (AWS Open Data, Google Cloud Public Datasets), launching an analysis inside that same cloud region enables blazing-fast internal transfer speeds (often exceeding 10 Gbps) at **zero data egress fees**.
-
+Because public repositories (NCBI SRA, ENA, 1000 Genomes, GISAID mirrors) are already mirrored in major commercial cloud storage buckets (AWS Open Data, Google Cloud Public Datasets), launching an analysis inside that same cloud region enables faster internal transfer speeds (often exceeding 10 Gbps) with **zero data transfer fees**.
 
 ## Cost Optimization: Making Cloud Affordable on a Grant
 
-Bioinformatics workloads are typically batch-oriented and fault-tolerant. Trainers must teach learners how to minimize expenditure:
+Bioinformatics workloads are typically batch-oriented and fault-tolerant. Thus, trainers must understand how to minimize expenditure:
 
-### 1. Spot and Preemptible Instances (70–90% Discounts)
+**1. Spot and Preemptible Instances (70–90% Discounts)**
+
 Cloud providers have excess server capacity. They auction this unused capacity as **Spot Instances** (AWS) or **Spot/Preemptible VMs** (GCP/Azure) at discounts of up to **90% off standard on-demand prices**.
 
 - *The Catch:* If the provider needs the capacity back, the instance can be reclaimed with a 2-minute warning.
 - *Why it fits bioinformatics:* For pipeline steps that write intermediate checkpoints, or batch jobs managed by workflow managers (Nextflow, Snakemake), spot instances offer immense cost savings.
 
-### 2. Hard Budget Alerts and Automated Kill Switches
+**2. Hard Budget Alerts and Automated Kill Switches**
+
 Never launch a cloud project without setting automated billing alerts:
 
 - **CloudWatch / GCP Budget Alerts:** Send immediate email and SMS alerts when spending reaches 50%, 80%, and 100% of a defined monthly threshold (e.g. $50).
 - **Auto-Shutdown Daemons:** Add a simple cron script that monitors CPU utilization; if CPU activity stays below 5% for 30 consecutive minutes, the VM automatically triggers `sudo poweroff`, stopping per-hour compute charges.
-
 
 ## Cloud Strategies for Delivering Bioinformatics Workshops
 
@@ -116,22 +122,24 @@ When designing a workshop in a low-resource setting, how should instructors prov
 
 : Table 2: Classroom cloud architectures
 
-### Approach 1: The Public Galaxy Network (Zero Cost, Zero CLI)
+**Approach 1: The Public Galaxy Network (Zero Cost, Zero CLI)**
+
 - Use established public Galaxy instances (`usegalaxy.eu` or `usegalaxy.org`).
 - Instructors can create **Galaxy Training Groups**, which grant students priority queue access and temporary quota increases during workshop hours.
 - Requires only a standard web browser on any device.
 
-### Approach 2: GitHub Codespaces (Free Browser-Based Linux)
+**Approach 2: GitHub Codespaces (Free Browser-Based Linux)**
+
 - GitHub provides every free user with **60 core-hours per month** of browser-based cloud computing.
 - Trainees open a repository in their browser and instantly receive a fully functional, containerized Linux terminal and VS Code editor.
 - Eliminates Windows/macOS compatibility issues while consuming minimal bandwidth (only keystrokes are transmitted across the internet).
 
-### Approach 3: The "Single Big Classroom Server"
+**Approach 3: The "Single Big Classroom Server"**
+
 - The instructor provisions a single high-memory cloud instance (e.g. 16 vCPUs, 64 GB RAM on an AWS EC2 instance).
 - The instructor creates individual user accounts for each student (`user01`, `user02`, etc.) with resource quotas.
 - Students connect via SSH or a browser-based terminal (`ttyd` or JupyterHub).
 - **Cost:** ~$1.50/hour total for the entire classroom of 25 students! The instructor stops the instance at the end of each day.
-
 
 ## Interactive Exercises for Future Trainers
 
@@ -142,8 +150,8 @@ These exercises will test your ability to design cost-effective cloud training w
 
 A postgraduate researcher at your institution receives a $500 cloud credit grant for their master's project analyzing 60 bacterial whole-genome sequencing isolates. They intend to spin up a high-memory AWS EC2 instance (`m5.4xlarge`, 16 vCPUs, 64 GB RAM, costing ~$0.77/hour on-demand).
 
-1. If the student finishes their analysis on Friday evening but forgets to terminate or stop the instance before leaving for a 3-week field trip, calculate the total unexpected expenditure.
-2. What three concrete safeguards would you teach this student to put in place *before* launching their first cloud machine?
+1. If the student finishes their analysis on Friday evening but forgets to terminate or stop the instance before leaving for a 3 week field trip, calculate the total unexpected expenditure.
+2. What three safeguards would you teach this student to put in place *before* launching their first cloud machine?
 3. How does stopping an instance differ from terminating an instance in terms of ongoing costs?
 
 ::: {.callout-hint}
@@ -172,7 +180,7 @@ Remember that stopping an instance halts per-second compute charges, but attache
 ::: {.callout-exercise}
 ## Choosing the Right Cloud Vehicle for a Training Audience
 
-You are leading a 3-day training event for 20 clinical microbiologists and hospital laboratory technicians in West Africa. The goal is to teach genomic surveillance of antimicrobial resistance (AMR) in *Klebsiella pneumoniae*. 
+You are leading a 3 day training event for 20 clinical microbiologists and hospital laboratory technicians in West Africa. The goal is to teach genomic surveillance of antimicrobial resistance (AMR) in *Klebsiella pneumoniae*. 
 
 - **Audience Profile:** Strong clinical microbiology background, zero prior command-line experience, using hospital-issued Windows laptops with locked-down administrative privileges.
 - **Venue:** Unstable mobile Wi-Fi (3–5 Mbps shared).

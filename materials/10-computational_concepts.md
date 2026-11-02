@@ -23,7 +23,6 @@ When suddenly introduced to the command line, automated pipelines, or cloud clus
 
 As trainers, especially in low-resource settings where hardware and bandwidth margins are thin, **we cannot afford to treat computational fundamentals as assumed knowledge**. Grounding our learners in clear mental models prevents panic, accelerates troubleshooting, and empowers them to become autonomous problem-solvers.
 
-
 ## Anatomy of a Computer: Hardware Mental Models
 
 Before asking learners to run heavy bioinformatics tools, they need an intuitive mental model of what a computer does when executing an analysis.
@@ -68,10 +67,12 @@ The transition from a graphical user interface (GUI) to a command-line interface
 ### The Mental Shift: From Spatial Pointing to Coordinate Addressing
 
 In a GUI (Windows Explorer, macOS Finder):
+
 - Users find files by visual browsing: clicking folders, looking at icons, or using a global search bar.
 - The computer hides the exact hierarchical path, displaying friendly labels like "My Documents" or "Desktop".
 
 In the Command Line:
+
 - The computer never guesses where a file is.
 - The user must explicitly declare **who** they are, **where** they currently stand in the filesystem hierarchy, and **where** the target file lives.
 

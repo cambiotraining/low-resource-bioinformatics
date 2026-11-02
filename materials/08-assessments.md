@@ -5,32 +5,30 @@ title: Assessment Strategies
 ::: {.callout-tip}
 #### Learning Objectives
 
-- Distinguish between **formative assessment** (assessment *for* learning) and **summative assessment** (assessment *of* learning) in professional bioinformatics workshops.
+- Distinguish between **formative assessment** (assessment *for* learning) and **summative assessment** (assessment *of* learning) in bioinformatics workshops.
 - Construct diagnostic **Multiple-Choice Questions (MCQs)** with deliberate distractors that reveal specific mental model misconceptions.
 - Design **Parson’s Problems** (jumbled code blocks) to evaluate workflow logic and command sequencing without syntax typing anxiety.
 - Deploy zero-bandwidth formative classroom assessment techniques (finger voting, mini-whiteboards, sticky notes) in connectivity-constrained venues.
 - Formulate authentic assessments that mirror real-world research tasks (e.g. multi-sample QC critique, AMR gene confirmation).
-- Develop pre- and post-workshop surveys to measure learner self-efficacy gains and evaluate long-term training impact.
+- Develop pre- and post-workshop surveys to measure learner gains and evaluate long-term training impact.
 :::
 
 ## Introduction: Why Assessment is Not About Grading
 
-In formal university education, assessment is often equated with examinations, letter grades, and high-stakes rankings. When teaching adult professionals—such as researchers, clinicians, and laboratory scientists—traditional testing is counterproductive. It induces anxiety, triggers imposter syndrome, and discourages exploratory experimentation.
+In formal university education, assessment is often equated with examinations, grades, and rankings. When teaching professionals, such as researchers, clinicians, and laboratory scientists, traditional testing is counterproductive. It induces anxiety, triggers imposter syndrome, and discourages exploratory experimentation.
 
-In short-format bioinformatics training, assessment serves a fundamentally different purpose: **it is a diagnostic navigation tool**.
+In short-format bioinformatics training, assessment serves a fundamentally different purpose: **it is a diagnostic tool**.
 
-| FORMATIVE ASSESSMENT<br>(Assessment FOR Learning) | SUMMATIVE ASSESSMENT<br>(Assessment OF Learning) |
+| Formative Assessment<br>(Assessment FOR Learning) | Summative Assessment<br>(Assessment OF Learning) |
 | :--- | :--- |
 | • Conducted DURING the lesson | • Conducted at the END of a course |
-| • Low-stakes / ungraded | • High-stakes (Grades, Ranking) |
+| • Low-stakes / ungraded | • High-stakes (grades, ranking) |
 | • Diagnoses mental model bugs | • Evaluates overall achievement |
 | • Informs immediate instruction | • Evaluates the curriculum |
-| • "The chef tasting the soup" | • "The customer eating the soup" |
 
 : Table 1: Formative versus summative assessment
 
-Formative assessment tells both the instructor and the learner: *Did that concept click? Do we share the same mental model? Can we move forward, or do we need to pause and clarify?*
-
+Formative assessment tells both the instructor and the learner: *Was that concept understood? Do we share the same mental model? Can we move forward, or do we need to pause and clarify?*
 
 ## Diagnostic Multiple-Choice Questions (MCQs)
 
@@ -64,6 +62,7 @@ D) `head -n 4 isolates.fasta`
 ::: {.callout-note}
 ## Peer Instruction (The Mazur Technique)
 When running an MCQ in class:
+
 1. Have students vote individually in silence.
 2. If 40–70% get it right, **do not give the answer away!**
 3. Tell students: *"Turn to your neighbor. Find someone who picked a different letter, and convince them why your answer is correct (2 minutes)."*
@@ -100,10 +99,9 @@ A Parson’s Problem eliminates syntax frustration by providing learners with th
 
 Parson’s problems test whether students understand the **data flow and logical dependencies** of a pipeline without letting syntax typos derail their progress.
 
-
 ## Zero-Bandwidth Classroom Assessment Techniques
 
-In low-resource venues, modern web polling applications (such as Mentimeter, Kahoot, or Slido) often fail because classroom Wi-Fi is overwhelmed or students lack cellular data bundles.
+In low-resource venues, modern web polling applications (such as Mentimeter, Kahoot, or Slido) often fail because classroom Wi-Fi is too slow or students lack cellular data bundles.
 
 Use these zero-bandwidth, low-tech alternatives:
 
@@ -121,10 +119,9 @@ Use these zero-bandwidth, low-tech alternatives:
 When conducting finger voting, have students hold their hand flat against their chest before displaying their fingers. This prevents slower students from looking around the room and copying the vote of the most confident student.
 :::
 
-
 ## Authentic Assessment in Bioinformatics
 
-Adult life scientists are motivated by authentic tasks that mirror their professional responsibilities. Replace artificial quizzes with **authentic computational deliverables**:
+Learners are motivated by authentic tasks that mirror their professional responsibilities. Replace artificial quizzes with **authentic computational deliverables**:
 
 | Traditional quiz | Authentic task |
 | :--- | :--- |
@@ -135,9 +132,8 @@ Adult life scientists are motivated by authentic tasks that mirror their profess
 : Table 3: Traditional versus authentic assessment
 
 ### Examples of Authentic Tasks:
-- **The Outbreak Report:** Give learners a VCF file of a clinical isolate; ask them to fill out a 3-field hospital report: (1) Pathogen species, (2) Detected AMR mutations, (3) Recommended treatment exclusion.
-- **The Quality Audit:** Provide three MultiQC reports; ask pairs to act as a core facility manager and decide: *"Which of these three sequencing batches should we accept, and which should we reject for re-sequencing?"*
-
+- **The Outbreak Report:** Give learners a VCF file of a clinical isolate; ask them to fill out a three field hospital report: (1) Pathogen species, (2) Detected AMR mutations, (3) Recommended treatment exclusion.
+- **The Quality Audit:** Provide three MultiQC reports; ask pairs to act as a core facility manager and decide: *"Which of these three sequencing batches should we accept, and which should we reject and send for re-sequencing?"*
 
 ## Measuring Impact: Pre- and Post-Workshop Surveys
 
@@ -149,7 +145,7 @@ Rather than testing trivia, measure changes in **learner self-efficacy** (confid
 > *"On a scale of 1 (Not at all confident) to 5 (Extremely confident), rate your ability to:"*
 
 > 1. *Navigate directories and inspect files using the Linux command line.*
-> 2. *Execute an automated quality-trimming pipeline on paired-end reads.*
+> 2. *Execute an automated quality-control pipeline on paired-end reads.*
 > 3. *Troubleshoot a syntax error in the terminal independently.*
 > 4. *Identify and filter technical artifacts in a variant call set.*
 
@@ -159,7 +155,6 @@ Follow up with participants months later to measure real-world translation:
 - *Have you applied the tools taught in the workshop to your research?*
 - *Have you analyzed new datasets that contributed to a thesis, paper, or clinical report?*
 - *Have you taught or shared these computational skills with colleagues at your home institution?*
-
 
 ## Interactive Exercises for Future Trainers
 
@@ -201,24 +196,24 @@ You are currently inside `/home/trainee/projects/`. Which command will successfu
 
 - **Option A:** Diagnoses the misconception that `/` (root) is the same as the user's home directory (`~`). The learner thinks `/data` is inside home, when in fact it is at the root level of the system.
 - **Option B:** Diagnoses a failure of spatial orientation. The learner assumes `data/` is a child folder inside their current directory (`projects/`), forgetting they must first step up into `trainee/`.
-- **Option D:** Diagnoses the "magic file" misconception common among GUI users—assuming the computer knows where `raw.fq` is regardless of directory coordinates.
+- **Option D:** Diagnoses the misconception common among GUI users: assuming the computer knows where `raw.fq` is regardless of directory coordinates.
 :::
 :::
 
 ::: {.callout-exercise}
-## Constructing an Authentic Capstone Assessment
+## Constructing an Authentic Final Assessment
 
-Design an **Authentic Assessment Activity** for the final afternoon of a 3-day bacterial genomics workshop in a low-resource setting.
+Design an **Authentic Assessment Activity** for the final afternoon of a three day bacterial genomics workshop in a low-resource setting.
 
 Specify:
 
 1. **The Scenario / Biological Persona.**
 2. **The Provided Materials / Micro-dataset (size and format).**
-3. **The Concrete Student Deliverable.**
+3. **The Student Deliverable.**
 4. **How this task assesses learning without relying on traditional written exams.**
 
 ::: {.callout-answer}
-### Authentic Capstone Assessment Blueprint
+### Authentic Final Assessment Blueprint
 
 1. **The Scenario:**
    *"You are the bioinformatics officer at the regional hospital. Two blood culture isolates of Salmonella enterica were obtained from patients in Ward 4. The hospital infection control committee wants to know: Are these two cases part of the same nosocomial transmission event, or independent community acquisitions?"*
@@ -229,14 +224,14 @@ Specify:
    - A pre-compiled USB bundle containing `fastp`, `bwa`, `samtools`, and `bcftools`.
 
 3. **Concrete Deliverable:**
-   Pairs submit a **1-page Outbreak Briefing Slip** containing:
+   Pairs submit a **one page Outbreak Briefing** containing:
    - Summary table of raw reads, post-trimming Q30 percentage, and mapping rate for both isolates.
    - Total number of high-quality Single Nucleotide Polymorphisms (SNPs) differentiating Patient A from Patient B.
    - An IGV screenshot showing at least one distinguishing variant.
    - Final Recommendation: Is this a hospital outbreak (typically $\le 5$ SNPs difference) or independent infections ($> 50$ SNPs)?
 
 4. **Pedagogical Rationale:**
-   This task evaluates read QC, alignment, indexing, variant calling, variant filtering, visual inspection, and clinical interpretation simultaneously. It mirrors authentic professional practice, engages adult intrinsic motivation, and requires zero traditional grading.
+   This task evaluates read QC, alignment, indexing, variant calling, variant filtering, visual inspection, and clinical interpretation simultaneously. It mirrors actual professional practice, engages adult intrinsic motivation, and requires no traditional grading.
 :::
 :::
 
@@ -246,11 +241,11 @@ Specify:
 ::: {.callout-tip}
 #### Key Points
 
-- **Assessment Drives Learning, Not Grading:** Use formative assessment during class as a real-time diagnostic navigation tool, not a high-stakes ranking system.
+- **Assessment Drives Learning, Not Grading:** Use formative assessment during class as a real-time diagnostic navigation tool, not a ranking system.
 - **Diagnostic MCQs Reveal Mental Models:** Design distractors where each wrong answer identifies a specific, known computational misconception (e.g. root vs. home, line count vs. sequence count).
 - **Use Peer Instruction:** Combine MCQs with Think-Pair-Share. When students debate differing answers with their neighbors, conceptual understanding increases dramatically.
 - **Parson’s Problems Eliminate Syntax Blocks:** Jumbled code exercises assess workflow logic and tool sequencing without letting syntax errors or typos derail beginners.
 - **Leverage Zero-Bandwidth Techniques:** Use finger voting, mini-whiteboards, and sticky-note bar charts when internet connectivity is unreliable.
-- **Prioritize Authentic Tasks:** Assess adult learners using realistic scientific scenarios (outbreak investigations, QC audits) that yield actionable biological deliverables.
+- **Prioritize Authentic Tasks:** Assess learners using realistic scientific scenarios (outbreak investigations, QC audits) that yield actionable biological deliverables.
 - **Measure Self-Efficacy:** Use pre- and post-workshop surveys to measure gains in learner confidence and track long-term research impact.
 :::

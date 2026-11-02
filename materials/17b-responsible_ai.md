@@ -1,5 +1,5 @@
 ---
-title: Responsible Use of AI in Bioinformatics
+title: Responsible Use of AI
 ---
 
 ::: {.callout-tip}
@@ -8,7 +8,7 @@ title: Responsible Use of AI in Bioinformatics
 - Evaluate the opportunities and limitations of Generative AI (LLMs) as an accessible "virtual mentor" for researchers in low-resource environments.
 - Diagnose common AI failure modes in computational biology, including flag hallucinations, deprecated syntax, and biological confabulations.
 - Construct context-rich prompts that specify software versions, file format schemas, and exact error traces.
-- Apply the **"Trust but Verify" Protocol** to rigorously cross-check AI outputs against official documentation and micro-dataset dry runs.
+- Use **"Trust but Verify"** to rigorously cross-check AI outputs against official documentation and micro-dataset dry runs.
 - Navigate data privacy, ethics, and genomic sovereignty boundaries when using commercial AI tools.
 - Establish a transparent, pedagogically sound Course AI Policy for bioinformatics workshops.
 :::
@@ -29,9 +29,9 @@ In many low-resource institutions, however, researchers work as **"lone bioinfor
 
 : Table 1: The promise of AI in low-resource contexts
 
-Generative Artificial Intelligence (Large Language Models such as Claude, Gemini, ChatGPT, and local open-source models) can serve as a transformative **equalizer**. It acts as a tireless, 24/7 personal tutor that can explain error messages, generate initial pipeline templates, and demystify Linux commands.
+Generative Artificial Intelligence (Large Language Models such as Claude, Gemini, ChatGPT, and local open-source models) can serve as a transformative **equalizer**. It acts as a tireless, personal tutor that can explain error messages, generate initial pipeline templates, and demystify Linux commands.
 
-However, like any powerful laboratory instrument, AI can produce catastrophic results if used without rigorous calibration, verification, and ethical awareness.
+However, like any powerful laboratory instrument, **AI can produce catastrophic results** if used without rigorous calibration, verification, and ethical awareness.
 
 
 ## High-Risk AI Failure Modes in Bioinformatics
@@ -47,26 +47,27 @@ Large language models are probabilistic word prediction engines, not biological 
 
 : Table 2: Common AI hazards in bioinformatics
 
-### 1. Flag Hallucinations: Mixing Tools
+**1. Flag Hallucinations: Mixing Tools**
+
 LLMs frequently merge options from competing tools. For example, when asked to write a BWA-MEM command, an AI might insert `--local` (a Bowtie2 flag) or `--very-sensitive`. In other cases, it will invent flags that sound intuitive (e.g. `fastp --min-depth 20`) but have never existed in the tool's source code.
 
-### 2. The Trap of Outdated Standards
+**2. The Trap of Outdated Standards**
+
 Because training data contains vast amounts of legacy forum discussions from 2012–2018, models frequently suggest obsolete bioinformatics practices:
 
 - Recommending `TopHat` instead of `HISAT2` or `STAR`.
 - Using deprecated GATK3 syntax (`-T UnifiedGenotyper`) instead of GATK4 (`HaplotypeCaller`).
 - Writing Python 2 scripts that fail on modern Linux operating systems.
 
-
 ## Data Privacy, Ethics, and Genomic Sovereignty
 
 Commercial cloud AI services (free and paid web chatbots) routinely log user prompts to refine future models. 
 
-Bioinformatics researchers must observe strict **ethical and regulatory red lines**:
+Bioinformatics researchers must observe strict **ethical and regulatory processes**:
 
 ::: {.callout-warning}
-## The Three Strict Red Lines for AI Prompts
-1. **Never Paste Patient Health Information (PHI):** Never include patient names, hospital record numbers, geographic identifiers, or identifiable clinical metadata.
+## Three Dont-dos for AI Prompts
+1. **Never Paste Patient Health Information:** Never include patient names, hospital record numbers, geographic identifiers, or identifiable clinical metadata.
 2. **Never Paste Unconsented Raw Human DNA Sequences:** Uploading human genomic reads or individual variant lists to commercial third-party cloud servers can violate national data protection laws (e.g. GDPR, national health ethics board approvals).
 3. **Never Expose Sensitive Pathogen Outbreak Data:** Pasting unreleased genome assemblies of high-consequence pathogens (e.g. Ebola, Marburg, novel avian influenza) into public chatbots before national public health clearance violates public health reporting protocols and national genomic sovereignty.
 :::
@@ -80,24 +81,24 @@ Bioinformatics researchers must observe strict **ethical and regulatory red line
 
 Vague prompts produce hallucinated, generic code. High-quality computational prompts provide explicit technical context:
 
-![The 5-point technical prompt formula](images/prompt_formula.jpeg)
+![Examples of high-quality technical prompts](images/prompt_formula.jpeg)
 
 
 ## The "Trust but Verify" Protocol
 
-Never copy-paste AI-generated code directly into your production research pipeline. Follow this four-step verification protocol:
+Never copy-paste AI-generated code directly into your training materials and code. Follow this four-step verification protocol:
 
 ![The 'Trust but verify' protocol](images/trust_verify.jpeg)
 
 
 ## Establishing a Course AI Policy
 
-As an instructor, you cannot ban AI—your students will inevitably use it. Instead, establish a transparent **Course AI Policy** that encourages productive use while safeguarding foundational learning:
+As an instructor, you cannot ban AI — your students will inevitably use it. Instead, establish a transparent **Course AI Policy** that encourages productive use while safeguarding foundational learning:
 
 | ✅ Permitted & Encouraged | ❌ Restricted |
 | :--- | :--- |
 | • Pasting cryptic terminal error messages for explanation | • Generating code during initial mental-model building exercises |
-| • Asking AI to explain Bash flags or regular expressions | • Submitting unverified AI code for capstone assessments |
+| • Asking AI to explain Bash flags or regular expressions | • Submitting unverified AI code for final assessments |
 | • Generating descriptive comments for complex code blocks | • Uploading real clinical or patient genomic datasets |
 | • Brainstorming alternative tools for a specific biological assay | • Copy-pasting without being able to explain what each flag does |
 
