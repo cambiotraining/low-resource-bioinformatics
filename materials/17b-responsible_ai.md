@@ -147,7 +147,7 @@ Check the official `bcftools filter` syntax. Does BCFtools use double-dash long 
 :::
 
 ::: {.callout-exercise}
-## Guiding a Trainee Suffering from "AI Dependency"
+## Guiding a Trainee Suffering from AI Dependency
 
 During the afternoon practical, you notice that a master's student has two windows open: the workshop tutorial and an AI chatbot. Every time an exercise appears, the student copies the prompt into the AI, copies the generated code, and pastes it into the terminal. 
 

@@ -153,6 +153,7 @@ You receive a draft lesson from a guest lecturer submitted as a plain Word docum
 > *"Students should know how to run BWA. BWA is a Burrows-Wheeler aligner. First you must index the genome with bwa index ref.fa. Be careful because indexing human takes 3 hours and 5 GB of RAM so use our small phage genome instead. After indexing, run bwa mem ref.fa r1.fq r2.fq > out.sam. Now answer this question: what happens if you forget to index first?"*
 
 Rewrite this paragraph into structured Quarto Markdown:
+
 1. Include a `callout-tip` with a measurable learning objective.
 2. Provide a clear code block with explanatory text.
 3. Include a `callout-warning` alerting learners to the memory/runtime trap.

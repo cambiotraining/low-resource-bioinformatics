@@ -179,7 +179,7 @@ If students have decent local connectivity to a local router (even without an ac
 These exercises will help you anticipate common student hurdles and plan resilient containerised training sessions.
 
 ::: {.callout-exercise}
-## Diagnosing the "Disappearing Results" Mystery
+## Diagnosing Disappearing Results
 
 During a hands-on sequencing analysis practical, a student runs read trimming using Docker on their laptop:
 

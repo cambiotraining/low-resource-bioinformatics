@@ -255,7 +255,7 @@ fi
 These exercises will challenge you to troubleshoot real-world installation failures and plan resilient teaching workflows.
 
 ::: {.callout-exercise}
-## Diagnosing the "Command Not Found" Paradox
+## Diagnosing "Command Not Found"
 
 During a morning practical, a student downloads the static binary for `seqkit` from GitHub. They place it in their home directory `~/Downloads/`. In their terminal, they type:
 

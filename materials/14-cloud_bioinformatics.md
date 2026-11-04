@@ -178,7 +178,7 @@ Remember that stopping an instance halts per-second compute charges, but attache
 :::
 
 ::: {.callout-exercise}
-## Choosing the Right Cloud Vehicle for a Training Audience
+## Choosing the Right Cloud Platform for Training
 
 You are leading a 3 day training event for 20 clinical microbiologists and hospital laboratory technicians in West Africa. The goal is to teach genomic surveillance of antimicrobial resistance (AMR) in *Klebsiella pneumoniae*. 
 
