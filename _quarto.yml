@@ -17,7 +17,7 @@ filters:
 
 exercises:
   number: true
-  hide-answers: false
+  hide-answers: true
 
 execute:
   freeze: auto
