@@ -77,7 +77,7 @@ Children are subject-centred (e.g. "We are studying History or Mathematics today
 
 - *In Bioinformatics:* Structure lessons around authentic scientific questions: *"Can we identify the transmission cluster in this hospital outbreak?"* rather than *"Chapter 3: The Syntax of BCFtools."*
 
-** 6. Motivation**
+**6. Motivation**
 
 While adults respond to external motivators (e.g. promotion, certificates, higher salary), the most potent motivators are internal: job satisfaction, self-esteem, curiosity, and the desire to overcome a research barrier.
 
