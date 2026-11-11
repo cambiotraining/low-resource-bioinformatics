@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>15&nbsp; Utilising Micro-datasets</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../materials/08b-course_materials.html" rel="next">
+<link href="../materials/15-hpc.html" rel="prev">
+<link href="../site_libs/quarto-contrib/quarto-project/cambiotraining/crit-format/img/university-of-cambridge-favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e61435445fcf3984a6ef2a52d56cc2fa.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../site_libs/quarto-contrib/quarto-project/cambiotraining/crit-format/img/university_crest_reversed.png" alt="" class="navbar-logo light-content">
+    <img src="../site_libs/quarto-contrib/quarto-project/cambiotraining/crit-format/img/university_crest_reversed.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Teaching Bioinformatics in Low-resource Settings</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/cambiotraining/low-resource-bioinformatics"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-brands:github" style="font-size: 1.25em;" aria-label="Icon github from fa6-brands Iconify.design set." title="CRIT GitHub"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://bsky.app/profile/bioinfocambs.bsky.social"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-brands:bluesky" style="font-size: 1.25em;" aria-label="Icon bluesky from fa6-brands Iconify.design set." title="CRIT Bluesky"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://genomic.social/@BioInfoCambs"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-brands:mastodon" style="font-size: 1.25em;" aria-label="Icon mastodon from fa6-brands Iconify.design set." title="CRIT Mastodon"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://bioinfotraining.bio.cam.ac.uk/"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:web" style="font-size: 1.25em;" aria-label="Icon web from mdi Iconify.design set." title="CRIT Website"></iconify-icon></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    
+    <style>
+    #version-dropdown {
+      list-style: none;
+    }
+    </style>
+    
+
+  <li id="version-dropdown" class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-versions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+      <span class="menu-text">Version:</span> <span class="version-badge" aria-hidden="true">Latest</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-versions">
+      <li>
+        <a class="dropdown-item" href="/low-resource-bioinformatics/index.html">
+          <span class="dropdown-text">Latest</span>
+        </a>
+      </li>
+    </ul>
+  </li>
+</nav>
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Utilising Micro-datasets</span></h1>
+        </a>     
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Section">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Welcome</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/01-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Principles of Bioinformatics Training Design</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/02-intro_bioinformatics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">What is Bioinformatics?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/03-adult_learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Learning Principles</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/04-training_strategies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Strategies for Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/05-effective_training.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Elements of Effective Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/06-training_design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Designing Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/07-lesson_planning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lesson Planning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/08-assessments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Assessment Strategies</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/17b-responsible_ai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Responsible Use of AI</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Building Practical &amp; Scaleable Bioinformatics Training</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/09-open_resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Open Educational Resources</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/12-containerisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Containerisation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/13-software_installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Software Installation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/14-cloud_bioinformatics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Cloud-based Bioinformatics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/15-hpc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Using an HPC or Server for Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/16-micro_datasets.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Utilising Micro-datasets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/08b-course_materials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Authoring and Publishing Course Materials</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/20-case_studies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Case Studies</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Design and Sustain your Training</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/18-design_your_training.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Design Your Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/19-communities_of_practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Building Communities of Practice</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Appendices</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../versions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Archived Versions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">15.1</span> Introduction</a></li>
+  <li><a href="#the-pedagogical-power-of-rapid-feedback-loops" id="toc-the-pedagogical-power-of-rapid-feedback-loops" class="nav-link" data-scroll-target="#the-pedagogical-power-of-rapid-feedback-loops"><span class="header-section-number">15.2</span> The Pedagogical Power of Rapid Feedback Loops</a></li>
+  <li><a href="#strategies-for-engineering-micro-datasets" id="toc-strategies-for-engineering-micro-datasets" class="nav-link" data-scroll-target="#strategies-for-engineering-micro-datasets"><span class="header-section-number">15.3</span> Strategies for Engineering Micro-datasets</a></li>
+  <li><a href="#the-cooking-show-model-staged-workflows" id="toc-the-cooking-show-model-staged-workflows" class="nav-link" data-scroll-target="#the-cooking-show-model-staged-workflows"><span class="header-section-number">15.4</span> The “Cooking Show” Model: Staged Workflows</a></li>
+  <li><a href="#managing-learner-expectations" id="toc-managing-learner-expectations" class="nav-link" data-scroll-target="#managing-learner-expectations"><span class="header-section-number">15.5</span> Managing Learner Expectations</a></li>
+  <li><a href="#interactive-exercises-for-future-trainers" id="toc-interactive-exercises-for-future-trainers" class="nav-link" data-scroll-target="#interactive-exercises-for-future-trainers"><span class="header-section-number">15.6</span> Interactive Exercises for Future Trainers</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">15.7</span> Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Utilising Micro-datasets</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Learning Objectives
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Explain the pedagogical imperative for micro-datasets in bioinformatics training, contrasting them with full-scale research datasets.</li>
+<li>Implement technical strategies to engineer micro-datasets (random downsampling, locus targeting, chromosome subsetting, and synthetic generation).</li>
+<li>Maintain paired-end read synchronization during subsampling using tools like <code>seqtk</code>.</li>
+<li>Combine live micro-dataset execution with pre-computed outputs (the “cooking show” model) to teach both pipeline mechanics and downstream biological interpretation.</li>
+<li>Diagnose and manage learner expectations regarding algorithm runtimes, depth of coverage, and assembly fragmentation.</li>
+<li>Package lightweight data bundles that can be distributed instantly over slow networks, mobile data, or USB drives.</li>
+</ul>
+</div>
+</div>
+<section id="introduction" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">15.1</span> Introduction</h2>
+<p>In bioinformatics research, bigger is usually better. Scientists seek deep coverage, large sample cohorts, and whole-genome sequencing (WGS) datasets to maximize statistical power.</p>
+<p>However, in <strong>training</strong>, particularly in resource-constrained classrooms, using full-scale research data is one of the most common causes of teaching failure.</p>
+<table class="caption-top table">
+<caption>Table 1: Full-scale research data versus micro-datasets</caption>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Full-scale research data</th>
+<th style="text-align: left;">Micro-dataset</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">• 40 GB paired-end FASTQ files</td>
+<td style="text-align: left;">• 15 MB subsampled FASTQ files</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">• Requires 4–8 hours to download</td>
+<td style="text-align: left;">• Downloads in 3 seconds / USB copy</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">• Requires 32–64 GB RAM (HPC only)</td>
+<td style="text-align: left;">• Runs in 350 MB RAM (any laptop)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">• Pipeline runs for 3.5 hours</td>
+<td style="text-align: left;">• Pipeline runs in 25 seconds</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">• Trainees stare at a frozen screen and lose focus</td>
+<td style="text-align: left;">• Instant feedback, iteration, and active learning</td>
+</tr>
+</tbody>
+</table>
+<p>When an alignment or assembly step takes two hours to run during class:</p>
+<ol type="1">
+<li><strong>Instruction halts:</strong> The trainer has nothing to demonstrate while the computer crunches numbers.</li>
+<li><strong>Errors are catastrophic:</strong> If a student misplaces a flag or mistypes a file path, they only discover the error after two hours of waiting.</li>
+<li><strong>Hardware collapses:</strong> Student laptops run out of RAM, crash, or overheat, derailing the workshop.</li>
+</ol>
+<p>A <strong>micro-dataset</strong> is a deliberately engineered, downscaled dataset that preserves the exact format, structural integrity, and biological signatures of real-world data, but executes in <strong>seconds or a few minutes</strong> on modest consumer hardware.</p>
+</section>
+<section id="the-pedagogical-power-of-rapid-feedback-loops" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="the-pedagogical-power-of-rapid-feedback-loops"><span class="header-section-number">15.2</span> The Pedagogical Power of Rapid Feedback Loops</h2>
+<p>In adult learning theory, skill acquisition relies on <strong>tight feedback loops</strong>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/feedback_loops.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Rapid feedback loops"><img src="images/feedback_loops.jpeg" class="img-fluid figure-img" alt="Rapid feedback loops"></a></p>
+<figcaption>Rapid feedback loops</figcaption>
+</figure>
+</div>
+<p>Micro-datasets transform bioinformatics from a passive waiting game into an active experimental laboratory. Trainees can experiment with parameter tuning, such as comparing assembly results with different k-mer lengths or trimming thresholds—and observe the consequences immediately.</p>
+</section>
+<section id="strategies-for-engineering-micro-datasets" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="strategies-for-engineering-micro-datasets"><span class="header-section-number">15.3</span> Strategies for Engineering Micro-datasets</h2>
+<p>There are four primary methodologies for creating high-quality micro-datasets. Each method serves different biological and computational learning objectives:</p>
+<table class="caption-top table">
+<caption>Table 2: Micro-dataset engineering strategies</caption>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Strategy</th>
+<th style="text-align: left;">How it works</th>
+<th style="text-align: left;">Best for teaching</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1. Random downsampling</td>
+<td style="text-align: left;">Subsample a small fraction of reads</td>
+<td style="text-align: left;">Read QC, adapter trimming, fast mapping verification</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2. Locus-specific extraction</td>
+<td style="text-align: left;">Extract reads mapping to 1 gene</td>
+<td style="text-align: left;">Variant calling, AMR gene detection, coverage analysis</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3. Chromosome / contig slicing</td>
+<td style="text-align: left;">Use Chr21/22 or a small plasmid</td>
+<td style="text-align: left;">Human genetics, eukaryotic RNA-seq, genome browsers</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4. Synthetic in silico simulation</td>
+<td style="text-align: left;">Generate reads with known errors</td>
+<td style="text-align: left;">Teaching error profiles, ground-truth benchmarking</td>
+</tr>
+</tbody>
+</table>
+<p><strong>1. Random Downsampling with <code>seqtk</code></strong></p>
+<p>The simplest approach is randomly sampling a small fraction of reads (e.g.&nbsp;50,000 reads out of 5,000,000).</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Paired-End Synchronization
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In paired-end sequencing, Read 1 (<code>_R1.fq</code>) and Read 2 (<code>_R2.fq</code>) must appear in the exact same sequence order line-by-line. If you randomly sample <code>R1</code> and <code>R2</code> independently with different random seeds, the read pairs will be mismatched, and downstream aligners will fail with <code>mate pair missing</code> errors.</p>
+<p><strong>Rule:</strong> Always use a fixed random seed (<code>-s 100</code>) when sampling paired reads:</p>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install seqtk via Conda or static binary</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Subsample exactly 20,000 read pairs using a fixed seed (-s 100)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">seqtk</span> sample <span class="at">-s</span> 100 raw_R1.fastq.gz 20000 <span class="kw">|</span> <span class="fu">gzip</span> <span class="op">&gt;</span> micro_R1.fastq.gz</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">seqtk</span> sample <span class="at">-s</span> 100 raw_R2.fastq.gz 20000 <span class="kw">|</span> <span class="fu">gzip</span> <span class="op">&gt;</span> micro_R2.fastq.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>2. Locus-Specific Extraction: Real Biology in Miniature</strong></p>
+<p>Random downsampling reduces coverage across the whole genome, which can make <em>de novo</em> assembly fragmented or variant calling under-powered.</p>
+<p>A more elegant technique is <strong>locus-specific extraction</strong>:</p>
+<ol type="1">
+<li>Map full-scale sequencing reads against a reference genome.</li>
+<li>Extract only the reads that align to a specific gene of interest (e.g.&nbsp;the 4.5 kb <em>rpoB</em> gene in <em>Mycobacterium tuberculosis</em> responsible for rifampicin antibiotic resistance).</li>
+<li>Convert those mapped reads back into raw FASTQ format.</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Extract reads overlapping the rpoB gene coordinates (Chromosome: 759,807 - 763,325)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-b</span> full_alignment.bam <span class="st">"Chromosome:759807-763325"</span> <span class="op">&gt;</span> rpoB_region.bam</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Extract matched pairs and convert back to FASTQ</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> collate <span class="at">-u</span> <span class="at">-O</span> rpoB_region.bam <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> fastq <span class="at">-1</span> micro_rpoB_R1.fq.gz <span class="at">-2</span> micro_rpoB_R2.fq.gz <span class="at">-</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em>The Result:</em> The micro-dataset is under 2 MB in size, but retains <strong>80× depth of coverage</strong> over the target gene! Trainees can run QC, alignment, and variant calling in 15 seconds, and successfully detect the clinical drug-resistance mutation.</p>
+<p><strong>3. Slicing Reference Genomes: Small Model Organisms</strong></p>
+<ul>
+<li>When teaching eukaryotic genomics, never use the full 3.1 GB human reference genome. Use human <strong>Chromosome 22</strong> or <strong>Chromosome 21</strong>, or a 2 Mb region.</li>
+<li>When teaching bacterial genomics, use a small plasmid (e.g.&nbsp;50 kb) or viral genome (e.g.&nbsp;SARS-CoV-2, 29.9 kb). A complete SARS-CoV-2 genome can be assembled <em>de novo</em> using SPAdes in under 45 seconds on an ordinary laptop.</li>
+</ul>
+<p><strong>4. In Silico Synthetic Datasets</strong></p>
+<p>Using simulators like <strong>Badread</strong> (for Oxford Nanopore) or <strong>InSilicoSeq / ART</strong> (for Illumina) can generate synthetic reads containing deliberate, ground-truth biological variants or quality anomalies:</p>
+<ul>
+<li>A dataset with a known 5 bp deletion to teach variant validation.</li>
+<li>A dataset with synthetic adapter contamination to teach trimming.</li>
+</ul>
+</section>
+<section id="the-cooking-show-model-staged-workflows" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="the-cooking-show-model-staged-workflows"><span class="header-section-number">15.4</span> The “Cooking Show” Model: Staged Workflows</h2>
+<p>A common question from trainers is: <em>“If we use micro-datasets, how do we teach downstream topics that require full-scale data (such as differential expression statistical power, PCA plots, or large phylogenetic trees)?”</em></p>
+<p>The solution is the <strong>“Cooking Show” pedagogical technique</strong>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/cooking_show.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="The cooking show pedagogical model"><img src="images/cooking_show.jpeg" class="img-fluid figure-img" alt="The cooking show pedagogical model"></a></p>
+<figcaption>The cooking show pedagogical model</figcaption>
+</figure>
+</div>
+<p>This model provides the best of both worlds:</p>
+<ol type="1">
+<li><strong>Mechanical Transparency:</strong> Learners experience the real command-line execution and inspect intermediate files.</li>
+<li><strong>Biological Authenticity:</strong> Downstream interpretation is performed on statistically robust, full-scale datasets.</li>
+</ol>
+</section>
+<section id="managing-learner-expectations" class="level2" data-number="15.5">
+<h2 data-number="15.5" class="anchored" data-anchor-id="managing-learner-expectations"><span class="header-section-number">15.5</span> Managing Learner Expectations</h2>
+<p>When teaching with micro-datasets, instructors must be transparent with learners about what is happening behind the scenes:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Essential Classroom Communication
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Always explain to your learners:</p>
+<ul>
+<li><em>“We are running this on a subsampled micro-dataset containing 30,000 reads so that our laptops can finish the calculation in 20 seconds.”</em></li>
+<li><em>“When you return to your laboratory and run this exact same command on a 40-million-read whole-genome dataset, the syntax and logic will be identical, but it will require 16 GB of RAM and 4 hours on your institutional server or HPC cluster.”</em></li>
+</ul>
+</div>
+</div>
+<p>If you fail to clarify this, learners may develop unrealistic expectations, assuming full-scale bioinformatics pipelines take 30 seconds, or become baffled when their research datasets fail to run on a personal laptop.</p>
+</section>
+<section id="interactive-exercises-for-future-trainers" class="level2" data-number="15.6">
+<h2 data-number="15.6" class="anchored" data-anchor-id="interactive-exercises-for-future-trainers"><span class="header-section-number">15.6</span> Interactive Exercises for Future Trainers</h2>
+<p>These exercises will help you practice subsampling data correctly and structuring staged training lessons.</p>
+<div class="callout callout-style-default callout-exercise no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Exercise</span>Exercise 1 - Subsampling Paired-End Reads Safely
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout-exercise">
+<p>You have a 12 GB paired-end FASTQ dataset (<code>patient_R1.fastq.gz</code> and <code>patient_R2.fastq.gz</code>) from an outbreak investigation. You want to create a lightweight micro-dataset of exactly 25,000 read pairs for an introductory quality control practical.</p>
+<ol type="1">
+<li>Write the exact command-line syntax using <code>seqtk</code> to subsample this dataset.</li>
+<li>Why is the <code>-s</code> flag mandatory when generating paired-end training sets?</li>
+<li>How can you verify that your resulting files are properly synchronized and have the exact same line count?</li>
+</ol>
+<div class="callout callout-style-default callout-hint no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hint</span>Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="callout-hint">
+<p>Recall that a standard FASTQ read consists of 4 lines, and both files must share the exact same random sampling sequence.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="subsampling-protocol-verification" class="level3 callout-answer" data-number="15.6.1">
+<h3 data-number="15.6.1" class="anchored" data-anchor-id="subsampling-protocol-verification"><span class="header-section-number">15.6.1</span> Subsampling Protocol &amp; Verification</h3>
+<ol type="1">
+<li><p><strong>Exact Commands:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subsample exactly 25,000 reads from R1 and R2 using identical seed 42</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">seqtk</span> sample <span class="at">-s</span> 42 patient_R1.fastq.gz 25000 <span class="kw">|</span> <span class="fu">gzip</span> <span class="op">&gt;</span> micro_R1.fastq.gz</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">seqtk</span> sample <span class="at">-s</span> 42 patient_R2.fastq.gz 25000 <span class="kw">|</span> <span class="fu">gzip</span> <span class="op">&gt;</span> micro_R2.fastq.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Why <code>-s</code> is Mandatory:</strong> The <code>-s</code> flag specifies the pseudo-random number generator seed. If you omit <code>-s</code> (or use two different seeds), <code>seqtk</code> will select a different random set of reads from <code>R1</code> than from <code>R2</code>. The pairs will become de-synchronized, breaking downstream tools like <code>bwa</code> or <code>fastp</code>.</p></li>
+<li><p><strong>Verification Command:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check that both files have exactly 100,000 lines (25,000 reads × 4 lines)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">zcat</span> micro_R1.fastq.gz <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">zcat</span> micro_R2.fastq.gz <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Check that the first read header matches between both files</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">zcat</span> micro_R1.fastq.gz <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 1</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">zcat</span> micro_R2.fastq.gz <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ol>
+</section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-exercise no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Exercise</span>Exercise 2 - Designing a Locus-Specific Training Dataset
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout-exercise">
+<p>You are designing a 2-hour practical on detecting antimicrobial resistance (AMR) mutations in <em>Staphylococcus aureus</em>.</p>
+<ul>
+<li><strong>The Problem:</strong> Full-genome alignment and variant calling takes 45 minutes per student, and the classroom laptops have only 4 GB RAM.</li>
+<li><strong>The Target:</strong> The <em>mecA</em> gene (which confers methicillin resistance / MRSA).</li>
+</ul>
+<p>Design a micro-dataset strategy that allows learners to run read alignment and variant calling live during class in under 2 minutes:</p>
+<ol type="1">
+<li>What reference sequence should you provide to the learners?</li>
+<li>What reads should be included in the micro-dataset?</li>
+<li>What biological lesson can still be authentically demonstrated despite the tiny data footprint?</li>
+</ol>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="micro-dataset-design" class="level3 callout-answer" data-number="15.6.2">
+<h3 data-number="15.6.2" class="anchored" data-anchor-id="micro-dataset-design"><span class="header-section-number">15.6.2</span> Micro-Dataset Design</h3>
+<ol type="1">
+<li><p><strong>Reference Sequence:</strong> Provide either a small 10 kb reference contig containing the <em>mecA</em> gene cassette (SCC<em>mec</em>) or a mini-reference FASTA containing only the <em>mecA</em> coding sequence and flanking promoters, rather than the entire 2.8 Mb <em>S. aureus</em> genome.</p></li>
+<li><p><strong>Read Selection:</strong> Extract reads from an authentic MRSA isolate that specifically map to the <em>mecA</em> locus at ~50× coverage (~2,000 paired-end reads total, resulting in a compressed FASTQ file under 300 KB).</p></li>
+<li><p><strong>Authentic Biological Lesson:</strong></p>
+<ul>
+<li>Trainees map the reads against the <em>mecA</em> cassette in 10 seconds.</li>
+<li>They run <code>samtools depth</code> or inspect alignments in IGV to confirm coverage.</li>
+<li>They execute variant calling to identify the specific single nucleotide polymorphism (SNP) associated with resistance.</li>
+<li><em>Result:</em> Full biological authenticity, zero classroom downtime, zero memory crashes.</li>
+</ul></li>
+</ol>
+</section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="summary" class="level2" data-number="15.7">
+<h2 data-number="15.7" class="anchored" data-anchor-id="summary"><span class="header-section-number">15.7</span> Summary</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Key Points
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Micro-datasets Prioritize Active Learning:</strong> By shrinking datasets to megabytes, algorithms execute in seconds, allowing students to experiment, make mistakes, and receive instant feedback.</li>
+<li><strong>Eliminate Bandwidth &amp; Hardware Barriers:</strong> Micro-datasets run on 4 GB RAM laptops, require zero HPC infrastructure, and can be shared instantly via USB thumb drives or mobile internet.</li>
+<li><strong>Maintain Paired-End Synchronization:</strong> Always use fixed seeds (<code>seqtk sample -s 100</code>) when downsampling paired-end reads to ensure Read 1 and Read 2 stay aligned.</li>
+<li><strong>Locus-Specific Extraction Preserves Depth:</strong> Extracting reads covering a single gene of interest (e.g.&nbsp;<em>rpoB</em> or <em>mecA</em>) maintains realistic depth of coverage for authentic variant calling while keeping file sizes under 2 MB.</li>
+<li><strong>Combine with the “Cooking Show” Model:</strong> Run micro-datasets live to teach command mechanics, then transition to pre-computed full-scale outputs for statistically rigorous downstream interpretation.</li>
+<li><strong>Communicate Context Clearly:</strong> Always remind students that real research datasets will require more time and compute, ensuring they understand the scaling differences.</li>
+</ul>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
+  <div class="nav-page nav-page-previous">
+      <a href="../materials/15-hpc.html" class="pagination-link" aria-label="Using an HPC or Server for Training">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Using an HPC or Server for Training</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../materials/08b-course_materials.html" class="pagination-link" aria-label="Authoring and Publishing Course Materials">
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Authoring and Publishing Course Materials</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> <img src="https://creativecommons.org/images/deed/cc_icon_black_x2.png" class="img-fluid" width="25"> Cambridge Research Informatics Training</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

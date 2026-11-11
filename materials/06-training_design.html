@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>6&nbsp; Designing Training</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../materials/07-lesson_planning.html" rel="next">
+<link href="../materials/05-effective_training.html" rel="prev">
+<link href="../site_libs/quarto-contrib/quarto-project/cambiotraining/crit-format/img/university-of-cambridge-favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e61435445fcf3984a6ef2a52d56cc2fa.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../site_libs/quarto-contrib/quarto-project/cambiotraining/crit-format/img/university_crest_reversed.png" alt="" class="navbar-logo light-content">
+    <img src="../site_libs/quarto-contrib/quarto-project/cambiotraining/crit-format/img/university_crest_reversed.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Teaching Bioinformatics in Low-resource Settings</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/cambiotraining/low-resource-bioinformatics"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-brands:github" style="font-size: 1.25em;" aria-label="Icon github from fa6-brands Iconify.design set." title="CRIT GitHub"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://bsky.app/profile/bioinfocambs.bsky.social"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-brands:bluesky" style="font-size: 1.25em;" aria-label="Icon bluesky from fa6-brands Iconify.design set." title="CRIT Bluesky"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://genomic.social/@BioInfoCambs"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-brands:mastodon" style="font-size: 1.25em;" aria-label="Icon mastodon from fa6-brands Iconify.design set." title="CRIT Mastodon"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://bioinfotraining.bio.cam.ac.uk/"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:web" style="font-size: 1.25em;" aria-label="Icon web from mdi Iconify.design set." title="CRIT Website"></iconify-icon></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    
+    <style>
+    #version-dropdown {
+      list-style: none;
+    }
+    </style>
+    
+
+  <li id="version-dropdown" class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-versions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+      <span class="menu-text">Version:</span> <span class="version-badge" aria-hidden="true">Latest</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-versions">
+      <li>
+        <a class="dropdown-item" href="/low-resource-bioinformatics/index.html">
+          <span class="dropdown-text">Latest</span>
+        </a>
+      </li>
+    </ul>
+  </li>
+</nav>
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Designing Training</span></h1>
+        </a>     
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Section">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Welcome</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/01-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Principles of Bioinformatics Training Design</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/02-intro_bioinformatics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">What is Bioinformatics?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/03-adult_learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Learning Principles</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/04-training_strategies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Strategies for Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/05-effective_training.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Elements of Effective Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/06-training_design.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Designing Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/07-lesson_planning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lesson Planning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/08-assessments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Assessment Strategies</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/17b-responsible_ai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Responsible Use of AI</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Building Practical &amp; Scaleable Bioinformatics Training</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/09-open_resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Open Educational Resources</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/12-containerisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Containerisation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/13-software_installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Software Installation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/14-cloud_bioinformatics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Cloud-based Bioinformatics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/15-hpc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Using an HPC or Server for Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/16-micro_datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Utilising Micro-datasets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/08b-course_materials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Authoring and Publishing Course Materials</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/20-case_studies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Case Studies</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Design and Sustain your Training</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/18-design_your_training.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Design Your Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/19-communities_of_practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Building Communities of Practice</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Appendices</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../versions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Archived Versions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction-the-classic-forward-design-approach" id="toc-introduction-the-classic-forward-design-approach" class="nav-link active" data-scroll-target="#introduction-the-classic-forward-design-approach"><span class="header-section-number">6.1</span> Introduction: The Classic “Forward Design” Approach</a></li>
+  <li><a href="#stage-1-learner-personas-knowing-your-audience" id="toc-stage-1-learner-personas-knowing-your-audience" class="nav-link" data-scroll-target="#stage-1-learner-personas-knowing-your-audience"><span class="header-section-number">6.2</span> Stage 1: Learner Personas — Knowing Your Audience</a>
+  <ul class="collapse">
+  <li><a href="#why-personas-drive-critical-design-decisions" id="toc-why-personas-drive-critical-design-decisions" class="nav-link" data-scroll-target="#why-personas-drive-critical-design-decisions"><span class="header-section-number">6.2.1</span> Why Personas Drive Critical Design Decisions</a></li>
+  </ul></li>
+  <li><a href="#stage-2-formulating-measurable-learning-outcomes" id="toc-stage-2-formulating-measurable-learning-outcomes" class="nav-link" data-scroll-target="#stage-2-formulating-measurable-learning-outcomes"><span class="header-section-number">6.3</span> Stage 2: Formulating Measurable Learning Outcomes</a></li>
+  <li><a href="#stage-3-determining-acceptable-evidence-assessment-first" id="toc-stage-3-determining-acceptable-evidence-assessment-first" class="nav-link" data-scroll-target="#stage-3-determining-acceptable-evidence-assessment-first"><span class="header-section-number">6.4</span> Stage 3: Determining Acceptable Evidence (Assessment First)</a></li>
+  <li><a href="#concept-mapping-mapping-dependencies" id="toc-concept-mapping-mapping-dependencies" class="nav-link" data-scroll-target="#concept-mapping-mapping-dependencies"><span class="header-section-number">6.5</span> Concept Mapping: Mapping Dependencies</a></li>
+  <li><a href="#designing-with-low-resource-constraints-as-first-principles" id="toc-designing-with-low-resource-constraints-as-first-principles" class="nav-link" data-scroll-target="#designing-with-low-resource-constraints-as-first-principles"><span class="header-section-number">6.6</span> Designing with Low-Resource Constraints as First Principles</a></li>
+  <li><a href="#interactive-exercises-for-future-trainers" id="toc-interactive-exercises-for-future-trainers" class="nav-link" data-scroll-target="#interactive-exercises-for-future-trainers"><span class="header-section-number">6.7</span> Interactive Exercises for Future Trainers</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">6.8</span> Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Designing Training</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Learning Objectives
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Apply the <strong>Backward Design</strong> framework to structure bioinformatics courses around desired competencies and authentic evidence rather than lists of software tools.</li>
+<li>Develop realistic <strong>Learner Personas</strong> that capture professional motivations, domain backgrounds, and technical/infrastructure constraints.</li>
+<li>Formulate precise, measurable learning outcomes using revised <strong>Bloom’s Taxonomy</strong> action verbs.</li>
+<li>Construct <strong>Concept Maps</strong> to identify prerequisite knowledge dependencies and prevent hidden cognitive leaps.</li>
+<li>Incorporate low-resource realities (bandwidth limits, hardware ceilings, offline requirements) as primary architectural constraints during initial curriculum design.</li>
+</ul>
+</div>
+</div>
+<section id="introduction-the-classic-forward-design-approach" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="introduction-the-classic-forward-design-approach"><span class="header-section-number">6.1</span> Introduction: The Classic “Forward Design” Approach</h2>
+<p>When asked to design a new bioinformatics workshop, instructors often begin by listing software tools:</p>
+<blockquote class="blockquote">
+<p><em>“We have three days. Let’s do FastQC on Monday, BWA and SAMtools on Tuesday, and GATK on Wednesday.”</em></p>
+</blockquote>
+<p>This approach, known as <strong>Forward Design</strong>, is driven by content rather than learning. The instructor decides what tools they want to demonstrate, and creates lectures around tool syntax. The issue with this is that at the end of the course, the students may be unable to analyze their own research data independently.</p>
+<table class="caption-top table">
+<caption>Table 1: Forward design versus backward design</caption>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">FORWARD DESIGN (Content)</th>
+<th style="text-align: left;">BACKWARD DESIGN (Outcomes)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1. Pick tools (FastQC, BWA, GATK)</td>
+<td style="text-align: left;">1. Identify Desired Results:<br>What will learners be able to DO at the end of the course?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2. Design lectures around syntax</td>
+<td style="text-align: left;">2. Determine Acceptable Evidence:<br>How will they demonstrate it?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3. Give students a script</td>
+<td style="text-align: left;">3. Plan Learning Experiences:<br>What datasets and scaffolding lead to that outcome?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4. Hope that learning occurred</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Backward Design</strong> (Wiggins &amp; McTighe, 2005) reverses this process. By starting with the final intended competencies and working backward, instructors create tightly integrated, purposeful training programs where every lecture, exercise, and dataset directly serves a measurable objective.</p>
+</section>
+<section id="stage-1-learner-personas-knowing-your-audience" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="stage-1-learner-personas-knowing-your-audience"><span class="header-section-number">6.2</span> Stage 1: Learner Personas — Knowing Your Audience</h2>
+<p>You cannot design an effective curriculum for “anyone interested in bioinformatics.” A 50 year-old hospital pathologist has fundamentally different technical baselines, career incentives, and hardware constraints than a 22 year-old master’s student in computer science.</p>
+<p>A <strong>Learner Persona</strong> is a short, fictional archetype (profile) that embodies the characteristics, prior knowledge, motivations, and potential difficulties of your target audience.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/learner_persona.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Anatomy of a Learner Persona"><img src="images/learner_persona.jpeg" class="img-fluid figure-img" alt="Anatomy of a Learner Persona"></a></p>
+<figcaption>Anatomy of a Learner Persona</figcaption>
+</figure>
+</div>
+<section id="why-personas-drive-critical-design-decisions" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="why-personas-drive-critical-design-decisions"><span class="header-section-number">6.2.1</span> Why Personas Drive Critical Design Decisions</h3>
+<p>When planning your curriculum, consult your persona to resolve pedagogical debates:</p>
+<ul>
+<li><em>“Should we teach how to compile BCFtools from C source code?”</em> <span class="math inline">\(\rightarrow\)</span> Look at Dr.&nbsp;Amina: No! She lacks root permissions and needs to solve a clinical problem, not learn software engineering. Provide a pre-built static binary or container.</li>
+<li><em>“Should we use a 15 GB human exome dataset?”</em> <span class="math inline">\(\rightarrow\)</span> Look at Dr.&nbsp;Amina: No! Her laptop has 8 GB RAM and her focus is bacterial AMR. Use a 2 MB locus-targeted bacterial micro-dataset.</li>
+</ul>
+</section>
+</section>
+<section id="stage-2-formulating-measurable-learning-outcomes" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="stage-2-formulating-measurable-learning-outcomes"><span class="header-section-number">6.3</span> Stage 2: Formulating Measurable Learning Outcomes</h2>
+<p>Once you know your audience, define what they should be able to achieve. Use <strong>Bloom’s Revised Taxonomy</strong> to align your learning objectives with the appropriate cognitive level:</p>
+<table class="caption-top table">
+<caption>Table 2: Bloom’s taxonomy for bioinformatics</caption>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Level</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Action Verbs to Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">6. Create</td>
+<td style="text-align: left;">Design new workflows, pipelines or automated solutions</td>
+<td style="text-align: left;">Construct, assemble, automate, formulate</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">5. Evaluate</td>
+<td style="text-align: left;">Judge data quality or justify analytical choices</td>
+<td style="text-align: left;">Assess, appraise, validate, critique</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4. Analyze</td>
+<td style="text-align: left;">Differentiate true signal from technical artifacts; filter data</td>
+<td style="text-align: left;">Distinguish, diagnose, troubleshoot, filter</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3. Apply</td>
+<td style="text-align: left;">Execute commands and pipelines on novel datasets</td>
+<td style="text-align: left;">Run, execute, modify, calculate, implement</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2. Understand</td>
+<td style="text-align: left;">Explain concepts, data formats and algorithmic trade-offs</td>
+<td style="text-align: left;">Differentiate, outline, summarize, predict</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1. Remember</td>
+<td style="text-align: left;">Recall syntax, flag meanings, and directory structures</td>
+<td style="text-align: left;">Identify, list, recall, name, state</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Avoid “Zombie Verbs”
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Never write learning objectives with vague, unmeasurable verbs:</p>
+<ul>
+<li>❌ <em>“Learners will understand Linux.”</em> (How do you measure “understand”?)</li>
+<li>❌ <em>“Learners will be exposed to variant calling.”</em> (Exposure does not mean competence).</li>
+<li>❌ <em>“Learners will appreciate high-throughput sequencing.”</em></li>
+</ul>
+<p><strong>Use Observable Action Verbs:</strong></p>
+<ul>
+<li>✅ <em>“Learners will <strong>execute</strong> read trimming using <code>fastp</code> and <strong>critique</strong> post-filtering quality metrics.”</em></li>
+<li>✅ <em>“Learners will <strong>diagnose</strong> Out-Of-Memory errors in SPAdes and <strong>adjust</strong> thread and memory parameters accordingly.”</em></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="stage-3-determining-acceptable-evidence-assessment-first" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="stage-3-determining-acceptable-evidence-assessment-first"><span class="header-section-number">6.4</span> Stage 3: Determining Acceptable Evidence (Assessment First)</h2>
+<p>In Backward Design, before you write a single slide or choose a tutorial, ask yourself: <strong>“How will the learners and I know that they have achieved the learning outcome?”</strong></p>
+<p>Design your <strong>summative challenge</strong> or end-of-module practical first:</p>
+<ul>
+<li><em>Desired Outcome:</em> “Learners will be able to identify antimicrobial resistance mutations in a bacterial isolate.”</li>
+<li><em>Acceptable Evidence (Assessment):</em> Provide learners with a raw paired-end micro-dataset of an uncharacterized <em>Klebsiella</em> isolate. Give them 45 minutes to run QC, map reads to a reference contig, call variants, and report which antibiotic the strain is resistant to.</li>
+<li><em>Instructional Plan:</em> Now design the specific live coding sessions, faded examples, and command deconstructions needed to equip them for that challenge!</li>
+</ul>
+</section>
+<section id="concept-mapping-mapping-dependencies" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="concept-mapping-mapping-dependencies"><span class="header-section-number">6.5</span> Concept Mapping: Mapping Dependencies</h2>
+<p>Bioinformatics learning is strictly hierarchical. You cannot teach read mapping before learners understand file paths; you cannot teach variant filtering before they understand VCF columns.</p>
+<p>A <strong>Concept Map</strong> is a visual diagram connecting concepts with labeled relationship arrows. Building a concept map reveals <strong>hidden dependencies</strong>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/concept_map.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Example concept map"><img src="images/concept_map.jpeg" class="img-fluid figure-img" alt="Example concept map"></a></p>
+<figcaption>Example concept map</figcaption>
+</figure>
+</div>
+<p>If an instructor tries to teach quality trimming without verifying that students understand relative paths, the lesson will collapse into the troubleshooting of <code>No such file or directory</code> errors.</p>
+</section>
+<section id="designing-with-low-resource-constraints-as-first-principles" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="designing-with-low-resource-constraints-as-first-principles"><span class="header-section-number">6.6</span> Designing with Low-Resource Constraints as First Principles</h2>
+<p>In low-resource environments, constraints are not bugs; they are fundamental design parameters:</p>
+<table class="caption-top table">
+<caption>Constraint-first curriculum design</caption>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Constraint</th>
+<th style="text-align: left;">Design Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1. Zero Internet Guarantee</td>
+<td style="text-align: left;">Curriculum must execute 100% offline from local USB drives or pre-loaded classroom mirrors.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2. 4 GB RAM Ceiling</td>
+<td style="text-align: left;">No tool or dataset may require &gt; 2 GB RAM (reserving 2 GB for the operating system).</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3. Non-Root Lab Permissions</td>
+<td style="text-align: left;">Tools must run in user space (static binaries, Micromamba environments, or Apptainer).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4. Modular Schedule</td>
+<td style="text-align: left;">Break curriculum into self-contained 2-hour modules that can survive sudden power outages.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="interactive-exercises-for-future-trainers" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="interactive-exercises-for-future-trainers"><span class="header-section-number">6.7</span> Interactive Exercises for Future Trainers</h2>
+<p>These exercises will guide you through building a learner persona and mapping a backward-designed module.</p>
+<div class="callout callout-style-default callout-exercise no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Exercise</span>Exercise 1 - Creating a Contextualized Learner Persona
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout-exercise">
+<p>You are tasked with designing a three day workshop titled <em>“Practical Pathogen Genomics for Outbreak Surveillance”</em> to be held at a public research institute in West Africa.</p>
+<p>Develop a complete <strong>Learner Persona</strong> for this course by specifying:</p>
+<ol type="1">
+<li><strong>Name, Age, and Professional Role.</strong></li>
+<li><strong>Biological Domain Expertise vs.&nbsp;Computational Baseline.</strong></li>
+<li><strong>Primary Motivation (Why are they taking time away from work to attend?).</strong></li>
+<li><strong>Three Specific Technical / Infrastructural Constraints they will bring to the classroom.</strong></li>
+</ol>
+<div class="callout callout-style-default callout-hint no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hint</span>Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="callout-hint">
+<p>Make the persona realistic and multidimensional. Include hardware, network, and institutional restrictions.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="model-learner-persona" class="level3 callout-answer" data-number="6.7.1">
+<h3 data-number="6.7.1" class="anchored" data-anchor-id="model-learner-persona"><span class="header-section-number">6.7.1</span> Model Learner Persona</h3>
+<ol type="1">
+<li><strong>Identity:</strong>
+<ul>
+<li><strong>Name:</strong> Dr.&nbsp;Jean-Paul (Age: 34).</li>
+<li><strong>Role:</strong> Medical Epidemiologist at the National Public Health Laboratory.</li>
+</ul></li>
+<li><strong>Expertise &amp; Baseline:</strong>
+<ul>
+<li><strong>Domain:</strong> Expert in infectious disease surveillance, diagnostic RT-PCR, and clinical epidemiology during cholera and viral hemorrhagic fever outbreaks.</li>
+<li><strong>Computational:</strong> Uses Windows 11 daily for Excel and Epi Info; has never opened a terminal, written a script, or run a Linux command.</li>
+</ul></li>
+<li><strong>Motivation:</strong>
+<ul>
+<li>His laboratory recently acquired an Oxford Nanopore MinION to sequence cholera and mpox isolates locally. Currently, raw sequencing files are sent abroad for analysis, delaying outbreak response by weeks. He needs to run local QC, assembly, and lineage assignment within 24 hours of sequencing.</li>
+</ul></li>
+<li><strong>Constraints:</strong>
+<ul>
+<li><strong>Hardware:</strong> Uses an older institutional Windows laptop with 6 GB RAM and only 25 GB of free hard drive space.</li>
+<li><strong>Permissions:</strong> Does not have administrator/root access to install software on his work laptop.</li>
+<li><strong>Connectivity:</strong> Works in an office with frequent 2-to-3-hour power cuts and relies on an intermittent cellular hotspot with expensive data limits.</li>
+</ul></li>
+</ol>
+</section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-exercise no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Exercise</span>Exercise 2 - Applying Backward Design to a Variant-Calling Module
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout-exercise">
+<p>A training team submits a draft module titled <em>“Introduction to Variant Calling”</em>. The current plan starts with a 45-minute lecture on the math of Bayesian variant probability, followed by running a 10-line GATK Bash script.</p>
+<p>Apply the three stages of <strong>Backward Design</strong> to restructure this module:</p>
+<ol type="1">
+<li><strong>Stage 1 (Desired Results):</strong> Formulate two Bloom-aligned, measurable learning outcomes.</li>
+<li><strong>Stage 2 (Acceptable Evidence):</strong> Design a hands-on assessment task that proves learners achieved those outcomes.</li>
+<li><strong>Stage 3 (Learning Plan):</strong> Outline the learning activities and micro-datasets required to prepare them for that assessment.</li>
+</ol>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="backward-design-blueprint" class="level3 callout-answer" data-number="6.7.2">
+<h3 data-number="6.7.2" class="anchored" data-anchor-id="backward-design-blueprint"><span class="header-section-number">6.7.2</span> Backward Design Blueprint</h3>
+<ol type="1">
+<li><strong>Stage 1: Desired Learning Outcomes:</strong>
+<ul>
+<li><em>“Learners will <strong>execute</strong> variant calling on a bacterial micro-dataset using <code>bcftools</code>.”</em> (Bloom: Apply)</li>
+<li><em>“Learners will <strong>filter</strong> raw variant calls to eliminate low-depth and strand-biased artifacts, <strong>validating</strong> candidate drug-resistance SNPs in IGV.”</em> (Bloom: Evaluate)</li>
+</ul></li>
+<li><strong>Stage 2: Acceptable Evidence (Assessment Task):</strong>
+<ul>
+<li>Provide trainees with an alignment BAM file of a candidate resistant <em>M. tuberculosis</em> isolate.</li>
+<li>Task: Generate a filtered VCF file containing only variants with <span class="math inline">\(\text{QUAL} \ge 30\)</span> and <span class="math inline">\(\text{DP} \ge 15\)</span>, open the candidate mutation in IGV, and submit a 2-sentence clinical diagnosis stating whether the isolate carries the Rifampicin resistance mutation.</li>
+</ul></li>
+<li><strong>Stage 3: Learning Plan &amp; Scaffolding:</strong>
+<ul>
+<li><strong>Activity 1:</strong> 15-minute live coding deconstructing VCF columns (<code>CHROM</code>, <code>POS</code>, <code>REF</code>, <code>ALT</code>, <code>QUAL</code>, <code>INFO</code>).</li>
+<li><strong>Activity 2:</strong> Faded example exercise constructing a <code>bcftools filter</code> command.</li>
+<li><strong>Activity 3:</strong> Visual demonstration in IGV comparing an authentic mutation against a sequencing error.</li>
+<li><strong>Dataset:</strong> 1.5 MB locus-targeted BAM file of the <em>rpoB</em> gene cassette that executes in 10 seconds.</li>
+</ul></li>
+</ol>
+</section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="summary" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="summary"><span class="header-section-number">6.8</span> Summary</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Key Points
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Begin with the End in Mind:</strong> Backward Design guarantees that every lecture, tool, and practical directly serves measurable student competencies rather than lists of commonly used software.</li>
+<li><strong>Anchor Design in Real Personas:</strong> Create learner personas that reflect real-world technical baselines, professional incentives, and institutional hardware constraints.</li>
+<li><strong>Use Measurable Action Verbs:</strong> Eliminate vague “zombie verbs” (understand, appreciate); use Bloom’s Taxonomy verbs (execute, diagnose, differentiate, validate) to define observable outcomes.</li>
+<li><strong>Assess Before You Teach:</strong> Design the summative challenge and evidence of competence before drafting presentation slides.</li>
+<li><strong>Map Dependencies Explicitly:</strong> Use concept maps to diagnose prerequisite bottlenecks and prevent cognitive leaps in the classroom.</li>
+<li><strong>Design for Constraints:</strong> Treat limited bandwidth, low RAM, and lack of root permissions as primary architectural design parameters from day one.</li>
+</ul>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
+  <div class="nav-page nav-page-previous">
+      <a href="../materials/05-effective_training.html" class="pagination-link" aria-label="Elements of Effective Training">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Elements of Effective Training</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../materials/07-lesson_planning.html" class="pagination-link" aria-label="Lesson Planning">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lesson Planning</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> <img src="https://creativecommons.org/images/deed/cc_icon_black_x2.png" class="img-fluid" width="25"> Cambridge Research Informatics Training</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

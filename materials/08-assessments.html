@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>8&nbsp; Assessment Strategies</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../materials/17b-responsible_ai.html" rel="next">
+<link href="../materials/07-lesson_planning.html" rel="prev">
+<link href="../site_libs/quarto-contrib/quarto-project/cambiotraining/crit-format/img/university-of-cambridge-favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e61435445fcf3984a6ef2a52d56cc2fa.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../site_libs/quarto-contrib/quarto-project/cambiotraining/crit-format/img/university_crest_reversed.png" alt="" class="navbar-logo light-content">
+    <img src="../site_libs/quarto-contrib/quarto-project/cambiotraining/crit-format/img/university_crest_reversed.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Teaching Bioinformatics in Low-resource Settings</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/cambiotraining/low-resource-bioinformatics"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-brands:github" style="font-size: 1.25em;" aria-label="Icon github from fa6-brands Iconify.design set." title="CRIT GitHub"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://bsky.app/profile/bioinfocambs.bsky.social"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-brands:bluesky" style="font-size: 1.25em;" aria-label="Icon bluesky from fa6-brands Iconify.design set." title="CRIT Bluesky"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://genomic.social/@BioInfoCambs"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-brands:mastodon" style="font-size: 1.25em;" aria-label="Icon mastodon from fa6-brands Iconify.design set." title="CRIT Mastodon"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://bioinfotraining.bio.cam.ac.uk/"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:web" style="font-size: 1.25em;" aria-label="Icon web from mdi Iconify.design set." title="CRIT Website"></iconify-icon></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    
+    <style>
+    #version-dropdown {
+      list-style: none;
+    }
+    </style>
+    
+
+  <li id="version-dropdown" class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-versions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+      <span class="menu-text">Version:</span> <span class="version-badge" aria-hidden="true">Latest</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-versions">
+      <li>
+        <a class="dropdown-item" href="/low-resource-bioinformatics/index.html">
+          <span class="dropdown-text">Latest</span>
+        </a>
+      </li>
+    </ul>
+  </li>
+</nav>
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Assessment Strategies</span></h1>
+        </a>     
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Section">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Welcome</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/01-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Principles of Bioinformatics Training Design</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/02-intro_bioinformatics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">What is Bioinformatics?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/03-adult_learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Learning Principles</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/04-training_strategies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Strategies for Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/05-effective_training.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Elements of Effective Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/06-training_design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Designing Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/07-lesson_planning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lesson Planning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/08-assessments.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Assessment Strategies</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/17b-responsible_ai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Responsible Use of AI</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Building Practical &amp; Scaleable Bioinformatics Training</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/09-open_resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Open Educational Resources</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/12-containerisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Containerisation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/13-software_installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Software Installation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/14-cloud_bioinformatics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Cloud-based Bioinformatics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/15-hpc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Using an HPC or Server for Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/16-micro_datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Utilising Micro-datasets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/08b-course_materials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Authoring and Publishing Course Materials</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/20-case_studies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Case Studies</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Design and Sustain your Training</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/18-design_your_training.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Design Your Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/19-communities_of_practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Building Communities of Practice</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Appendices</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../versions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Archived Versions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction-why-assessment-is-not-about-grading" id="toc-introduction-why-assessment-is-not-about-grading" class="nav-link active" data-scroll-target="#introduction-why-assessment-is-not-about-grading"><span class="header-section-number">8.1</span> Introduction: Why Assessment is Not About Grading</a></li>
+  <li><a href="#diagnostic-multiple-choice-questions-mcqs" id="toc-diagnostic-multiple-choice-questions-mcqs" class="nav-link" data-scroll-target="#diagnostic-multiple-choice-questions-mcqs"><span class="header-section-number">8.2</span> Diagnostic Multiple-Choice Questions (MCQs)</a>
+  <ul class="collapse">
+  <li><a href="#the-anatomy-of-a-diagnostic-mcq" id="toc-the-anatomy-of-a-diagnostic-mcq" class="nav-link" data-scroll-target="#the-anatomy-of-a-diagnostic-mcq"><span class="header-section-number">8.2.1</span> The Anatomy of a Diagnostic MCQ</a></li>
+  <li><a href="#what-each-choice-diagnoses" id="toc-what-each-choice-diagnoses" class="nav-link" data-scroll-target="#what-each-choice-diagnoses"><span class="header-section-number">8.2.2</span> What Each Choice Diagnoses:</a></li>
+  </ul></li>
+  <li><a href="#parsons-problems-jumbled-code" id="toc-parsons-problems-jumbled-code" class="nav-link" data-scroll-target="#parsons-problems-jumbled-code"><span class="header-section-number">8.3</span> Parson’s Problems: Jumbled Code</a></li>
+  <li><a href="#zero-bandwidth-classroom-assessment-techniques" id="toc-zero-bandwidth-classroom-assessment-techniques" class="nav-link" data-scroll-target="#zero-bandwidth-classroom-assessment-techniques"><span class="header-section-number">8.4</span> Zero-Bandwidth Classroom Assessment Techniques</a></li>
+  <li><a href="#authentic-assessment-in-bioinformatics" id="toc-authentic-assessment-in-bioinformatics" class="nav-link" data-scroll-target="#authentic-assessment-in-bioinformatics"><span class="header-section-number">8.5</span> Authentic Assessment in Bioinformatics</a>
+  <ul class="collapse">
+  <li><a href="#examples-of-authentic-tasks" id="toc-examples-of-authentic-tasks" class="nav-link" data-scroll-target="#examples-of-authentic-tasks"><span class="header-section-number">8.5.1</span> Examples of Authentic Tasks:</a></li>
+  </ul></li>
+  <li><a href="#measuring-impact-pre--and-post-workshop-surveys" id="toc-measuring-impact-pre--and-post-workshop-surveys" class="nav-link" data-scroll-target="#measuring-impact-pre--and-post-workshop-surveys"><span class="header-section-number">8.6</span> Measuring Impact: Pre- and Post-Workshop Surveys</a>
+  <ul class="collapse">
+  <li><a href="#measuring-self-efficacy-likert-scale" id="toc-measuring-self-efficacy-likert-scale" class="nav-link" data-scroll-target="#measuring-self-efficacy-likert-scale"><span class="header-section-number">8.6.1</span> Measuring Self-Efficacy (Likert Scale)</a></li>
+  <li><a href="#long-term-impact-evaluation-36-months-post-course" id="toc-long-term-impact-evaluation-36-months-post-course" class="nav-link" data-scroll-target="#long-term-impact-evaluation-36-months-post-course"><span class="header-section-number">8.6.2</span> Long-Term Impact Evaluation (3–6 Months Post-Course)</a></li>
+  </ul></li>
+  <li><a href="#interactive-exercises-for-future-trainers" id="toc-interactive-exercises-for-future-trainers" class="nav-link" data-scroll-target="#interactive-exercises-for-future-trainers"><span class="header-section-number">8.7</span> Interactive Exercises for Future Trainers</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">8.8</span> Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Assessment Strategies</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Learning Objectives
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Distinguish between <strong>formative assessment</strong> (assessment <em>for</em> learning) and <strong>summative assessment</strong> (assessment <em>of</em> learning) in bioinformatics workshops.</li>
+<li>Construct diagnostic <strong>Multiple-Choice Questions (MCQs)</strong> with deliberate distractors that reveal specific mental model misconceptions.</li>
+<li>Design <strong>Parson’s Problems</strong> (jumbled code blocks) to evaluate workflow logic and command sequencing without syntax typing anxiety.</li>
+<li>Deploy zero-bandwidth formative classroom assessment techniques (finger voting, mini-whiteboards, sticky notes) in connectivity-constrained venues.</li>
+<li>Formulate authentic assessments that mirror real-world research tasks (e.g.&nbsp;multi-sample QC critique, AMR gene confirmation).</li>
+<li>Develop pre- and post-workshop surveys to measure learner gains and evaluate long-term training impact.</li>
+</ul>
+</div>
+</div>
+<section id="introduction-why-assessment-is-not-about-grading" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="introduction-why-assessment-is-not-about-grading"><span class="header-section-number">8.1</span> Introduction: Why Assessment is Not About Grading</h2>
+<p>In formal university education, assessment is often equated with examinations, grades, and rankings. When teaching professionals, such as researchers, clinicians, and laboratory scientists, traditional testing is counterproductive. It induces anxiety, triggers imposter syndrome, and discourages exploratory experimentation.</p>
+<p>In short-format bioinformatics training, assessment serves a fundamentally different purpose: <strong>it is a diagnostic tool</strong>.</p>
+<table class="caption-top table">
+<caption>Table 1: Formative versus summative assessment</caption>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Formative Assessment<br>(Assessment FOR Learning)</th>
+<th style="text-align: left;">Summative Assessment<br>(Assessment OF Learning)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">• Conducted DURING the lesson</td>
+<td style="text-align: left;">• Conducted at the END of a course</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">• Low-stakes / ungraded</td>
+<td style="text-align: left;">• High-stakes (grades, ranking)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">• Diagnoses mental model bugs</td>
+<td style="text-align: left;">• Evaluates overall achievement</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">• Informs immediate instruction</td>
+<td style="text-align: left;">• Evaluates the curriculum</td>
+</tr>
+</tbody>
+</table>
+<p>Formative assessment tells both the instructor and the learner: <em>Was that concept understood? Do we share the same mental model? Can we move forward, or do we need to pause and clarify?</em></p>
+</section>
+<section id="diagnostic-multiple-choice-questions-mcqs" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="diagnostic-multiple-choice-questions-mcqs"><span class="header-section-number">8.2</span> Diagnostic Multiple-Choice Questions (MCQs)</h2>
+<p>A standard multiple-choice question often tests trivial recall of facts. A <strong>diagnostic MCQ</strong>, in contrast, is designed to reveal <strong>specific misconceptions or flawed mental models</strong>.</p>
+<section id="the-anatomy-of-a-diagnostic-mcq" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="the-anatomy-of-a-diagnostic-mcq"><span class="header-section-number">8.2.1</span> The Anatomy of a Diagnostic MCQ</h3>
+<p>An effective diagnostic MCQ consists of:</p>
+<ol type="1">
+<li><strong>A Clear Stem:</strong> A focused question presenting a concrete problem or command.</li>
+<li><strong>One Correct Answer:</strong> Unambiguously accurate.</li>
+<li><strong>Plausible Distractors (Wrong Answers):</strong> Each incorrect option represents a <em>known, specific conceptual error</em> or common beginner trap.</li>
+</ol>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Sample diagnostic bioinformatics MCQ
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Question:</strong> You want to count how many sequences are in a multi-FASTA<br>
+file called <code>isolates.fasta</code>. Which command should you run?</p>
+<ol type="A">
+<li><code>wc -l isolates.fasta</code><br>
+</li>
+<li><code>grep -c "&gt;" isolates.fasta</code><br>
+</li>
+<li><code>grep -c "^&gt;" isolates.fasta</code><br>
+</li>
+<li><code>head -n 4 isolates.fasta</code></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="what-each-choice-diagnoses" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="what-each-choice-diagnoses"><span class="header-section-number">8.2.2</span> What Each Choice Diagnoses:</h3>
+<ul>
+<li><strong>If they pick A (<code>wc -l</code>):</strong> Confuses total lines in a file with total sequences (forgets that FASTA sequences wrap across multiple lines).</li>
+<li><strong>If they pick B (<code>grep -c "&gt;"</code>):</strong> Understands the header marker (<code>&gt;</code>), but forgets that description headers or quality lines may contain <code>&gt;</code> mid-line; misses the line-start anchor (<code>^</code>).</li>
+<li><strong>If they pick C (<code>grep -c "^&gt;"</code>):</strong> <strong>CORRECT.</strong> Accurately identifies the start of header lines.</li>
+<li><strong>If they pick D (<code>head -n 4</code>):</strong> Confuses FASTQ 4-line records with FASTA format.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Peer Instruction (The Mazur Technique)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When running an MCQ in class:</p>
+<ol type="1">
+<li>Have students vote individually in silence.</li>
+<li>If 40–70% get it right, <strong>do not give the answer away!</strong></li>
+<li>Tell students: <em>“Turn to your neighbor. Find someone who picked a different letter, and convince them why your answer is correct (2 minutes).”</em></li>
+<li>Re-vote. The percentage of correct responses almost always jumps to 85–90% through peer explanation!</li>
+</ol>
+</div>
+</div>
+</section>
+</section>
+<section id="parsons-problems-jumbled-code" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="parsons-problems-jumbled-code"><span class="header-section-number">8.3</span> Parson’s Problems: Jumbled Code</h2>
+<p>One of the greatest pedagogical inventions in computing education is the <strong>Parson’s Problem</strong> (Parsons &amp; Haden, 2006).</p>
+<p>Novice bioinformaticians frequently struggle with simultaneous cognitive loads: remembering high-level pipeline logic while hunting for missing quotes, misplaced spaces, or exact flag syntax.</p>
+<p>A Parson’s Problem eliminates syntax frustration by providing learners with the <strong>exact lines of code scrambled in random order</strong>. The learner’s task is simply to arrange the lines into the correct execution sequence.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Parson’s Problem: variant calling workflow
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Task:</strong> Put the following steps in the correct order to identify high-quality genomic variants from raw sequencing reads:</p>
+<p>[ ] <code>samtools index aligned_sorted.bam</code><br>
+[ ] <code>fastp -i raw_R1.fq.gz -I raw_R2.fq.gz -o clean_R1.fq.gz ...</code><br>
+[ ] <code>bcftools call -mv -Oz -o raw_variants.vcf.gz</code><br>
+[ ] <code>bwa mem reference.fasta clean_R1.fq.gz clean_R2.fq.gz | ...</code><br>
+[ ] <code>bcftools filter -e 'QUAL &lt; 30 || DP &lt; 10' raw_variants.vcf.gz</code></p>
+</div>
+</div>
+<p><em>Correct Order:</em></p>
+<ol type="1">
+<li><code>fastp</code> (Quality trimming raw reads)</li>
+<li><code>bwa mem</code> (Aligning clean reads to reference)</li>
+<li><code>samtools index</code> (Indexing the sorted BAM file)</li>
+<li><code>bcftools call</code> (Calling raw variants)</li>
+<li><code>bcftools filter</code> (Filtering low-quality calls)</li>
+</ol>
+<p>Parson’s problems test whether students understand the <strong>data flow and logical dependencies</strong> of a pipeline without letting syntax typos derail their progress.</p>
+</section>
+<section id="zero-bandwidth-classroom-assessment-techniques" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="zero-bandwidth-classroom-assessment-techniques"><span class="header-section-number">8.4</span> Zero-Bandwidth Classroom Assessment Techniques</h2>
+<p>In low-resource venues, modern web polling applications (such as Mentimeter, Kahoot, or Slido) often fail because classroom Wi-Fi is too slow or students lack cellular data bundles.</p>
+<p>Use these zero-bandwidth, low-tech alternatives:</p>
+<table class="caption-top table">
+<caption>Table 2: Zero-bandwidth formative tools</caption>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Technique</th>
+<th style="text-align: left;">How It Works in Practice</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1. Finger Voting</td>
+<td style="text-align: left;">For MCQs (A, B, C, D): Students hold 1, 2, 3, or 4 fingers against their chest. On count of three, everyone displays their vote simultaneously.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2. Sticky Note Bar Chart</td>
+<td style="text-align: left;">Post a line on the whiteboard: [Hard] ── [Easy]. Students stick their colored sticky notes along the spectrum during coffee breaks.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3. Mini-Whiteboards or Paper Slips</td>
+<td style="text-align: left;">Learners write a one-word command or path on a sheet of paper and hold it up simultaneously.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4. Think-Pair-Share</td>
+<td style="text-align: left;">Give a 60-second prompt; pairs discuss for 2 minutes; call on two random pairs to share.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>The “Chest Vote” Rule
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When conducting finger voting, have students hold their hand flat against their chest before displaying their fingers. This prevents slower students from looking around the room and copying the vote of the most confident student.</p>
+</div>
+</div>
+</section>
+<section id="authentic-assessment-in-bioinformatics" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="authentic-assessment-in-bioinformatics"><span class="header-section-number">8.5</span> Authentic Assessment in Bioinformatics</h2>
+<p>Learners are motivated by authentic tasks that mirror their professional responsibilities. Replace artificial quizzes with <strong>authentic computational deliverables</strong>:</p>
+<table class="caption-top table">
+<caption>Table 3: Traditional versus authentic assessment</caption>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Traditional quiz</th>
+<th style="text-align: left;">Authentic task</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">• “What is the flag for output in fastp?”<br>• “Define N50 in one sentence.”</td>
+<td style="text-align: left;">• “Generate a MultiQC report for these 4 patient samples and identify which sample failed library prep.”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">• Memorization-focused</td>
+<td style="text-align: left;">• Interpretation-focused</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">• Abstract and unmotivating</td>
+<td style="text-align: left;">• Directly mirrors lab reality</td>
+</tr>
+</tbody>
+</table>
+<section id="examples-of-authentic-tasks" class="level3" data-number="8.5.1">
+<h3 data-number="8.5.1" class="anchored" data-anchor-id="examples-of-authentic-tasks"><span class="header-section-number">8.5.1</span> Examples of Authentic Tasks:</h3>
+<ul>
+<li><strong>The Outbreak Report:</strong> Give learners a VCF file of a clinical isolate; ask them to fill out a three field hospital report: (1) Pathogen species, (2) Detected AMR mutations, (3) Recommended treatment exclusion.</li>
+<li><strong>The Quality Audit:</strong> Provide three MultiQC reports; ask pairs to act as a core facility manager and decide: <em>“Which of these three sequencing batches should we accept, and which should we reject and send for re-sequencing?”</em></li>
+</ul>
+</section>
+</section>
+<section id="measuring-impact-pre--and-post-workshop-surveys" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="measuring-impact-pre--and-post-workshop-surveys"><span class="header-section-number">8.6</span> Measuring Impact: Pre- and Post-Workshop Surveys</h2>
+<p>To evaluate training efficacy and report outcomes to institutional funders, administer a <strong>Pre-Workshop Survey</strong> and an immediate <strong>Post-Workshop Survey</strong>.</p>
+<section id="measuring-self-efficacy-likert-scale" class="level3" data-number="8.6.1">
+<h3 data-number="8.6.1" class="anchored" data-anchor-id="measuring-self-efficacy-likert-scale"><span class="header-section-number">8.6.1</span> Measuring Self-Efficacy (Likert Scale)</h3>
+<p>Rather than testing trivia, measure changes in <strong>learner self-efficacy</strong> (confidence in their ability to perform tasks independently):</p>
+<blockquote class="blockquote">
+<p><em>“On a scale of 1 (Not at all confident) to 5 (Extremely confident), rate your ability to:”</em></p>
+</blockquote>
+<blockquote class="blockquote">
+<ol type="1">
+<li><em>Navigate directories and inspect files using the Linux command line.</em></li>
+<li><em>Execute an automated quality-control pipeline on paired-end reads.</em></li>
+<li><em>Troubleshoot a syntax error in the terminal independently.</em></li>
+<li><em>Identify and filter technical artifacts in a variant call set.</em></li>
+</ol>
+</blockquote>
+</section>
+<section id="long-term-impact-evaluation-36-months-post-course" class="level3" data-number="8.6.2">
+<h3 data-number="8.6.2" class="anchored" data-anchor-id="long-term-impact-evaluation-36-months-post-course"><span class="header-section-number">8.6.2</span> Long-Term Impact Evaluation (3–6 Months Post-Course)</h3>
+<p>Follow up with participants months later to measure real-world translation:</p>
+<ul>
+<li><em>Have you applied the tools taught in the workshop to your research?</em></li>
+<li><em>Have you analyzed new datasets that contributed to a thesis, paper, or clinical report?</em></li>
+<li><em>Have you taught or shared these computational skills with colleagues at your home institution?</em></li>
+</ul>
+</section>
+</section>
+<section id="interactive-exercises-for-future-trainers" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="interactive-exercises-for-future-trainers"><span class="header-section-number">8.7</span> Interactive Exercises for Future Trainers</h2>
+<p>These exercises will test your ability to design diagnostic distractors and build authentic assessments.</p>
+<div class="callout callout-style-default callout-exercise no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Exercise</span>Exercise 1 - Designing a Diagnostic MCQ with Misconception Distractors
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout-exercise">
+<p>You are teaching a lesson on file paths in Linux. You want to assess whether learners understand the difference between absolute paths, relative paths, and the parent directory (<code>..</code>).</p>
+<p>Write a diagnostic MCQ: 1. Provide a clear question stem based on an explicit directory tree. 2. Provide the correct answer. 3. Write three plausible distractors, explicitly stating what mental model misconception each distractor diagnoses.</p>
+<div class="callout callout-style-default callout-hint no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hint</span>Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="callout-hint">
+<p>Use a simple tree where the user’s current working directory (<code>pwd</code>) is a subfolder like <code>/home/trainee/projects/</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="diagnostic-mcq-blueprint" class="level3 callout-answer" data-number="8.7.1">
+<h3 data-number="8.7.1" class="anchored" data-anchor-id="diagnostic-mcq-blueprint"><span class="header-section-number">8.7.1</span> Diagnostic MCQ Blueprint</h3>
+<p><strong>Stem:</strong> Given the following directory structure:</p>
+<pre><code>/home/trainee/
+├── data/
+│   └── raw.fq
+└── projects/  &lt;-- (Current Working Directory: pwd)</code></pre>
+<p>You are currently inside <code>/home/trainee/projects/</code>. Which command will successfully display the first 5 lines of <code>raw.fq</code>?</p>
+<ul>
+<li><strong>Option A:</strong> <code>head -n 5 /data/raw.fq</code></li>
+<li><strong>Option B:</strong> <code>head -n 5 data/raw.fq</code></li>
+<li><strong>Option C:</strong> <code>head -n 5 ../data/raw.fq</code> <em>(CORRECT)</em></li>
+<li><strong>Option D:</strong> <code>head -n 5 raw.fq</code></li>
+</ul>
+<p><strong>Diagnostic Analysis of Distractors:</strong></p>
+<ul>
+<li><strong>Option A:</strong> Diagnoses the misconception that <code>/</code> (root) is the same as the user’s home directory (<code>~</code>). The learner thinks <code>/data</code> is inside home, when in fact it is at the root level of the system.</li>
+<li><strong>Option B:</strong> Diagnoses a failure of spatial orientation. The learner assumes <code>data/</code> is a child folder inside their current directory (<code>projects/</code>), forgetting they must first step up into <code>trainee/</code>.</li>
+<li><strong>Option D:</strong> Diagnoses the misconception common among GUI users: assuming the computer knows where <code>raw.fq</code> is regardless of directory coordinates.</li>
+</ul>
+</section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-exercise no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Exercise</span>Exercise 2 - Constructing an Authentic Final Assessment
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout-exercise">
+<p>Design an <strong>Authentic Assessment Activity</strong> for the final afternoon of a three day bacterial genomics workshop in a low-resource setting.</p>
+<p>Specify:</p>
+<ol type="1">
+<li><strong>The Scenario / Biological Persona.</strong></li>
+<li><strong>The Provided Materials / Micro-dataset (size and format).</strong></li>
+<li><strong>The Student Deliverable.</strong></li>
+<li><strong>How this task assesses learning without relying on traditional written exams.</strong></li>
+</ol>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="authentic-final-assessment-blueprint" class="level3 callout-answer" data-number="8.7.2">
+<h3 data-number="8.7.2" class="anchored" data-anchor-id="authentic-final-assessment-blueprint"><span class="header-section-number">8.7.2</span> Authentic Final Assessment Blueprint</h3>
+<ol type="1">
+<li><p><strong>The Scenario:</strong> <em>“You are the bioinformatics officer at the regional hospital. Two blood culture isolates of Salmonella enterica were obtained from patients in Ward 4. The hospital infection control committee wants to know: Are these two cases part of the same nosocomial transmission event, or independent community acquisitions?”</em></p></li>
+<li><p><strong>Provided Materials:</strong></p>
+<ul>
+<li>Two paired-end micro-datasets (<code>patientA_R1/R2.fq.gz</code> and <code>patientB_R1/R2.fq.gz</code>, each 15 MB).</li>
+<li>Reference genome FASTA file of <em>Salmonella enterica</em>.</li>
+<li>A pre-compiled USB bundle containing <code>fastp</code>, <code>bwa</code>, <code>samtools</code>, and <code>bcftools</code>.</li>
+</ul></li>
+<li><p><strong>Concrete Deliverable:</strong> Pairs submit a <strong>one page Outbreak Briefing</strong> containing:</p>
+<ul>
+<li>Summary table of raw reads, post-trimming Q30 percentage, and mapping rate for both isolates.</li>
+<li>Total number of high-quality Single Nucleotide Polymorphisms (SNPs) differentiating Patient A from Patient B.</li>
+<li>An IGV screenshot showing at least one distinguishing variant.</li>
+<li>Final Recommendation: Is this a hospital outbreak (typically <span class="math inline">\(\le 5\)</span> SNPs difference) or independent infections (<span class="math inline">\(&gt; 50\)</span> SNPs)?</li>
+</ul></li>
+<li><p><strong>Pedagogical Rationale:</strong> This task evaluates read QC, alignment, indexing, variant calling, variant filtering, visual inspection, and clinical interpretation simultaneously. It mirrors actual professional practice, engages adult intrinsic motivation, and requires no traditional grading.</p></li>
+</ol>
+</section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="summary" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="summary"><span class="header-section-number">8.8</span> Summary</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Key Points
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Assessment Drives Learning, Not Grading:</strong> Use formative assessment during class as a real-time diagnostic navigation tool, not a ranking system.</li>
+<li><strong>Diagnostic MCQs Reveal Mental Models:</strong> Design distractors where each wrong answer identifies a specific, known computational misconception (e.g.&nbsp;root vs.&nbsp;home, line count vs.&nbsp;sequence count).</li>
+<li><strong>Use Peer Instruction:</strong> Combine MCQs with Think-Pair-Share. When students debate differing answers with their neighbors, conceptual understanding increases dramatically.</li>
+<li><strong>Parson’s Problems Eliminate Syntax Blocks:</strong> Jumbled code exercises assess workflow logic and tool sequencing without letting syntax errors or typos derail beginners.</li>
+<li><strong>Leverage Zero-Bandwidth Techniques:</strong> Use finger voting, mini-whiteboards, and sticky-note bar charts when internet connectivity is unreliable.</li>
+<li><strong>Prioritize Authentic Tasks:</strong> Assess learners using realistic scientific scenarios (outbreak investigations, QC audits) that yield actionable biological deliverables.</li>
+<li><strong>Measure Self-Efficacy:</strong> Use pre- and post-workshop surveys to measure gains in learner confidence and track long-term research impact.</li>
+</ul>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
+  <div class="nav-page nav-page-previous">
+      <a href="../materials/07-lesson_planning.html" class="pagination-link" aria-label="Lesson Planning">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lesson Planning</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../materials/17b-responsible_ai.html" class="pagination-link" aria-label="Responsible Use of AI">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Responsible Use of AI</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> <img src="https://creativecommons.org/images/deed/cc_icon_black_x2.png" class="img-fluid" width="25"> Cambridge Research Informatics Training</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

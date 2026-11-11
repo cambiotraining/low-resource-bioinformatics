@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>14&nbsp; Using an HPC or Server for Training</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../materials/16-micro_datasets.html" rel="next">
+<link href="../materials/14-cloud_bioinformatics.html" rel="prev">
+<link href="../site_libs/quarto-contrib/quarto-project/cambiotraining/crit-format/img/university-of-cambridge-favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e61435445fcf3984a6ef2a52d56cc2fa.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../site_libs/quarto-contrib/quarto-project/cambiotraining/crit-format/img/university_crest_reversed.png" alt="" class="navbar-logo light-content">
+    <img src="../site_libs/quarto-contrib/quarto-project/cambiotraining/crit-format/img/university_crest_reversed.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Teaching Bioinformatics in Low-resource Settings</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/cambiotraining/low-resource-bioinformatics"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-brands:github" style="font-size: 1.25em;" aria-label="Icon github from fa6-brands Iconify.design set." title="CRIT GitHub"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://bsky.app/profile/bioinfocambs.bsky.social"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-brands:bluesky" style="font-size: 1.25em;" aria-label="Icon bluesky from fa6-brands Iconify.design set." title="CRIT Bluesky"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://genomic.social/@BioInfoCambs"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-brands:mastodon" style="font-size: 1.25em;" aria-label="Icon mastodon from fa6-brands Iconify.design set." title="CRIT Mastodon"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://bioinfotraining.bio.cam.ac.uk/"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:web" style="font-size: 1.25em;" aria-label="Icon web from mdi Iconify.design set." title="CRIT Website"></iconify-icon></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    
+    <style>
+    #version-dropdown {
+      list-style: none;
+    }
+    </style>
+    
+
+  <li id="version-dropdown" class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-versions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+      <span class="menu-text">Version:</span> <span class="version-badge" aria-hidden="true">Latest</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-versions">
+      <li>
+        <a class="dropdown-item" href="/low-resource-bioinformatics/index.html">
+          <span class="dropdown-text">Latest</span>
+        </a>
+      </li>
+    </ul>
+  </li>
+</nav>
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Using an HPC or Server for Training</span></h1>
+        </a>     
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Section">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Welcome</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/01-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Principles of Bioinformatics Training Design</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/02-intro_bioinformatics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">What is Bioinformatics?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/03-adult_learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Learning Principles</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/04-training_strategies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Strategies for Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/05-effective_training.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Elements of Effective Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/06-training_design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Designing Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/07-lesson_planning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lesson Planning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/08-assessments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Assessment Strategies</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/17b-responsible_ai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Responsible Use of AI</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Building Practical &amp; Scaleable Bioinformatics Training</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/09-open_resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Open Educational Resources</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/12-containerisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Containerisation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/13-software_installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Software Installation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/14-cloud_bioinformatics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Cloud-based Bioinformatics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/15-hpc.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Using an HPC or Server for Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/16-micro_datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Utilising Micro-datasets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/08b-course_materials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Authoring and Publishing Course Materials</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/20-case_studies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Case Studies</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Design and Sustain your Training</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/18-design_your_training.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Design Your Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/19-communities_of_practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Building Communities of Practice</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Appendices</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../versions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Archived Versions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction-the-centralized-server" id="toc-introduction-the-centralized-server" class="nav-link active" data-scroll-target="#introduction-the-centralized-server"><span class="header-section-number">14.1</span> Introduction: The Centralized Server</a></li>
+  <li><a href="#classroom-server-topologies-choosing-the-right-model" id="toc-classroom-server-topologies-choosing-the-right-model" class="nav-link" data-scroll-target="#classroom-server-topologies-choosing-the-right-model"><span class="header-section-number">14.2</span> Classroom Server Topologies: Choosing the Right Model</a></li>
+  <li><a href="#server-architecture-and-provisioning-for-25-trainees" id="toc-server-architecture-and-provisioning-for-25-trainees" class="nav-link" data-scroll-target="#server-architecture-and-provisioning-for-25-trainees"><span class="header-section-number">14.3</span> Server Architecture and Provisioning for 25 Trainees</a></li>
+  <li><a href="#preventing-server-overlaod" id="toc-preventing-server-overlaod" class="nav-link" data-scroll-target="#preventing-server-overlaod"><span class="header-section-number">14.4</span> Preventing Server Overlaod</a></li>
+  <li><a href="#connecting-learners" id="toc-connecting-learners" class="nav-link" data-scroll-target="#connecting-learners"><span class="header-section-number">14.5</span> Connecting Learners</a>
+  <ul class="collapse">
+  <li><a href="#web-based-terminal-interfaces" id="toc-web-based-terminal-interfaces" class="nav-link" data-scroll-target="#web-based-terminal-interfaces"><span class="header-section-number">14.5.1</span> Web-Based Terminal Interfaces</a></li>
+  <li><a href="#hardening-raw-ssh-sessions-with-tmux" id="toc-hardening-raw-ssh-sessions-with-tmux" class="nav-link" data-scroll-target="#hardening-raw-ssh-sessions-with-tmux"><span class="header-section-number">14.5.2</span> Hardening Raw SSH Sessions with <code>tmux</code></a></li>
+  </ul></li>
+  <li><a href="#real-time-monitoring" id="toc-real-time-monitoring" class="nav-link" data-scroll-target="#real-time-monitoring"><span class="header-section-number">14.6</span> Real-Time Monitoring</a>
+  <ul class="collapse">
+  <li><a href="#critical-early-warning-indicators" id="toc-critical-early-warning-indicators" class="nav-link" data-scroll-target="#critical-early-warning-indicators"><span class="header-section-number">14.6.1</span> Critical Early Warning Indicators</a></li>
+  <li><a href="#what-to-do-when-the-server-is-about-to-crash" id="toc-what-to-do-when-the-server-is-about-to-crash" class="nav-link" data-scroll-target="#what-to-do-when-the-server-is-about-to-crash"><span class="header-section-number">14.6.2</span> What to do when the server is about to crash?</a></li>
+  </ul></li>
+  <li><a href="#contingency-planning" id="toc-contingency-planning" class="nav-link" data-scroll-target="#contingency-planning"><span class="header-section-number">14.7</span> Contingency Planning</a></li>
+  <li><a href="#interactive-exercises-for-future-trainers" id="toc-interactive-exercises-for-future-trainers" class="nav-link" data-scroll-target="#interactive-exercises-for-future-trainers"><span class="header-section-number">14.8</span> Interactive Exercises for Future Trainers</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">14.9</span> Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Using an HPC or Server for Training</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Learning Objectives
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Evaluate the benefits and trade-offs of using a centralized server or shared HPC cluster versus student laptops for bioinformatics workshops in low-resource settings.</li>
+<li>Select and build the optimal classroom server setup: local in-room servers (offline LAN), remote institutional/regional HPC clusters, or single-instance cloud servers.</li>
+<li>Provision and configure multi-user training environments securely, including automated batch account creation, storage quotas, and shared read-only reference directories.</li>
+<li>Prevent and mitigate server overload on shared servers using resource isolation mechanisms (<code>cgroups</code>, <code>pam_limits</code>, wrapper scripts, and SLURM training reservations/QoS).</li>
+<li>Deploy zero-install, firewall-resilient access interfaces (such as browser-based web terminals via JupyterHub, RStudio Server, or <code>ttyd</code>) to overcome student client hardware limitations and institutional port 22 blocking.</li>
+<li>Monitor classroom server health and resource contention in real time using trainer dashboards (<code>htop</code>, <code>glances</code>, <code>squeue</code>), and implement rapid remediation for runaway student processes.</li>
+<li>Formulate robust fallback contingencies for server failure, power blackouts, and network disconnections during live instruction.</li>
+</ul>
+</div>
+</div>
+<section id="introduction-the-centralized-server" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="introduction-the-centralized-server"><span class="header-section-number">14.1</span> Introduction: The Centralized Server</h2>
+<p>When teaching bioinformatics in low-resource settings, one of the most consequential decisions an instructor makes is <strong>where the computational work will physically take place</strong>.</p>
+<p>In an ideal world, every learner arrives with an identical, high-performance laptop running Linux or macOS, equipped with 16 GB of RAM and administrative rights. In low-resource environments, however, the classroom reality is radically heterogeneous:</p>
+<ul>
+<li>Trainees bring personal laptops ranging from decade-old dual-core machines with 4 GB of RAM to modern Windows 11 ultrabooks burdened by third-party antivirus software.</li>
+<li>Many clinicians and institutional researchers use locked-down laptops provided by hospitals or government ministries that prohibit software installation or command-line developer tools.</li>
+<li>Operating systems vary wildly across Windows 10/11, legacy Windows 7, macOS (Intel vs.&nbsp;Apple Silicon M-series), and diverse Linux distributions.</li>
+</ul>
+<p>If an instructor chooses to run software directly on student laptops, the workshop risks falling into hours of debugging installation: Day 1 is completely consumed by troubleshooting compiler errors, PATH configurations, Windows line endings, and failed Conda solves. By the time the first biological command is executed, students are exhausted.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/remote_computing.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Remote computing topology for training"><img src="images/remote_computing.jpeg" class="img-fluid figure-img" alt="Remote computing topology for training"></a></p>
+<figcaption>Remote computing topology for training</figcaption>
+</figure>
+</div>
+<p>Deploying a <strong>centralized server or High-Performance Computing (HPC) cluster</strong> has several operational advantages:</p>
+<ol type="1">
+<li><strong>Environmental Uniformity:</strong> Every trainee logs into the exact same Linux environment with pre-installed software, identical reference files, identical paths, and guaranteed reproducible behavior.</li>
+<li><strong>Hardware Equalization:</strong> A student on a $200 netbook with 2 GB of RAM has access to the same 32 CPU cores and 128 GB of RAM as a student on a high-end workstation.</li>
+<li><strong>Preservation of Cognitive Load:</strong> Learners focus their mental energy on biological concepts, data interpretation, and Unix command syntax rather than system-level packaging errors.</li>
+</ol>
+<p>However, moving computation to a centralized server introduces a critical trade-off: <strong>you replace 25 isolated points of failure with a single, shared point of failure</strong>. If the server crashes, if the network switch drops, or if 25 students overwhelm the CPU simultaneously, the entire classroom halts.</p>
+<p>As a trainer, your goal is to harness the power of centralized infrastructure while ensuring you’ve introduced safeguards to ensure uninterrupted learning.</p>
+</section>
+<section id="classroom-server-topologies-choosing-the-right-model" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="classroom-server-topologies-choosing-the-right-model"><span class="header-section-number">14.2</span> Classroom Server Topologies: Choosing the Right Model</h2>
+<p>Instructors in low-resource settings can deploy centralized compute using three primary topologies, each with distinct advantages, infrastructure requirements, and vulnerability profiles:</p>
+<table class="caption-top table">
+<caption>Table 1: Comparative analysis of classroom compute topologies</caption>
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Topology</th>
+<th style="text-align: left;">Infrastructure Requirements</th>
+<th style="text-align: left;">Primary Advantages</th>
+<th style="text-align: left;">Critical Vulnerabilities &amp; Risks</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>1. In-Room Local Server</strong> (LAN / Offline)</td>
+<td style="text-align: left;">• Physical tower server or mini-PC<br>• Local network switch or Wi-Fi router<br>• Venue UPS / inverter</td>
+<td style="text-align: left;">• <strong>Zero internet required</strong>; immune to fiber cuts<br>• Blazing fast local data transfers<br>• Zero cloud subscription costs</td>
+<td style="text-align: left;">• Physical transport of hardware<br>• Dependent on classroom power grid<br>• Single physical point of failure</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>2. Institutional / Regional HPC</strong> (SLURM)</td>
+<td style="text-align: left;">• Institutional cluster or regional HPC (e.g.&nbsp;CHPC, WACREN)<br>• Stable outbound internet</td>
+<td style="text-align: left;">• Massive compute and memory capacity<br>• Exposes learners to real-world HPC workflows<br>• Zero local hardware transport</td>
+<td style="text-align: left;">• Campus Wi-Fi often blocks Port 22 (SSH)<br>• Bandwidth latency and dropouts<br>• Queue wait times during live class</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>3. Cloud Training Server</strong> (IaaS)</td>
+<td style="text-align: left;">• Single large cloud VM (AWS, GCP, Hetzner)<br>• Outbound internet access<br>• Credit card / cloud grant</td>
+<td style="text-align: left;">• Elastic, on-demand sizing (e.g.&nbsp;32 vCPU, 64 GB RAM)<br>• Disposable (destroyed after workshop)<br>• Easy pre-workshop image cloning</td>
+<td style="text-align: left;">• Dependent on continuous internet<br>• Risk of “bill shock” if forgotten<br>• International currency payment barriers</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Model 1: The In-Room Local Server (The Offline “Cluster-in-a-Box”)</strong></p>
+<p>For venues with unpredictable internet, the <strong>in-room local server</strong> is the gold standard of resilient training.</p>
+<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+│                   IN-ROOM LOCAL SERVER ARCHITECTURE                    │
+├────────────────────────────────────────────────────────────────────────┤
+│                                                                        │
+│   [ Portable Server / Tower / NUC ]                                    │
+│   • 16–32 Cores, 64 GB RAM, 2 TB NVMe                                  │
+│   • Pre-configured with accounts, data, and web terminal               │
+│   • Plugged into Uninterruptible Power Supply (UPS)                    │
+│                     │                                                  │
+│                     ▼                                                  │
+│   [ Local Gigabit Switch / Offline Wi-Fi 6 Router ]                    │
+│   (No external internet connection required; local subnet 192.168.1.x) │
+│         │                  │                  │                  │     │
+│         ▼                  ▼                  ▼                  ▼     │
+│   [ Laptop 01 ]      [ Laptop 02 ]      [ Laptop 03 ]      [ Laptop 25 ]
+│   (Connects via browser to https://192.168.1.100 or local SSH)         │
+│                                                                        │
+└────────────────────────────────────────────────────────────────────────┘</code></pre>
+<p>In this architecture, the instructor brings a powerful portable workstation (such as an Intel NUC, a high-spec gaming laptop, or a compact tower server) directly into the room. The server is connected via Ethernet to an inexpensive Wi-Fi 6 router or gigabit switch.</p>
+<p>Students connect to the local Wi-Fi network and access the server via its local IP address (e.g., <code>192.168.1.100</code>). Because data packets never leave the room, <strong>the workshop proceeds seamlessly even if the entire university loses outbound internet connectivity</strong>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>The Hardware Profile of a Portable Classroom Server
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>An instructor does not need a massive enterprise server rack to teach 25 students. A modern compact mini-PC (e.g.&nbsp;AMD Ryzen 9 or Intel Core i9 with 16–24 cores, 64 GB of DDR5 RAM, and a 2 TB NVMe SSD) costs under $1,000, weighs less than 1.5 kg, fits into a backpack, and draws under 120W of power—making it easily supported by a small consumer UPS or 12V vehicle battery inverter during blackouts.</p>
+</div>
+</div>
+<p><strong>Model 2: The Shared Institutional or Regional HPC Cluster</strong></p>
+<p>When teaching advanced workflows (such as genome-wide variant discovery across hundreds of samples, <em>de novo</em> assembly, or RNA-seq quantification) that exceed the RAM of a single standalone machine, tapping into a shared institutional or regional HPC cluster (governed by SLURM) becomes necessary.</p>
+<p>However, using a production HPC for live training requires specialized operational negotiation with system administrators:</p>
+<ul>
+<li><p><strong>Never rely on the default public queue:</strong> In a standard academic queue, a student’s 10-second alignment test may sit in <code>PENDING</code> state behind a multi-day molecular dynamics simulation submitted by another research group.</p></li>
+<li><p><strong>Request a Dedicated Classroom Reservation:</strong> Work with HPC administrators at least 3 weeks prior to the workshop to configure a dedicated reservation:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Administrator command creating a training reservation for 32 cores:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">scontrol</span> create reservation user=instructor,trainee01,trainee02,... <span class="dt">\</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>         starttime=2026-11-10T08:00:00 duration=08:00:00 <span class="dt">\</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>         nodes=node<span class="pp">[</span><span class="ss">01</span><span class="pp">-</span><span class="ss">02</span><span class="pp">]</span> flags=SPEC_NODES,OVERLAP reservation=workshop2026</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Students then submit jobs directly into the reservation without queue delays:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> <span class="at">--reservation</span><span class="op">=</span>workshop2026 run_alignment.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Establish a Training Partition with Dedicated QoS:</strong> Alternatively, request a temporary <code>training</code> partition with a high-priority Quality of Service (QoS) that restricts maximum walltime to 30 minutes and caps jobs per user to prevent queue starvation.</p></li>
+</ul>
+<p><strong>Model 3: The Single Cloud Virtual Machine</strong></p>
+<p>If physical hardware transport is impossible and the training venue has reliable internet, launching a single multi-core cloud instance (e.g., AWS EC2 <code>c6i.8xlarge</code> with 32 vCPUs and 64 GB RAM) provides an instant, throwaway training environment.</p>
+<ul>
+<li><strong>Pre-Configure Once, Clone Infinitely:</strong> Build your environment on a base image, take a snapshot, and launch it the morning of the workshop.</li>
+<li><strong>Automated Teardown:</strong> Configure an automated cron job or AWS CloudWatch alarm to terminate or stop the instance if CPU utilization remains below 2% for 60 consecutive minutes, eliminating accidental weekend “bill shock.”</li>
+</ul>
+</section>
+<section id="server-architecture-and-provisioning-for-25-trainees" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="server-architecture-and-provisioning-for-25-trainees"><span class="header-section-number">14.3</span> Server Architecture and Provisioning for 25 Trainees</h2>
+<p>Setting up a multi-user server for training requires deliberate system hygiene. A common mistake made by inexperienced trainers is creating accounts manually or giving all students a shared single login (<code>student</code> with password <code>password123</code>).</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Don’t Use Single Accounts
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Never allow students to log in under a single shared username. Inevitably, one student will accidentally run <code>rm -rf *</code>, another will overwrite a classmate’s intermediate output file, and a background process launched by student A will lock the database for student B. Every learner must have an isolated user account and individual home directory.</p>
+</div>
+</div>
+<p><strong>1. Automated Batch Account Generation</strong></p>
+<p>Use a shell script to automate account creation, generate temporary passwords, and enforce standard permissions.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env bash</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================================</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># File: provision_classroom_accounts.sh</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Purpose: Automated provisioning of 25 isolated trainee accounts</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================================</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="va">NUM_STUDENTS</span><span class="op">=</span>25</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="va">COURSE_GROUP</span><span class="op">=</span><span class="st">"trainees"</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="va">PASSWORD_FILE</span><span class="op">=</span><span class="st">"classroom_credentials.csv"</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Create a dedicated group for students</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="ex">groupadd</span> <span class="at">-f</span> <span class="st">"</span><span class="va">${COURSE_GROUP}</span><span class="st">"</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Username,TemporaryPassword"</span> <span class="op">&gt;</span> <span class="st">"</span><span class="va">${PASSWORD_FILE}</span><span class="st">"</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="va">$(</span><span class="fu">seq</span> <span class="at">-w</span> 1 <span class="st">"</span><span class="va">${NUM_STUDENTS}</span><span class="st">"</span><span class="va">)</span><span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="va">USERNAME</span><span class="op">=</span><span class="st">"trainee</span><span class="va">${i}</span><span class="st">"</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate an authentic, easy-to-type temporary password</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="va">TEMP_PASS</span><span class="op">=</span><span class="st">"BioLearn2026!</span><span class="va">${i}</span><span class="st">"</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="fu">id</span> <span class="st">"</span><span class="va">${USERNAME}</span><span class="st">"</span> <span class="op">&amp;&gt;</span>/dev/null<span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        <span class="bu">echo</span> <span class="st">"User </span><span class="va">${USERNAME}</span><span class="st"> already exists. Skipping."</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Create user with home directory and dedicated group</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>        <span class="ex">useradd</span> <span class="at">-m</span> <span class="at">-g</span> <span class="st">"</span><span class="va">${COURSE_GROUP}</span><span class="st">"</span> <span class="at">-s</span> /bin/bash <span class="st">"</span><span class="va">${USERNAME}</span><span class="st">"</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        <span class="bu">echo</span> <span class="st">"</span><span class="va">${USERNAME}</span><span class="st">:</span><span class="va">${TEMP_PASS}</span><span class="st">"</span> <span class="kw">|</span> <span class="ex">chpasswd</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Force password change upon first login (optional, depending on skill level)</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>        <span class="co"># chage -d 0 "${USERNAME}"</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Record credentials in master trainer ledger</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>        <span class="bu">echo</span> <span class="st">"</span><span class="va">${USERNAME}</span><span class="st">,</span><span class="va">${TEMP_PASS}</span><span class="st">"</span> <span class="op">&gt;&gt;</span> <span class="st">"</span><span class="va">${PASSWORD_FILE}</span><span class="st">"</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        <span class="bu">echo</span> <span class="st">"Created account for </span><span class="va">${USERNAME}</span><span class="st">"</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 600 <span class="st">"</span><span class="va">${PASSWORD_FILE}</span><span class="st">"</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Provisioning complete. Credential ledger saved to </span><span class="va">${PASSWORD_FILE}</span><span class="st">."</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>2. Directory Architecture and Reference Hygiene</strong></p>
+<p>Disk input/output (I/O) is often the slowest subsystem on a shared server. If 25 students each download a 1 GB FASTQ file and attempt to index the same human reference genome inside their personal home directories, the storage drive will choke on concurrent write operations, freezing all terminals.</p>
+<p>Structure the filesystem with strict separation between <strong>shared read-only assets</strong> and <strong>individual working directories</strong>:</p>
+<pre><code>/
+├── shared/                       # System-wide read-only course directory
+│   ├── data/                     # Raw sequencing reads (chmod 555)
+│   │   ├── sample_01_R1.fq.gz
+│   │   └── sample_01_R2.fq.gz
+│   ├── references/               # Pre-indexed reference genomes (chmod 555)
+│   │   ├── ecoli_k12.fasta
+│   │   ├── ecoli_k12.fasta.bwt   # PRE-BUILT BWA INDEX!
+│   │   └── ecoli_k12.fasta.fai
+│   └── containers/               # Pre-downloaded Apptainer .sif images (chmod 555)
+│       └── fastp_v0.23.4.sif
+│
+└── home/                         # Individual student home directories
+    ├── trainee01/
+    │   └── analysis/             # Students write output here
+    ├── trainee02/
+    └── ...</code></pre>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Use Pre-Built Indices
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Never instruct students to run reference indexing commands during a live workshop.</strong> Running <code>bwa index</code> or <code>bowtie2-build</code> on 25 concurrent sessions will exhaust CPU cores, overwhelm disk I/O, and duplicate dozens of gigabytes of identical index files. Always pre-build indices in <code>/shared/references/</code> and instruct learners to point their alignment tools to the shared index path:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correct training instruction: Point to shared read-only reference</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bwa</span> mem <span class="at">-t</span> 2 /shared/references/ecoli_k12.fasta sample_R1.fq sample_R2.fq <span class="op">&gt;</span> aligned.sam</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p><strong>3. Enforcing Disk Storage Quotas</strong></p>
+<p>To prevent an accidental recursive loop or runaway uncompressed SAM file from consuming 100% of the server’s disk space (which crashes system services like MySQL or SSH), enforce hard disk quotas on the <code>/home</code> filesystem:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set a soft quota of 10 GB and hard quota of 15 GB for all users in the 'trainees' group</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">setquota</span> <span class="at">-g</span> trainees 10G 15G 0 0 /home</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="preventing-server-overlaod" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="preventing-server-overlaod"><span class="header-section-number">14.4</span> Preventing Server Overlaod</h2>
+<p>The most perilous moment during a bioinformatics workshop is server overload when students simultaneously submit resource hungry jobs and the sever quickly runs out of memory and crashes.</p>
+<pre><code>                               
+ Instructor: "Now press Enter!" ───►  25 Trainees simultaneously run:
+                                      bwa mem -t 8 raw_R1.fq raw_R2.fq
+                                                │
+                                                ▼
+ ┌─────────────────────────────────────────────────────────────────────────────┐
+ │                         SERVER RESOURCE SATURATION                          │
+ ├─────────────────────────────────────────────────────────────────────────────┤
+ │ • 25 students × 8 threads = 200 threads competing on a 32-core CPU          │
+ │ • Context-switching overhead spikes; CPU load average jumps to 150+         │
+ │ • Memory allocations exceed physical RAM; system begins thrashing SWAP disk │
+ │ • Out-Of-Memory (OOM) Killer executes; terminates trainee pipelines &amp; SSH   │
+ └─────────────────────────────────────────────────────────────────────────────┘</code></pre>
+<p>When 25 students execute a multi-threaded command at the exact same millisecond, an unconstrained server will instantly collapse. Instructors must implement proactive resource containment strategies.</p>
+<p><strong>1. Resource Containment on a Standalone Linux Server</strong></p>
+<p>If you are teaching on a single standalone server (in-room or cloud), use Linux kernel features to restrict resource consumption per user:</p>
+<p><em>Method A: Setting Limits with <code>/etc/security/limits.conf</code></em> Configure PAM limits to restrict the maximum memory and number of processes any individual student can spawn:</p>
+<pre class="text"><code># /etc/security/limits.conf
+# &lt;domain&gt;      &lt;type&gt;  &lt;item&gt;         &lt;value&gt;
+@trainees       hard    nproc          50          # Max 50 processes per user
+@trainees       hard    as             8388608     # Max 8 GB virtual memory per process
+@trainees       hard    maxlogins      2           # Max 2 simultaneous SSH logins per user</code></pre>
+<p><em>Method B: Hard Resource Capping with Control Groups (cgroups v2)</em> Modern Linux distributions (Ubuntu 22.04+, Debian 12+) allow you to assign all user sessions to a systemd slice that enforces hard CPU and memory caps:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode ini code-with-copy"><code class="sourceCode ini"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># /etc/systemd/system/user-.slice.d/10-trainee-limits.conf</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">[Slice]</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Restrict the entire trainee pool to 80% of total CPU cores</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="dt">CPUQuota</span><span class="ot">=</span><span class="st">800%</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Hard memory cap: user processes are throttled or OOM-killed before starving system</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="dt">MemoryMax</span><span class="ot">=</span><span class="st">48G</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>2. Thread Hygiene and Defensive Wrapper Scripts</strong></p>
+<p>Learners frequently assume that specifying higher thread flags makes their code run faster. If a student notices the server has 32 cores and runs <code>bwa mem -t 32</code>, they monopolize the entire machine.</p>
+<ul>
+<li><strong>Explicit Thread Rules:</strong> Establish a strict classroom rule that no command may exceed <code>-t 2</code> (or <code>-t 4</code>, depending on server sizing).</li>
+<li><strong>Defensive Wrapper Scripts:</strong> Replace heavy bioinformatics binaries with shell wrappers in <code>/usr/local/bin</code> that automatically intercept and sanitize excessive thread requests:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env bash</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># /usr/local/bin/fastp - Wrapper to enforce classroom thread limits</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="va">REAL_FASTP</span><span class="op">=</span><span class="st">"/opt/tools/fastp/fastp"</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="va">MAX_THREADS</span><span class="op">=</span>2</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Intercept and cap requested threads</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="va">ARGS</span><span class="op">=</span><span class="va">()</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="kw">[[</span> <span class="va">$#</span> <span class="ot">-gt</span> 0 <span class="kw">]];</span> <span class="cf">do</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">"</span><span class="va">$1</span><span class="st">"</span> <span class="kw">in</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        <span class="ss">-w</span><span class="kw">|</span><span class="ss">--thread</span><span class="kw">)</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>            <span class="va">REQUESTED_THREADS</span><span class="op">=</span><span class="st">"</span><span class="va">$2</span><span class="st">"</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">[</span> <span class="st">"</span><span class="va">${REQUESTED_THREADS}</span><span class="st">"</span> <span class="ot">-gt</span> <span class="st">"</span><span class="va">${MAX_THREADS}</span><span class="st">"</span> <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>                <span class="va">ARGS</span><span class="op">+=</span><span class="va">(</span><span class="st">"-w"</span> <span class="st">"</span><span class="va">${MAX_THREADS}</span><span class="st">"</span><span class="va">)</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>                <span class="bu">echo</span> <span class="st">"[Classroom Server Notice] Capping threads from </span><span class="va">${REQUESTED_THREADS}</span><span class="st"> to </span><span class="va">${MAX_THREADS}</span><span class="st"> to prevent server overload."</span> <span class="op">&gt;&amp;</span><span class="dv">2</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>                <span class="va">ARGS</span><span class="op">+=</span><span class="va">(</span><span class="st">"-w"</span> <span class="st">"</span><span class="va">${REQUESTED_THREADS}</span><span class="st">"</span><span class="va">)</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">fi</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>            <span class="bu">shift</span> 2</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">;;</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>        <span class="pp">*</span><span class="kw">)</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>            <span class="va">ARGS</span><span class="op">+=</span><span class="va">(</span><span class="st">"</span><span class="va">$1</span><span class="st">"</span><span class="va">)</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>            <span class="bu">shift</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>            <span class="cf">;;</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">esac</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="bu">exec</span> <span class="st">"</span><span class="va">${REAL_FASTP}</span><span class="st">"</span> <span class="st">"</span><span class="va">${ARGS</span><span class="op">[@]</span><span class="va">}</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>3. Protecting the Login Node on a Shared HPC Cluster</strong></p>
+<p>If teaching on a shared institutional HPC cluster, the single greatest operational hazard is <strong>students running heavy computations directly on the login node</strong>.</p>
+<p>Because novice students are accustomed to running commands in whichever terminal is in front of them, they will inevitably execute <code>spades.py</code>, <code>samtools sort</code>, or <code>bwa mem</code> in their login shell rather than writing an <code>sbatch</code> script or requesting an interactive <code>srun</code> session.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/over_allocation.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="The login node over-allocation crisis"><img src="images/over_allocation.jpeg" class="img-fluid figure-img" alt="The login node over-allocation crisis"></a></p>
+<figcaption>The login node over-allocation crisis</figcaption>
+</figure>
+</div>
+<p>To protect the login node and maintain peace with institutional sysadmins:</p>
+<ol type="1">
+<li><strong>Pre-Flight Instruction:</strong> Use the airport terminal analogy explicitly before granting server credentials: <em>the login node is the ticket desk; running an analysis here is like trying to taxi an airplane through the departure hall.</em></li>
+<li><strong>Automated Login Node Watchdogs:</strong> Install or ask sysadmins to enable a lightweight watchdog (such as <code>systemd-oomd</code>, <code>kill-monopolizer</code>, or a custom cron script) that monitors login node processes and terminates any user process exceeding 10 minutes of CPU time or 4 GB of RAM, sending a helpful automated warning to the user.</li>
+<li><strong>Provide Standardized SLURM Templates:</strong> Eliminate syntax anxiety by providing pre-written SLURM script templates where students only need to modify input file names.</li>
+</ol>
+</section>
+<section id="connecting-learners" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="connecting-learners"><span class="header-section-number">14.5</span> Connecting Learners</h2>
+<p>The traditional method of connecting to a remote server is the Unix Secure Shell (<code>ssh trainee01@192.168.1.100</code>). However, in low-resource settings, raw SSH introduces may not work as anticipated:</p>
+<ul>
+<li><strong>Windows Friction:</strong> Windows users on older machines lack OpenSSH in PowerShell and struggle with configuring PuTTY, private keys, and X11 forwarding.</li>
+<li><strong>Port 22 Blocking:</strong> Campus and hotel guest Wi-Fi networks in LMICs frequently block outbound Port 22 (SSH) for security reasons, permitting only HTTP (Port 80) and HTTPS (Port 443).</li>
+<li><strong>Socket Disconnections:</strong> Intermittent Wi-Fi or laptop power-saving sleep modes drop the SSH socket, terminating running foreground processes.</li>
+</ul>
+<section id="web-based-terminal-interfaces" class="level3" data-number="14.5.1">
+<h3 data-number="14.5.1" class="anchored" data-anchor-id="web-based-terminal-interfaces"><span class="header-section-number">14.5.1</span> Web-Based Terminal Interfaces</h3>
+<p>Deploying a <strong>browser-based access layer</strong> eliminates client-side hurdles entirely. Trainees open a standard web browser (Chrome, Firefox, Edge) and interact with a full Linux terminal inside a web tab:</p>
+<table class="caption-top table">
+<caption>Browser-based training interfaces</caption>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Platform</th>
+<th style="text-align: left;">Key Teaching Capabilities</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>JupyterHub</strong> (with JupyterLab)</td>
+<td style="text-align: left;">• Spawns full Linux Bash terminals<br>• Supports interactive Python/R notebooks<br>• Built-in file browser for downloading<br>• Runs over standard HTTPS (Port 443)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>RStudio Server</strong></td>
+<td style="text-align: left;">• Integrated R console + Linux terminal<br>• Visual plot pane for inspecting graphs<br>• Familiar environment for biostatisticians</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong><code>ttyd</code> / Apache Guacamole</strong></td>
+<td style="text-align: left;">• Ultra-lightweight web-to-terminal gateway<br>• Minimal server overhead (~20 MB RAM)<br>• Bypasses all client SSH software needs</td>
+</tr>
+</tbody>
+</table>
+<section id="operational-advantages-of-web-terminals" class="level4">
+<h4 class="anchored" data-anchor-id="operational-advantages-of-web-terminals">Operational Advantages of Web Terminals:</h4>
+<ol type="1">
+<li><strong>Zero Client Installation:</strong> Absolutely no software needs to be installed on student laptops. Even a locked-down government hospital laptop can access the training server via a browser.</li>
+<li><strong>Universal Firewall Traversal:</strong> All traffic runs over HTTPS (Port 443), which is universally whitelisted on university and guest Wi-Fi networks.</li>
+<li><strong>Session Persistence by Default:</strong> If a student’s Wi-Fi drops or their laptop battery dies, their web session remains alive on the server. When they reconnect their browser, their terminal state and running pipelines are exactly where they left them!</li>
+</ol>
+</section>
+</section>
+<section id="hardening-raw-ssh-sessions-with-tmux" class="level3" data-number="14.5.2">
+<h3 data-number="14.5.2" class="anchored" data-anchor-id="hardening-raw-ssh-sessions-with-tmux"><span class="header-section-number">14.5.2</span> Hardening Raw SSH Sessions with <code>tmux</code></h3>
+<p>If your workshop curriculum explicitly requires teaching raw SSH connectivity, harden the server against network drops by configuring a terminal multiplexer (<code>tmux</code>) to launch automatically upon login:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add to /etc/skel/.bashrc (copied to all new user accounts upon creation)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="ot">-z</span> <span class="st">"</span><span class="va">$TMUX</span><span class="st">"</span> <span class="kw">]]</span> <span class="kw">&amp;&amp;</span> <span class="bu">[</span> <span class="st">"</span><span class="va">$SSH_CONNECTION</span><span class="st">"</span> <span class="ot">!=</span> <span class="st">""</span> <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Attach to existing session or create a new session named after the user</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">tmux</span> attach-session <span class="at">-t</span> <span class="st">"</span><span class="va">$USER</span><span class="st">"</span> <span class="dv">2</span><span class="op">&gt;</span>/dev/null <span class="kw">||</span> <span class="ex">tmux</span> new-session <span class="at">-s</span> <span class="st">"</span><span class="va">$USER</span><span class="st">"</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>With this single snippet, if a student loses their Wi-Fi connection during an alignment command, the process continues running safely on the server. When they reconnect and log back in, <code>tmux</code> reattaches their terminal instantly, preventing lost work and panic.</p>
+</section>
+</section>
+<section id="real-time-monitoring" class="level2" data-number="14.6">
+<h2 data-number="14.6" class="anchored" data-anchor-id="real-time-monitoring"><span class="header-section-number">14.6</span> Real-Time Monitoring</h2>
+<p>While leading a hands-on practical session, the lead instructor and roving helpers cannot simply assume the server is behaving correctly. You need real-time situational awareness of server health.</p>
+<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+│                    REAL-TIME MONITORING                                │
+├────────────────────────────────────────────────────────────────────────┤
+│ Keep a dedicated terminal open on a secondary monitor or laptop:       │
+│                                                                        │
+│ 1. htop / glances : Real-time CPU, RAM, and Swap utilization           │
+│ 2. iotop -o       : Real-time identification of disk I/O bottlenecks   │
+│ 3. df -h /home    : Monitoring rapid disk space consumption            │
+│ 4. squeue / qstat : Monitoring queue states (if on a SLURM cluster)    │
+└────────────────────────────────────────────────────────────────────────┘</code></pre>
+<section id="critical-early-warning-indicators" class="level3" data-number="14.6.1">
+<h3 data-number="14.6.1" class="anchored" data-anchor-id="critical-early-warning-indicators"><span class="header-section-number">14.6.1</span> Critical Early Warning Indicators</h3>
+<p>Keep a secondary screen or spare tablet open to <code>htop</code> during all exercises. Learn to recognize these three operational emergency indicators:</p>
+<ol type="1">
+<li><strong>Load Average Exceeding Core Count:</strong>
+<ul>
+<li><em>Symptom:</em> On a 16-core machine, load average climbs past 40.0.</li>
+<li><em>Diagnosis:</em> Multiple trainees have launched over-threaded commands.</li>
+<li><em>Action:</em> Identify offending user PIDs in <code>htop</code> (press <code>P</code> to sort by CPU%) and gracefully throttle them (<code>renice +10 &lt;PID&gt;</code>) or terminate them (<code>kill -15 &lt;PID&gt;</code>).</li>
+</ul></li>
+<li><strong>High I/O Wait Percentage (<code>wa</code> in top):</strong>
+<ul>
+<li><em>Symptom:</em> CPU utilization appears low, but <code>wa</code> exceeds 30–40% and all student terminals feel sluggish.</li>
+<li><em>Diagnosis:</em> Storage bus saturation. Multiple students are uncompressing large archives, writing uncompressed SAM files, or running concurrent sorting operations on a slow hard drive.</li>
+<li><em>Action:</em> Pause the classroom verbally. Check who is writing massive temporary files (<code>iotop -o</code>) and ensure everyone is using streaming pipes (<code>|</code>) rather than intermediate uncompressed files.</li>
+</ul></li>
+<li><strong>Rapid Swap Churn:</strong>
+<ul>
+<li><em>Symptom:</em> Physical RAM hits 98% and Swap begins ticking upward rapidly (several megabytes per second).</li>
+<li><em>Diagnosis:</em> Imminent server freeze. When Linux swaps actively during high-demand workloads, responsiveness drops to near zero.</li>
+<li><em>Action:</em> Immediately terminate the most memory-intensive process (<code>kill -9 &lt;PID&gt;</code>) before the kernel locks up completely.</li>
+</ul></li>
+</ol>
+</section>
+<section id="what-to-do-when-the-server-is-about-to-crash" class="level3" data-number="14.6.2">
+<h3 data-number="14.6.2" class="anchored" data-anchor-id="what-to-do-when-the-server-is-about-to-crash"><span class="header-section-number">14.6.2</span> What to do when the server is about to crash?</h3>
+<p>Have these three emergency one-liners memorized or saved in an executable script on your trainer account:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Kill all processes belonging to a single runaway student</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> pkill <span class="at">-u</span> trainee14</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Find and list the 10 largest files created in /home in the last hour</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> find /home <span class="at">-type</span> f <span class="at">-mmin</span> <span class="at">-60</span> <span class="at">-exec</span> du <span class="at">-h</span> {} + <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-hr</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 10</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Emergency purge of orphaned temp files if disk reaches 100%</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> rm <span class="at">-rf</span> /tmp/<span class="pp">*</span> /var/tmp/<span class="pp">*</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="contingency-planning" class="level2" data-number="14.7">
+<h2 data-number="14.7" class="anchored" data-anchor-id="contingency-planning"><span class="header-section-number">14.7</span> Contingency Planning</h2>
+<p>In resource-constrained environments, it may be useful to <strong>assume the server will fail.</strong></p>
+<p>A local power spike might trip the power supply; campus IT might unexpectedly reboot the building’s central switch; or an undetected kernel bug might panic the server mid-afternoon.</p>
+<p>As an instructor you need to be able to pivot when disaster strikes:</p>
+<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+│                          CONTINGENCY MATRIX                            │
+├────────────┬───────────────────────────────────────────────────────────┤
+│ TIER 1     │ Primary Plan: Centralized Server / HPC Cluster            │
+│ (Optimal)  │ Full multi-user interactive environment, pre-built indices│
+├────────────┼───────────────────────────────────────────────────────────┤
+│ TIER 2     │ Plan B: The "Cooking Show" Pre-Computed Outputs           │
+│ (Degraded) │ Server compute fails, but web file server still serves;   │
+│            │ distribute pre-computed BAM/VCF files via USB or local IP;│
+│            │ pivot immediately to data interpretation and QC modules.  │
+├────────────┼───────────────────────────────────────────────────────────┤
+│ TIER 3     │ Plan C: Standalone Offline Micro-Datasets on USB          │
+│ (Survival) │ Total server/power failure; students run static binaries  │
+│            │ or lightweight micro-datasets locally on battery laptops. │
+└────────────┴───────────────────────────────────────────────────────────┘</code></pre>
+<ol type="1">
+<li><strong>Maintain a “Cooking Show” USB Drive:</strong> Always carry three high-speed USB 3.0 flash drives loaded with the final output directories (BAM files, variant call tables, FastQC HTML reports) for every exercise in the curriculum. If the server goes offline during an alignment exercise, do not spend two hours trying to reboot it. Distribute the pre-computed outputs and transition immediately to teaching quality control and biological interpretation!</li>
+<li><strong>Maintain Battery and Network Independence:</strong> Plug the local server and the classroom Wi-Fi router into an independent Uninterruptible Power Supply (UPS) or lithium battery power bank. This ensures that when the venue lights cut out during a power cut, the classroom compute network remains operational for an additional 45–60 minutes.</li>
+</ol>
+</section>
+<section id="interactive-exercises-for-future-trainers" class="level2" data-number="14.8">
+<h2 data-number="14.8" class="anchored" data-anchor-id="interactive-exercises-for-future-trainers"><span class="header-section-number">14.8</span> Interactive Exercises for Future Trainers</h2>
+<div class="callout callout-style-default callout-exercise no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Exercise</span>Exercise 1 - Designing a Server Provisioning Plan
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout-exercise">
+<p>You have been asked to deliver a four day hands-on workshop on microbial whole-genome sequencing (WGS) for 24 participants at a regional research institute.</p>
+<p>The institute provides you with a dedicated workstation in the computer lab:</p>
+<ul>
+<li><strong>Hardware:</strong> 32 CPU cores, 64 GB of RAM, 1 TB SSD, running Ubuntu 22.04 LTS.</li>
+<li><strong>Network:</strong> The lab has a local 100 Mbps Ethernet switch, but outbound campus internet is capped at 2 Mbps and frequently drops for 20–30 minutes at a time.</li>
+<li><strong>Student Devices:</strong> Participants will bring personal laptops running a mix of Windows 10, Windows 11, and macOS. Five participants have locked-down institutional hospital laptops with no administrative privileges.</li>
+</ul>
+<p>Answer the following questions:</p>
+<ol type="1">
+<li><strong>Topology &amp; Access Layer:</strong> Which server topology and client access layer would you configure to ensure zero-install access and immunity to internet dropouts?</li>
+<li><strong>Directory &amp; Data Design:</strong> How would you organize the reference genome files and raw FASTQ files to prevent storage exhaustion and indexing bottlenecks?</li>
+<li><strong>Resource Safeguards:</strong> What technical safeguards will you implement to ensure that 24 simultaneous <code>bwa mem</code> commands do not trigger an Out-Of-Memory (OOM) crash?</li>
+</ol>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="server-provisioning" class="level4 callout-answer" data-collapse="true">
+<h4 class="anchored" data-anchor-id="server-provisioning">Server Provisioning</h4>
+<ol type="1">
+<li><strong>Topology &amp; Access Layer:</strong>
+<ul>
+<li>Deploy an <strong>In-Room Local Server</strong> connected directly to the lab’s local Ethernet switch. Assign the server a static local IP (e.g.&nbsp;<code>192.168.1.100</code>).</li>
+<li>Deploy <strong>JupyterHub</strong> or <strong>ttyd / RStudio Server</strong> running over HTTPS on Port 443. This completely bypasses the need for client SSH software, allows the five locked-down hospital laptops to connect via their web browser, and operates 100% offline without requiring outbound campus internet.</li>
+</ul></li>
+<li><strong>Directory &amp; Data Design:</strong>
+<ul>
+<li>Create a central read-only directory: <code>/shared/wgs_course/</code> with permissions <code>chmod -R 555</code>.</li>
+<li>Store all raw sequencing data (subsampled micro-datasets) and the reference genome in this directory.</li>
+<li>Pre-index the reference genome (<code>bwa index</code> and <code>samtools faidx</code>) inside <code>/shared/wgs_course/reference/</code> prior to the workshop.</li>
+<li>Set individual user quotas on <code>/home</code> (<code>setquota -g trainees 10G 15G 0 0 /home</code>) to prevent runaway disk fill.</li>
+</ul></li>
+<li><strong>Resource Safeguards:</strong>
+<ul>
+<li>24 students <span class="math inline">\(\times\)</span> 4 threads = 96 threads, which will thrash a 32-core machine. Therefore, hard-cap student threads to <strong>2 threads maximum</strong> (<code>-t 2</code>).</li>
+<li>Implement a wrapper script for <code>bwa</code> and <code>spades.py</code> that intercepts and caps the thread argument.</li>
+<li>Configure <code>/etc/security/limits.conf</code> to restrict each trainee account to a maximum of 4 GB of resident memory (<code>as</code>) and 40 concurrent processes (<code>nproc</code>).</li>
+<li>Pre-compute downstream assembly outputs and store them on a USB flash drive as a Tier 2 fallback.</li>
+</ul></li>
+</ol>
+</section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-exercise no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Exercise</span>Exercise 2 - Diagnosing a Classroom Freeze
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout-exercise">
+<p>You are co-facilitating a hands-on practical session. The instructor announces: <em>“Everyone, now run the alignment pipeline on your sample!”</em></p>
+<p>Two minutes later, multiple hands go up. Students report that their web terminals have frozen, typing has a 10-second lag, and three students display error screens reading <code>502 Bad Gateway - Connection to backend lost</code>.</p>
+<p>You switch to your trainer terminal and run <code>top</code>:</p>
+<pre><code>top - 14:22:10 up 4 days,  2:15, 26 users,  load average: 78.42, 45.12, 18.05
+Tasks: 412 total,  38 running, 374 sleeping,   0 stopped,   0 zombie
+%Cpu(s): 12.2 us, 42.8 sy,  0.0 ni,  0.0 id, 44.8 wa,  0.0 hi,  0.2 si,  0.0 st
+MiB Mem :  64120.4 total,   1024.2 free,  61850.1 used,   1246.1 buff/cache
+MiB Swap:  16384.0 total,   2104.5 free,  14279.5 used.    840.2 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+ 8412 trainee04 20   0   14.2g   8.1g   1.2g R 398.2  12.8   4:12.18 bwa
+ 8490 trainee11 20   0   12.8g   7.4g   1.1g R 385.0  11.7   3:58.42 bwa
+ 8511 trainee09 20   0   18.1g  12.2g   0.8g R 370.4  19.2   4:05.10 bwa
+ 8544 trainee18 20   0   16.4g   9.8g   0.9g R 365.1  15.4   3:44.20 bwa</code></pre>
+<ol type="1">
+<li><strong>Diagnostic Analysis:</strong> What specific hardware bottlenecks have caused the classroom freeze? Identify at least two critical metrics from the <code>top</code> output that explain the system state.</li>
+<li><strong>Immediate Remediation:</strong> What exact operational steps will you take right now to prevent the server from crashing completely?</li>
+<li><strong>Classroom Choreography:</strong> What instructions should the lead trainer communicate verbally to the students while you resolve the crisis?</li>
+</ol>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="diagnosing-a-classroom-freeze-1" class="level4 callout-answer">
+<h4 class="anchored" data-anchor-id="diagnosing-a-classroom-freeze-1">Diagnosing a Classroom Freeze</h4>
+<ol type="1">
+<li><strong>Diagnostic Analysis:</strong>
+<ul>
+<li><strong>RAM Exhaustion &amp; Swap Thrashing:</strong> Physical RAM is 98% full (only 1 GB free out of 64 GB), and 14.2 GB of Swap space has been consumed. When memory overflows into disk swap, the operating system spends all its cycles moving memory pages to and from disk rather than computing.</li>
+<li><strong>Severe I/O Wait (<code>44.8 wa</code>):</strong> Over 44% of CPU cycles are idle waiting for disk I/O, caused by swap thrashing and multiple unbuffered write operations.</li>
+<li><strong>Extreme Load Average (78.42):</strong> 78 tasks are competing for execution queues on the CPU, freezing the web server and dropping HTTP sockets (causing <code>502 Bad Gateway</code>).</li>
+<li><strong>Root Cause:</strong> A subset of students (trainee04, trainee09, trainee11, trainee18) ran unconstrained alignments requesting excessive threads and memory, starving the entire classroom pool.</li>
+</ul></li>
+<li><strong>Immediate Remediation:</strong>
+<ul>
+<li><p>Free memory immediately by terminating the largest runaway processes before the kernel crashes:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> kill <span class="at">-15</span> 8511 8412 8490 8544</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If unresponsive after 5 seconds:</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> kill <span class="at">-9</span> 8511 8412 8490 8544</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Swap will clear and memory pressure will drop instantly. Restart the web server gateway if needed:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl restart jupyterhub   <span class="co"># or nginx / ttyd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+<li><strong>Classroom Choreography:</strong>
+<ul>
+<li><strong>The Lead Trainer’s Verbal Announcement:</strong> <em>“Everyone, pause where you are! Please do not refresh your browsers. We hit a resource spike because our alignments demanded more memory than the machine expected. This is completely normal and an excellent real-world lesson in server capacity. We are clearing the queue right now; we’ll resume in 60 seconds.”</em></li>
+<li>Once stable, debrief the room transparently: show the <code>top</code> output on the projector, explain what <code>wa</code> and swap mean, enforce the <code>-t 2</code> flag, and have students re-launch their jobs in two staggered batches (e.g.&nbsp;left side of the room first, right side second).</li>
+</ul></li>
+</ol>
+</section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="summary" class="level2" data-number="14.9">
+<h2 data-number="14.9" class="anchored" data-anchor-id="summary"><span class="header-section-number">14.9</span> Summary</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Key Points
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Using a Centralized Server:</strong> Centralized compute equalizes heterogeneous student hardware, guarantees a uniform software environment, and eliminates the “Installation Abyss” on Day 1.</li>
+<li><strong>Correct Setup for Every Venue:</strong> Choose the right infrastructure for your connectivity context—the in-room offline server (immune to internet cuts), shared institutional/regional HPC (for massive datasets), or disposable cloud VMs (for flexibility).</li>
+<li><strong>Automate Provisioning:</strong> Never use a single shared account. Use automated shell scripts to batch-provision isolated accounts, enforce disk quotas, and restrict permissions.</li>
+<li><strong>Isolate Shared Assets:</strong> Store reference genomes, indices, and raw micro-datasets in a central read-only directory (<code>chmod 555</code>). Pre-build all reference indices before the workshop starts.</li>
+<li><strong>Mitigate Server Overload:</strong> Constrain per-user CPU and memory using <code>cgroups</code>, <code>pam_limits.conf</code>, thread-capping wrapper scripts, or dedicated SLURM training reservations with restricted QoS.</li>
+<li><strong>Adopt Web-Based Access:</strong> Prefer browser-based terminal interfaces (JupyterHub, RStudio Server, <code>ttyd</code>) over raw SSH to eliminate client-side installation friction and bypass institutional Port 22 blocking.</li>
+<li><strong>Monitor Server Health:</strong> Monitor server health in real time using a secondary screen running <code>htop</code> or <code>glances</code>. Watch for high I/O wait and swap spikes before they crash the server.</li>
+<li><strong>Always Have a Plan B:</strong> Maintain pre-computed outputs and standalone offline micro-datasets on USB flash drives so instruction can pivot instantly if the server fails.</li>
+</ul>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
+  <div class="nav-page nav-page-previous">
+      <a href="../materials/14-cloud_bioinformatics.html" class="pagination-link" aria-label="Cloud-based Bioinformatics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Cloud-based Bioinformatics</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../materials/16-micro_datasets.html" class="pagination-link" aria-label="Utilising Micro-datasets">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Utilising Micro-datasets</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> <img src="https://creativecommons.org/images/deed/cc_icon_black_x2.png" class="img-fluid" width="25"> Cambridge Research Informatics Training</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

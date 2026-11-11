@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; Learning Principles</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../materials/04-training_strategies.html" rel="next">
+<link href="../materials/02-intro_bioinformatics.html" rel="prev">
+<link href="../site_libs/quarto-contrib/quarto-project/cambiotraining/crit-format/img/university-of-cambridge-favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e61435445fcf3984a6ef2a52d56cc2fa.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../site_libs/quarto-contrib/quarto-project/cambiotraining/crit-format/img/university_crest_reversed.png" alt="" class="navbar-logo light-content">
+    <img src="../site_libs/quarto-contrib/quarto-project/cambiotraining/crit-format/img/university_crest_reversed.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Teaching Bioinformatics in Low-resource Settings</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/cambiotraining/low-resource-bioinformatics"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-brands:github" style="font-size: 1.25em;" aria-label="Icon github from fa6-brands Iconify.design set." title="CRIT GitHub"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://bsky.app/profile/bioinfocambs.bsky.social"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-brands:bluesky" style="font-size: 1.25em;" aria-label="Icon bluesky from fa6-brands Iconify.design set." title="CRIT Bluesky"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://genomic.social/@BioInfoCambs"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-brands:mastodon" style="font-size: 1.25em;" aria-label="Icon mastodon from fa6-brands Iconify.design set." title="CRIT Mastodon"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://bioinfotraining.bio.cam.ac.uk/"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:web" style="font-size: 1.25em;" aria-label="Icon web from mdi Iconify.design set." title="CRIT Website"></iconify-icon></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    
+    <style>
+    #version-dropdown {
+      list-style: none;
+    }
+    </style>
+    
+
+  <li id="version-dropdown" class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-versions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+      <span class="menu-text">Version:</span> <span class="version-badge" aria-hidden="true">Latest</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-versions">
+      <li>
+        <a class="dropdown-item" href="/low-resource-bioinformatics/index.html">
+          <span class="dropdown-text">Latest</span>
+        </a>
+      </li>
+    </ul>
+  </li>
+</nav>
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Learning Principles</span></h1>
+        </a>     
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Section">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Welcome</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/01-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Principles of Bioinformatics Training Design</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/02-intro_bioinformatics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">What is Bioinformatics?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/03-adult_learning.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Learning Principles</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/04-training_strategies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Strategies for Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/05-effective_training.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Elements of Effective Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/06-training_design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Designing Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/07-lesson_planning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lesson Planning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/08-assessments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Assessment Strategies</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/17b-responsible_ai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Responsible Use of AI</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Building Practical &amp; Scaleable Bioinformatics Training</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/09-open_resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Open Educational Resources</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/12-containerisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Containerisation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/13-software_installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Software Installation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/14-cloud_bioinformatics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Cloud-based Bioinformatics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/15-hpc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Using an HPC or Server for Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/16-micro_datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Utilising Micro-datasets</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/08b-course_materials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Authoring and Publishing Course Materials</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/20-case_studies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Case Studies</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Design and Sustain your Training</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/18-design_your_training.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Design Your Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/19-communities_of_practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Building Communities of Practice</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Appendices</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../versions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Archived Versions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#pedagogy-versus-andragogy" id="toc-pedagogy-versus-andragogy" class="nav-link active" data-scroll-target="#pedagogy-versus-andragogy"><span class="header-section-number">3.1</span> Pedagogy versus Andragogy</a></li>
+  <li><a href="#knowles-core-assumptions-of-andragogy" id="toc-knowles-core-assumptions-of-andragogy" class="nav-link" data-scroll-target="#knowles-core-assumptions-of-andragogy"><span class="header-section-number">3.2</span> Knowles’ Core Assumptions of Andragogy</a></li>
+  <li><a href="#shifting-roles-from-teacher-to-facilitator" id="toc-shifting-roles-from-teacher-to-facilitator" class="nav-link" data-scroll-target="#shifting-roles-from-teacher-to-facilitator"><span class="header-section-number">3.3</span> Shifting Roles: From Teacher to Facilitator</a></li>
+  <li><a href="#andragogy-in-low-resource-environments" id="toc-andragogy-in-low-resource-environments" class="nav-link" data-scroll-target="#andragogy-in-low-resource-environments"><span class="header-section-number">3.4</span> Andragogy in Low-Resource Environments</a></li>
+  <li><a href="#interactive-exercises-for-future-trainers" id="toc-interactive-exercises-for-future-trainers" class="nav-link" data-scroll-target="#interactive-exercises-for-future-trainers"><span class="header-section-number">3.5</span> Interactive Exercises for Future Trainers</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">3.6</span> Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Learning Principles</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Learning Objectives
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Distinguish between pedagogy (child learning) and andragogy (adult learning), identifying why traditional teacher-centred models fail in professional bioinformatics training.</li>
+<li>Apply Knowles’ six core assumptions of andragogy to the design and delivery of bioinformatics workshops.</li>
+<li>Mitigate imposter syndrome, terminal anxiety, and the psychological vulnerability adult scientists experience when learning computational tools.</li>
+<li>Transition instructor practice from an authoritative content transmitter to an empathetic facilitator of learning.</li>
+<li>Design learning activities centered on immediate problem-solving, local relevance, and active knowledge co-construction.</li>
+</ul>
+</div>
+</div>
+<section id="pedagogy-versus-andragogy" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="pedagogy-versus-andragogy"><span class="header-section-number">3.1</span> Pedagogy versus Andragogy</h2>
+<p>When designing training for researchers, university lecturers, laboratory technicians, or clinicians, instructors often fall back on the teaching models they experienced during primary or secondary school: an authoritative instructor delivering a lecture from the front of the room, followed by standardized tests.</p>
+<p>In professional training, this traditional teacher-centred approach frequently leads to disengagement, frustration, and poor retention.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Defining the Terms
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Pedagogy:</strong> Literally “to lead the child” (from the Greek <em>paid</em>, child, and <em>agogos</em>, leading). It describes the art, theory, and methods of teaching children, where the instructor assumes full responsibility for determining what will be learned, how it will be learned, when it will be learned, and if it has been learned.</li>
+<li><strong>Andragogy:</strong> Literally “to lead the adult” (from the Greek <em>aner</em>, adult). Popularized by Malcolm Knowles in 1968, andragogy refers to the art and science of helping adults learn. It recognizes that adults learn through fundamentally different psychological motivations, experiences, and cognitive frameworks than children.</li>
+</ul>
+</div>
+</div>
+<p>Even though the term “pedagogy” is colloquially used in academic discourse as a general synonym for teaching, this course strictly adopts an <strong>andragogical framework</strong>.</p>
+<table class="caption-top table">
+<caption>Pedagogy vs Andragogy in bioinformatics</caption>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Pedagogy (Child / Traditional)</th>
+<th style="text-align: left;">Andragogy (Adult Learning)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Learner is dependent on teacher</td>
+<td style="text-align: left;">Learner is self-directed</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Teacher controls content &amp; pace</td>
+<td style="text-align: left;">Learner shares control &amp; goals</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Learner brings little experience</td>
+<td style="text-align: left;">Rich reservoir of domain experience</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Subject-centred (curriculum)</td>
+<td style="text-align: left;">Problem-centred (real research)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">External motivation (grades)</td>
+<td style="text-align: left;">Internal motivation (career/publications)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Passive content absorption</td>
+<td style="text-align: left;">Active, experiential facilitation</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="knowles-core-assumptions-of-andragogy" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="knowles-core-assumptions-of-andragogy"><span class="header-section-number">3.2</span> Knowles’ Core Assumptions of Andragogy</h2>
+<p>Malcolm Knowles and colleagues (2015) identified core assumptions that distinguish adult learners. Understanding these assumptions allows bioinformatics instructors to design empathetic, highly effective training programs:</p>
+<p><strong>1. The Need to Know</strong></p>
+<p>Adults need to know <strong>why</strong> they need to learn something before undertaking to learn it. They resist learning things simply because an instructor says “it’s on the syllabus.”</p>
+<ul>
+<li><em>In Bioinformatics:</em> Never introduce a tool (e.g.&nbsp;<code>fastp</code> or <code>samtools</code>) with raw syntax alone. First demonstrate the problem: <em>“Here is an unaligned read file with adapter contamination. If we don’t trim these sequences, 15% of our reads will fail to map to the reference genome, wasting your sequencing budget.”</em></li>
+</ul>
+<p><strong>2. The Learner’s Self-Concept</strong></p>
+<p>Adults need to be perceived as self-directed, autonomous individuals. When placed in situations where they are treated like passive schoolchildren or talked down to, they may experience cognitive friction and resentment.</p>
+<ul>
+<li><em>In Bioinformatics:</em> Avoid rigid, lockstep dictation. Give learners autonomy over project choices, choice of example datasets, and space for exploratory debugging.</li>
+</ul>
+<p><strong>3. The Role of Learner Experience</strong></p>
+<p>Adults enter the classroom with a vast reservoir of prior professional and personal experience. This experience is a rich resource for learning, but it also carries entrenched mental models and cognitive biases.</p>
+<ul>
+<li><p><em>In Bioinformatics:</em> Tap into their wet-lab knowledge. An experienced molecular biologist already understands PCR amplification, primer design, and DNA denaturation. Connect computational steps directly to the physical benchwork they already master:</p>
+<ul>
+<li><em>Quality scores <span class="math inline">\(\rightarrow\)</span> Gel electrophoresis band clarity.</em></li>
+<li><em>Read alignment <span class="math inline">\(\rightarrow\)</span> Hybridization of primers.</em></li>
+<li><em>PCR duplicates <span class="math inline">\(\rightarrow\)</span> Over-amplification on the thermal cycler.</em></li>
+</ul></li>
+</ul>
+<p><strong>4. Readiness to Learn</strong></p>
+<p>Adults become ready to learn things when they experience a need to know them in order to cope with real-life situations, career requirements, or research challenges.</p>
+<ul>
+<li><em>In Bioinformatics:</em> Trainees rarely attend workshops for abstract curiosity; they attend because they have sequencing data sitting on a hard drive that they cannot analyze, or a grant review demanding computational validation. Align workshop exercises with their immediate professional needs.</li>
+</ul>
+<p><strong>5. Orientation to Learning</strong></p>
+<p>Children are subject-centred (e.g.&nbsp;“We are studying History or Mathematics today”). Adults are <strong>problem-centred</strong> or <strong>task-centred</strong>.</p>
+<ul>
+<li><em>In Bioinformatics:</em> Structure lessons around authentic scientific questions: <em>“Can we identify the transmission cluster in this hospital outbreak?”</em> rather than <em>“Chapter 3: The Syntax of BCFtools.”</em></li>
+</ul>
+<p><strong>6. Motivation</strong></p>
+<p>While adults respond to external motivators (e.g.&nbsp;promotion, certificates, higher salary), the most potent motivators are internal: job satisfaction, self-esteem, curiosity, and the desire to overcome a research barrier.</p>
+</section>
+<section id="shifting-roles-from-teacher-to-facilitator" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="shifting-roles-from-teacher-to-facilitator"><span class="header-section-number">3.3</span> Shifting Roles: From Teacher to Facilitator</h2>
+<p>Applying andragogy requires redefining the instructor’s professional identity:</p>
+<table class="caption-top table">
+<caption>Table 1: Teacher versus facilitator</caption>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">The Traditional Teacher</th>
+<th style="text-align: left;">The Learning Facilitator</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">“I hold the knowledge”</td>
+<td style="text-align: left;">“We co-construct knowledge”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Transmits fixed syllabus</td>
+<td style="text-align: left;">Manages the learning process</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Controls timing and content</td>
+<td style="text-align: left;">Responds to learner needs</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Evaluates and grades students</td>
+<td style="text-align: left;">Promotes self-evaluation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Focuses on presentation skills</td>
+<td style="text-align: left;">Focuses on relational &amp; process design skills</td>
+</tr>
+</tbody>
+</table>
+<p>Following Knowles <em>et al.</em> (2015), the facilitator prepares in advance an operational structure involving:</p>
+<ol type="1">
+<li><strong>Preparing the learner:</strong> Setting clear, realistic expectations and demystifying prerequisites before Day 1.</li>
+<li><strong>Establishing an empathetic climate:</strong> Creating an environment where questions are welcomed and errors are celebrated as learning moments.</li>
+<li><strong>Mutual planning:</strong> Diagnosing learner needs and negotiating priorities.</li>
+<li><strong>Designing authentic learning experiences:</strong> Using participatory live coding, micro-datasets, and localized biological problems.</li>
+<li><strong>Evaluating and improving:</strong> Gathering continuous formative feedback (e.g.&nbsp;sticky notes, minute papers) to adapt the course dynamically.</li>
+</ol>
+</section>
+<section id="andragogy-in-low-resource-environments" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="andragogy-in-low-resource-environments"><span class="header-section-number">3.4</span> Andragogy in Low-Resource Environments</h2>
+<p>In low-resource settings, the principles of adult learning intersect with systemic socio-economic and institutional realities:</p>
+<ul>
+<li><strong>High Opportunity Cost:</strong> Adult professionals taking 3–5 days away from clinical wards, wet laboratories, or heavy teaching loads need to know their investment of time will immediately translate into tangible productivity. If a course wastes two days on failed installations, learners will disengage.</li>
+<li><strong>The “Lone Bioinformatician” Reality:</strong> Many adult trainees are the sole individual from their institution attending the course. They carry the immense burden of needing to return home and become the computational expert, mentor, and pipeline developer for their entire department.</li>
+<li><strong>Empowerment Through Local Relevance:</strong> Adult learners in LMICs are intensely motivated by solving regional health and agricultural problems (e.g.&nbsp;local AMR surveillance, malaria eradication, climate-resilient crop breeding). When instructors replace abstract examples with datasets reflecting their local reality, learning ceases to be an academic exercise—it becomes an act of scientific self-determination.</li>
+</ul>
+</section>
+<section id="interactive-exercises-for-future-trainers" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="interactive-exercises-for-future-trainers"><span class="header-section-number">3.5</span> Interactive Exercises for Future Trainers</h2>
+<p>These exercises will challenge you to identify andragogical principles in action and transform traditional teacher-centred lessons into engaging, facilitator-led workshops.</p>
+<div class="callout callout-style-default callout-exercise no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Exercise</span>Exercise 1 - Transforming a Teacher-Centred Lecture
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout-exercise">
+<p>You are reviewing an introductory lesson plan designed by a colleague for a two day variant-calling workshop for hospital microbiologists.</p>
+<p>The current lesson plan reads:</p>
+<blockquote class="blockquote">
+<p><em>“09:00 - 10:30: Slide presentation (60 slides) explaining the history of sequencing technologies, Sanger chemistry, Illumina sequencing-by-synthesis, and quality score logarithmic mathematical formulas. Trainer will lecture from the front; students listen quietly.”</em></p>
+</blockquote>
+<ol type="1">
+<li>Identify three specific ways this lesson plan violates Knowles’ assumptions of andragogy.</li>
+<li>What emotional or cognitive state will this design trigger in adult clinical microbiologists?</li>
+<li>Redesign this 90-minute block into an andragogically sound, facilitator-led learning experience.</li>
+</ol>
+<div class="callout callout-style-default callout-hint no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hint</span>Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="callout-hint">
+<p>Consider the “Need to Know”, “Problem-Centred Orientation”, and the value of active, hands-on participation.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="andragogical-redesign" class="level3 callout-answer" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="andragogical-redesign"><span class="header-section-number">3.5.1</span> Andragogical Redesign</h3>
+<ol type="1">
+<li><p><strong>Violations of Andragogy:</strong></p>
+<ul>
+<li><strong>Passive Transmission (Pedagogical):</strong> Treats learners as empty vessels to be filled with historical theory rather than self-directed practitioners.</li>
+<li><strong>Lack of “Need to Know”:</strong> Memorizing Phred logarithmic math formulas (<span class="math inline">\(P = 10^{-Q/10}\)</span>) in the abstract has zero immediate relevance to clinical practice.</li>
+<li><strong>Subject-Centred, Not Problem-Centred:</strong> Focuses on the history of sequencing instead of the clinical challenge the microbiologists care about.</li>
+</ul></li>
+<li><p><strong>Likely Learner Reaction:</strong> Boredom, fatigue, cognitive overload, and anxiety: <em>“Why am I sitting through 60 slides of history when I have patient samples to analyze? Is bioinformatics just endless theory?”</em></p></li>
+<li><p><strong>Facilitator-Led Redesign:</strong></p>
+<ul>
+<li><strong>09:00 - 09:15 (The Clinical Hook):</strong> Start with an authentic patient case study: <em>“A patient in our ICU has a hospital-acquired infection resistant to carbapenems. We sequenced the isolate. How do we know if our sequencing data is reliable enough to make a clinical decision?”</em></li>
+<li><strong>09:15 - 09:40 (Interactive Exploration):</strong> Open a real FastQC report on screen. Have trainees explore the report in pairs. Ask them: <em>“Where does the quality drop? What does this red warning mean?”</em></li>
+<li><strong>09:40 - 10:10 (Targeted Explanation):</strong> Briefly explain Phred quality scores and Illumina error profiles <em>in response to what they just observed</em> on their screens.</li>
+<li><strong>10:10 - 10:30 (Hands-on Action):</strong> Trainees run a read-trimming command on a micro-dataset and compare the “before” and “after” quality reports with their partner.</li>
+</ul></li>
+</ol>
+</section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-exercise no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Exercise</span>Exercise 2 - Navigating the Expert-Novice Paradox in Live Classrooms
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout-exercise">
+<p>During the afternoon practical, Professor K., a distinguished 55-year-old professor of virology, is attempting to change directories in the terminal. They type <code>cd data</code> and receive <code>bash: cd: data: No such file or directory</code>.</p>
+<p>Professor K. visibly stiffens, crosses their arms, pushes their laptop away, and stops participating. When a roving helper approaches, Professor K. mutters: <em>“This computer interface is useless nonsense. In our wet lab, we generate real data; this is just academic games.”</em></p>
+<ol type="1">
+<li>What psychological dynamic is Professor K. experiencing?</li>
+<li>Why is defensive frustration a common coping mechanism for senior adult experts learning computation?</li>
+<li>How should the instructor/helper respond to de-escalate the tension, restore psychological safety, and re-engage Professor K.?</li>
+</ol>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="facilitator-intervention" class="level3 callout-answer" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="facilitator-intervention"><span class="header-section-number">3.5.2</span> Facilitator Intervention</h3>
+<ol type="1">
+<li><p><strong>Psychological Dynamic:</strong> Professor K. is experiencing acute <strong>cognitive vulnerability and loss of self-concept</strong>. As a senior, highly respected virologist, having a computer tell them they made a mistake (“No such file or directory”) threatens their professional identity and sense of competence.</p></li>
+<li><p><strong>Why Defensive Frustration Occurs:</strong> When adult experts feel deskilled, dismissing the subject (“useless nonsense”, “academic games”) is a natural psychological defense mechanism to protect self-esteem and deflect perceived inadequacy.</p></li>
+<li><p><strong>Facilitator Response:</strong></p>
+<ul>
+<li><strong>Validate Domain Expertise First:</strong> Empathize and reaffirm their high status: <em>“Professor K., you are completely right that wet-lab data generation is the foundation of all biology. Without your viral culture work, bioinformatics has nothing to compute.”</em></li>
+<li><strong>De-escalate the Error:</strong> Demystify the error as a mechanical miscommunication, not an intellectual failure: <em>“The terminal is completely literal and a bit stubborn. It only says ‘No such file’ because our current working directory is one level above where the folder sits. It’s like dialing a phone number missing one area code.”</em></li>
+<li><strong>Guide, Don’t Take Over:</strong> Never grab their keyboard! Guide them verbally: <em>“Let’s type <code>pwd</code> together to see where we are… Perfect. Now type <code>ls</code> to see what is in this room… Ah, look, the folder is called <code>raw_data</code>. If we type <code>cd raw_data</code>, it will jump right in.”</em></li>
+<li><strong>Affirm Success:</strong> When it succeeds: <em>“Excellent! Now your sequencing reads are right in front of you.”</em></li>
+</ul></li>
+</ol>
+</section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="summary" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="summary"><span class="header-section-number">3.6</span> Summary</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Key Points
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Andragogy Governs Adult Learning:</strong> Adult learners are self-directed, bring vast reservoirs of domain experience, and learn best when knowledge is problem-centred, immediately applicable, and internally motivated.</li>
+<li><strong>Connect Computational Syntax to Wet-Lab Concepts:</strong> Ground abstract command-line concepts in the physical biology they already understand (e.g.&nbsp;connecting quality scores to gel electrophoresis or PCR duplicates to over-cycling).</li>
+<li><strong>Shift from Teacher to Facilitator:</strong> Abandon the “sage on the stage” model. Successful trainers manage the learning environment, design authentic practical experiences, and facilitate active inquiry rather than delivering monologues.</li>
+<li><strong>Maximize Relevance in Low-Resource Contexts:</strong> Respect the high opportunity cost of adult professional training by using authentic local health and agricultural datasets that empower trainees to solve pressing regional challenges.</li>
+</ul>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
+  <div class="nav-page nav-page-previous">
+      <a href="../materials/02-intro_bioinformatics.html" class="pagination-link" aria-label="What is Bioinformatics?">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">What is Bioinformatics?</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../materials/04-training_strategies.html" class="pagination-link" aria-label="Strategies for Training">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Strategies for Training</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> <img src="https://creativecommons.org/images/deed/cc_icon_black_x2.png" class="img-fluid" width="25"> Cambridge Research Informatics Training</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
